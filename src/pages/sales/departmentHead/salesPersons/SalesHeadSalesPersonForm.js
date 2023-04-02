@@ -360,7 +360,7 @@ class SalesHeadSalesPersonForm extends Component {
           'Error: User cancelled image selection';
 
         // Permission Missing
-        if (e == permissionErrorMessage) {
+        if (e === permissionErrorMessage) {
           this.api.showPermissionRelatedError(
             'Missing Permissions!',
             'Please enable camera and storage permissions to use this feature.',
@@ -390,7 +390,7 @@ class SalesHeadSalesPersonForm extends Component {
           'Error: User cancelled image selection';
 
         // Permission Missing
-        if (e == permissionErrorMessage) {
+        if (e === permissionErrorMessage) {
           this.api.showPermissionRelatedError(
             'Missing Permissions!',
             'Please enable storage permission to use this feature.',

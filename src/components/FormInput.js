@@ -1,13 +1,12 @@
 import React from 'react';
-import { Input } from 'react-native-elements';
-import { StyleSheet, View } from 'react-native';
-import { 
-  primaryHexColor, 
-  dangerHexColor, 
-  formComponentBorder, 
-  placeHolderColor, 
+import {StyleSheet, View} from 'react-native';
+import {Input} from 'react-native-elements';
+import {
+  dangerHexColor,
   fontColor,
-  formComponentDisableBackground
+  formComponentBorder,
+  formComponentDisableBackground,
+  placeHolderColor,
 } from '../constants/themeColors';
 
 const FormInput = ({
@@ -32,25 +31,41 @@ const FormInput = ({
       // label={label}
       // labelStyle={{ color: primaryHexColor, fontSize: 12, marginBottom: 2 }}
       style={styles.input}
-      disabled={typeof disabled !== 'undefined' && disabled === true ? true : false }
-      keyboardType={typeof keyboardType !== 'undefined' ? keyboardType : "default" }
-      containerStyle={typeof containerStyle !== 'undefined'? containerStyle : { marginBottom: -4 } }
-      inputContainerStyle={{ 
-        borderColor: formComponentBorder, 
-        borderWidth: 1, 
+      disabled={
+        typeof disabled !== 'undefined' && disabled === true ? true : false
+      }
+      keyboardType={
+        typeof keyboardType !== 'undefined' ? keyboardType : 'default'
+      }
+      containerStyle={
+        typeof containerStyle !== 'undefined'
+          ? containerStyle
+          : {marginBottom: -4}
+      }
+      inputContainerStyle={{
+        borderColor: formComponentBorder,
+        borderWidth: 1,
         height: 40,
         borderRadius: 100,
-        backgroundColor: typeof disabled !== 'undefined' && disabled === true ? formComponentDisableBackground : 'transparent'
+        backgroundColor:
+          typeof disabled !== 'undefined' && disabled === true
+            ? formComponentDisableBackground
+            : 'transparent',
       }}
-      inputStyle={{ fontSize: 13, paddingHorizontal: 15, color: fontColor}}
+      inputStyle={{fontSize: 13, paddingHorizontal: 15, color: fontColor}}
       errorMessage={errorMessage}
-      errorStyle={{marginLeft: 5, marginTop: 0, fontSize: 10, color: dangerHexColor}}
+      errorStyle={{
+        marginLeft: 5,
+        marginTop: 0,
+        fontSize: 10,
+        color: dangerHexColor,
+      }}
     />
   </View>
-)
+);
 
 const styles = StyleSheet.create({
-  input: {}
-})
+  input: {},
+});
 
-export default FormInput
+export default FormInput;

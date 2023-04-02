@@ -1,47 +1,40 @@
+import {Body, Card, CardItem, Fab} from 'native-base';
 import React, {Component} from 'react';
 import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Linking,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Fab, Card, CardItem, Body, Left, Right, Badge} from 'native-base';
 
 import {
-  primaryHexColor,
-  primaryBlueHexColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
 } from '../../../constants/themeColors';
 
 import {
-  badgeCss,
-  common,
-  callLogCardLayout,
-  headerStyles,
   badgeColorCode,
+  callLogCardLayout,
+  common,
   commonLabelDescription,
 } from '../../../assets/style';
 
-import NoRecordsFound from '../../../components/NoRecordsFound';
 import ListingSearchBar from '../../../components/ListingSearchBar';
+import NoRecordsFound from '../../../components/NoRecordsFound';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
-import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
 
 const screenWidth = Dimensions.get('window').width;
@@ -152,40 +145,6 @@ class Leads extends Component {
                   ]}>
                   {item.companyname}
                 </Text>
-                {/* <View style={callLogCardLayout.textWithIconContainer}>
-                                    <Icon name="calendar" size={16} style={callLogCardLayout.textWithIconContainerIcon} />
-                                    <View>
-                                        <Text style={callLogCardLayout.textWithIconContainerText}>{item.leadondisplaydate}</Text>
-                                    </View>
-                                </View>
-                                <View style={callLogCardLayout.textWithIconContainer}>
-                                    <Icon name="user" size={16} style={callLogCardLayout.textWithIconContainerIcon} />
-                                    <View>
-                                        <Text style={callLogCardLayout.textWithIconContainerText}>{item.contactperson}</Text>
-                                    </View>
-                                </View>
-                                <View style={callLogCardLayout.textWithIconContainer}>
-                                    <Icon name="phone" size={16} style={callLogCardLayout.textWithIconContainerIcon} />
-                                    <View>
-                                        <Text 
-                                            style={[callLogCardLayout.textWithIconContainerText, common.linkText]}
-                                            onPress={() => Linking.openURL('tel:' + item.phoneno)}
-                                            Google
-                                        >
-                                            {item.phoneno}
-                                        </Text>
-                                    </View>
-                                </View> */}
-                {/* <Text style={{marginTop: 2}}>
-                                    <Text style={common.fontBold}>Email:</Text> {item.email}
-                                </Text>
-                                <Text style={{marginTop: 2}}>
-                                    <Text style={common.fontBold}>Phone No:</Text> {item.phoneno}
-                                </Text>
-                                <Text style={{marginTop: 2}}>
-                                    <Text style={common.fontBold}>Address:</Text> {item.displaylocation}
-                                </Text> */}
-
                 {this.props.user !== null &&
                 this.props.user.isdepartmenthead ? (
                   <View style={commonLabelDescription.listContainer}>
@@ -309,7 +268,7 @@ class Leads extends Component {
                       ]}>
                       {item.statustext}
                     </Text>
-                    {item.status ===4 ? (
+                    {item.status === 4 ? (
                       <Text style={commonLabelDescription.labelValue}>
                         On{' '}
                         <Text style={common.fontBold}>
@@ -321,18 +280,6 @@ class Leads extends Component {
                 </View>
               </Body>
             </CardItem>
-            {/* <CardItem style={callLogCardLayout.cardFooter}>
-                            <View style={callLogCardLayout.footerBadgeContainer}>
-                                <Badge style={badgeCss(item.statustextcolor)}>
-                                    <Text style={common.bagdeText}>{item.statustext}</Text>
-                                </Badge>
-                                {item.status ===4 ? 
-                                    <Text>
-                                        on <Text style={common.fontBold}>{item.followedupondisplaydate}</Text>
-                                    </Text>
-                                : null }
-                            </View>
-                        </CardItem> */}
           </TouchableOpacity>
         </Card>
       </View>

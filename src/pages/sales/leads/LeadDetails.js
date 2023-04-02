@@ -1,47 +1,36 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  Linking,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-  Dimensions,
 } from 'react-native';
 
 import {
-  common,
   badgeCss,
-  commonLabelDescription,
   callLogCardLayout,
+  common,
+  commonLabelDescription,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import NotFound from '../../../components/NotFound';
 
-import {
-  primaryHexColor,
-  seperator,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
-} from '../../../constants/themeColors';
+import {mainBgColor, primaryHexColor} from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Badge} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
-import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
 
 class LeadDetails extends Component {
@@ -426,7 +415,7 @@ class LeadDetails extends Component {
                           </Text>
                         </View>
                       </View>
-                      {this.state.saleslead.status ===4 ? (
+                      {this.state.saleslead.status === 4 ? (
                         <View style={styles.textWithIconContainer}>
                           <Icon
                             name="circle"

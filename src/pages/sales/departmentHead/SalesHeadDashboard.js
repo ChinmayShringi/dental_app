@@ -1,85 +1,63 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
   Dimensions,
   Image,
   RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  callLogCardLayout,
-  commonCard,
   badgeColorCode,
+  callLogCardLayout,
+  common,
+  commonCard,
+  commonLabelDescription,
   dashBoardStyle,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import NotFound from '../../../components/NotFound';
 
 import {
-  successHexColor,
-  primaryHexColor,
-  primaryPurpleHexColor,
-  seperator,
-  mainBgColor,
   backgroundGrey,
-  primaryBlueHexColor,
   fontColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
+  primaryOrangeHexColor,
+  primaryPurpleHexColor,
   primarywarningHexColor,
   primarywhiteHexColor,
+  successHexColor,
   textMutedColor,
-  primaryOrangeHexColor,
 } from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {
-  Fab,
-  Card,
-  CardItem,
-  Header,
-  Body,
-  Left,
-  Right,
-  Badge,
-} from 'native-base';
+import {Body, Card, CardItem, Left, Right} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 
-import {NavigationEvents} from 'react-navigation';
 // BANER CAROUSEL
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');
 const carouselWidth = appScreenWidth.width;
-const imageHeight = Math.round(((carouselWidth - 10) * 10) / 16);
-const imageWidth = carouselWidth;
 // BRAND CAROUSEL
 const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
 const SLIDE_WIDTH = Math.round(viewportWidth / 2.6);
 const ITEM_HORIZONTAL_MARGIN = 0;
-const ITEM_WIDTH = SLIDE_WIDTH + ITEM_HORIZONTAL_MARGIN * 2;
 const SLIDER_WIDTH = viewportWidth;
 
-const CALLLOG_ITEM_WIDTH = SLIDE_WIDTH + ITEM_HORIZONTAL_MARGIN * 2 - 30;
 const BRAND_ITEM_WIDTH = SLIDE_WIDTH + ITEM_HORIZONTAL_MARGIN * 2 - 80;
-
-const cardWidth = (appScreenWidth.width - 38) / 2;
-const cardHeight = (appScreenWidth.width - 75) / 2;
 
 export default class CustomerDashboard extends Component {
   api = new Api();
@@ -607,27 +585,6 @@ export default class CustomerDashboard extends Component {
         marginLeft: 20,
         marginRight: 20,
       },
-      // {
-      //     width: CALLLOG_ITEM_WIDTH,
-      //     height: 80,
-      //     borderRadius: 8,
-      //     marginTop: 18,
-      //     marginLeft: 15
-      // },
-      // {
-      //     width: CALLLOG_ITEM_WIDTH,
-      //     height: 80,
-      //     borderRadius: 8,
-      //     marginTop: - 80,
-      //     marginLeft: CALLLOG_ITEM_WIDTH + 20
-      // },
-      // {
-      //     width: CALLLOG_ITEM_WIDTH - 10,
-      //     height: 80,
-      //     borderRadius: 8,
-      //     marginTop: - 80,
-      //     marginLeft: CALLLOG_ITEM_WIDTH + CALLLOG_ITEM_WIDTH + 26
-      // },
       {
         width: screenWidth - 40,
         height: 170,

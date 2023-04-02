@@ -1,41 +1,36 @@
+import {Body, Card, CardItem, Fab, Left, Thumbnail} from 'native-base';
 import React, {Component} from 'react';
 import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Linking,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Fab, Card, CardItem, Body, Left, Thumbnail} from 'native-base';
 
 import {
-  successHexColor,
-  primaryBlueHexColor,
-  textMutedColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
   circleBgColor,
+  fontColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  successHexColor,
 } from '../../../../constants/themeColors';
 
-import {common, callLogCardLayout} from '../../../../assets/style';
+import {callLogCardLayout, common} from '../../../../assets/style';
 
-import NoRecordsFound from '../../../../components/NoRecordsFound';
 import ListingSearchBar from '../../../../components/ListingSearchBar';
-
-import {NavigationEvents} from 'react-navigation';
+import NoRecordsFound from '../../../../components/NoRecordsFound';
 
 import Api from '../../../../provider/Api';
 import Dataprovider from '../../../../provider/Dataprovider';
-import Loader from '../../../../provider/Loader';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -160,7 +155,7 @@ export default class SalesHeadSalesPersons extends Component {
                   <Text style={[callLogCardLayout.bodyTitle, {paddingLeft: 5}]}>
                     {item.fullname}
                   </Text>
-                  {item.userattendancecount == 0 ? (
+                  {item.userattendancecount === 0 ? (
                     <Text
                       style={[
                         callLogCardLayout.topLeftRightText,

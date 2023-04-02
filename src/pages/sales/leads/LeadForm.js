@@ -1,22 +1,13 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, View} from 'react-native';
 
 import {common} from '../../../assets/style';
 
+import FormDatePicker from '../../../components/FormDatePicker';
 import FormInput from '../../../components/FormInput';
 import FormSelectPicker from '../../../components/FormSelectPicker';
-import FormRadioButton from '../../../components/FormRadioButton';
-import FormDatePicker from '../../../components/FormDatePicker';
-import FormTimePicker from '../../../components/FormTimePicker';
 import FormTextArea from '../../../components/FormTextArea';
-
-import {NavigationEvents} from 'react-navigation';
+import FormTimePicker from '../../../components/FormTimePicker';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
@@ -26,7 +17,6 @@ import {Formik} from 'formik';
 
 import moment from 'moment';
 
-import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
 
 class LeadForm extends Component {
@@ -803,8 +793,6 @@ class LeadForm extends Component {
     );
   }
 }
-
-
 
 const mapStateToProps = state => {
   return {

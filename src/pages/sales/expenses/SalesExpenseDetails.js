@@ -1,24 +1,22 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
+  Alert,
   Dimensions,
   Image,
-  RefreshControl,
-  Alert,
   KeyboardAvoidingView,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
+  common,
+  commonCard,
+  commonLabelDescription,
   modalLayout,
 } from '../../../assets/style';
 
@@ -30,42 +28,36 @@ import NotFound from '../../../components/NotFound';
 
 import {Formik} from 'formik';
 
-import Modal from 'react-native-modal';
 import FlashMessage from 'react-native-flash-message';
+import Modal from 'react-native-modal';
 
 import FormTextArea from '../../../components/FormTextArea';
 import ModalSaveButton from '../../../components/ModalSaveButton';
 
 import {
-  primaryHexColor,
-  seperator,
-  primaryBlueHexColor,
-  successHexColor,
   dangerHexColor,
   mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
+  successHexColor,
 } from '../../../constants/themeColors';
 
 import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Badge, Button} from 'native-base';
+import {Button} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
-import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');
 const carouselWidth = appScreenWidth.width - 30;
 const imageHeight = Math.round(((carouselWidth - 10) * 10) / 16);
-const imageWidth = carouselWidth - 34;
 
 class SalesExpenseDetails extends Component {
   api = new Api();
@@ -419,7 +411,7 @@ class SalesExpenseDetails extends Component {
                 {this.state.expense !== null && !this.state.loading ? (
                   <View>
                     {this.props.user !== null &&
-                    this.props.user.userid == this.state.expense.userid ? (
+                    this.props.user.userid === this.state.expense.userid ? (
                       <View
                         style={{
                           flex: 1,
@@ -693,7 +685,7 @@ class SalesExpenseDetails extends Component {
                           </Text>
                         </View>
                       </View>
-                      {this.state.expense.isapproved == 0 ? (
+                      {this.state.expense.isapproved === 0 ? (
                         <View
                           style={[
                             commonLabelDescription.listContainer,
@@ -796,7 +788,7 @@ class SalesExpenseDetails extends Component {
                     {this.props.user !== null &&
                     this.props.user.isdepartmenthead &&
                     this.state.expense != null &&
-                    this.state.expense.isapproved == 2 ? (
+                    this.state.expense.isapproved === 2 ? (
                       <View style={styles.buttonBlock}>
                         <View style={styles.buttonContainer}>
                           <Button
@@ -858,9 +850,7 @@ class SalesExpenseDetails extends Component {
                         <View style={{flex: 1}}>
                           <KeyboardAvoidingView
                             style={{flex: 1, flexDirection: 'column'}}
-                            behavior={
-                              'padding'
-                            }
+                            behavior={'padding'}
                             enabled
                             keyboardVerticalOffset={100}>
                             <View style={modalLayout.bodyContent}>

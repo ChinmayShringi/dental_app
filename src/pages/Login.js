@@ -316,7 +316,7 @@ class Login extends Component {
             //                 }
             //             }
             //             // Sales User
-            //             else if(loggedInUser.appusertype == 5) {
+            //             else if(loggedInUser.appusertype === 5) {
 
             //                 // Head of the Department
             //                 if(loggedInUser.isdepartmenthead) {

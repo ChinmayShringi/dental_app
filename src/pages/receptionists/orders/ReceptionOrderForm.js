@@ -534,7 +534,7 @@ export default class ReceptionOrderForm extends Component {
           'Error: User cancelled image selection';
 
         // Permission Missing
-        if (e == permissionErrorMessage) {
+        if (e === permissionErrorMessage) {
           this.api.showPermissionRelatedError(
             'Missing Permissions!',
             'Please enable camera and storage permissions to use this feature.',
@@ -559,7 +559,7 @@ export default class ReceptionOrderForm extends Component {
           'Error: User cancelled image selection';
 
         // Permission Missing
-        if (e == permissionErrorMessage) {
+        if (e === permissionErrorMessage) {
           this.api.showPermissionRelatedError(
             'Missing Permissions!',
             'Please enable storage permission to use this feature.',
@@ -609,7 +609,7 @@ export default class ReceptionOrderForm extends Component {
 
   onClickEditImage = (index, istobedeleted) => {
     let BUTTONS = [];
-    if (istobedeleted == 0) {
+    if (istobedeleted === 0) {
       BUTTONS = [
         {text: 'Remove Image', icon: 'trash', iconColor: dangerHexColor},
         {text: 'Cancel', icon: 'close', iconColor: successHexColor},
@@ -640,7 +640,7 @@ export default class ReceptionOrderForm extends Component {
   };
 
   removeSelectedImage = (index, istobedeleted) => {
-    let newValue = istobedeleted == 0 ? 1 : 0;
+    let newValue = istobedeleted === 0 ? 1 : 0;
     this.setState({
       orderimages: update(this.state.orderimages, {
         [index]: {

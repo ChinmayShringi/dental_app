@@ -390,7 +390,7 @@ class AdminQCLead extends Component {
                           </Text>
                         </View>
                       </View>
-                      {this.state.saleslead.status ===4 ? (
+                      {this.state.saleslead.status === 4 ? (
                         <View style={styles.textWithIconContainer}>
                           <Icon
                             name="circle"

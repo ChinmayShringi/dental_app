@@ -1,39 +1,28 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Dimensions,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import {Dimensions, Platform, StyleSheet, Text, View} from 'react-native';
 
 import {common} from '../../../../assets/style';
 
 import {
+  mainBgColor,
   primaryBlueHexColor,
-  primaryHexColor,
   seperator,
   textMutedColor,
-  mainBgColor,
 } from '../../../../constants/themeColors';
 
 import Api from '../../../../provider/Api';
 import Dataprovider from '../../../../provider/Dataprovider';
 import Loader from '../../../../provider/Loader';
 
-import NotFound from '../../../../components/NotFound';
 import NoRecordsFound from '../../../../components/NoRecordsFound';
 
 import moment from 'moment';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {
-  skeletonPlaceholderProps,
-  mapStyle,
-} from '../../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {
+  mapStyle,
+  skeletonPlaceholderProps,
+} from '../../../../constants/defaultValues';
 
 import CalendarStrip from 'react-native-calendar-strip';
 
@@ -200,10 +189,6 @@ export default class SalesHeadSalesPersonTrackingHistory extends Component {
               iconContainer={{flex: 0.1}}
               selectedDate={this.state.selectedDate}
               onDateSelected={this.onDateSelected}
-              // onHeaderSelected={(weekStartEndDate) => {
-              //     console.log(weekStartEndDate);
-              // }}
-              // maxDate={moment()}
             />
 
             {!this.state.loading && this.state.coordinates.length !== 0 ? (

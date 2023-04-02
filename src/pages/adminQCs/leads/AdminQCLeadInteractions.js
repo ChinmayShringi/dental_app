@@ -148,7 +148,7 @@ export default class AdminQCLeadInteractions extends Component {
           <Badge style={badgeCssXs(rowData.statustextcolor)}>
             <Text style={common.bagdeTextXs}>{rowData.statustext}</Text>
           </Badge>
-          {rowData.status ===4 ? (
+          {rowData.status === 4 ? (
             <Text style={{fontSize: 12}}>
               on{' '}
               <Text style={[{color: fontColor}, common.fontBold]}>

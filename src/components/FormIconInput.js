@@ -1,18 +1,14 @@
 import React from 'react';
-import { Input } from 'react-native-elements';
-import { StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { 
-  primaryHexColor, 
-  dangerHexColor, 
-  formComponentBorder, 
-  placeHolderColor, 
+import {StyleSheet, View} from 'react-native';
+import {Input} from 'react-native-elements';
+import {
+  dangerHexColor,
   fontColor,
-  textMutedColor,
-  formComponentDisableBackground
+  formComponentBorder,
+  formComponentDisableBackground,
+  placeHolderColor,
+  primaryHexColor,
 } from '../constants/themeColors';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const FormIconInput = ({
   iconName,
@@ -20,6 +16,7 @@ const FormIconInput = ({
   returnKeyType,
   keyboardType,
   name,
+  containerStyle,
   placeholder,
   value,
   label,
@@ -38,26 +35,42 @@ const FormIconInput = ({
       name={name}
       value={value}
       label={label}
-      labelStyle={{ color: primaryHexColor, fontSize: 12, marginBottom: 2 }}
-      disabled={typeof disabled !== 'undefined' && disabled === true ? true : false }
-      keyboardType={typeof keyboardType !== 'undefined' ? keyboardType : "default" }
+      labelStyle={{color: primaryHexColor, fontSize: 12, marginBottom: 2}}
+      disabled={
+        typeof disabled !== 'undefined' && disabled === true ? true : false
+      }
+      keyboardType={
+        typeof keyboardType !== 'undefined' ? keyboardType : 'default'
+      }
       style={styles.input}
-      containerStyle={typeof containerStyle !== 'undefined'? containerStyle : { marginBottom: -4 } }
-      inputContainerStyle={{ 
-        borderColor: formComponentBorder, 
-        borderWidth: 1, 
+      containerStyle={
+        typeof containerStyle !== 'undefined'
+          ? containerStyle
+          : {marginBottom: -4}
+      }
+      inputContainerStyle={{
+        borderColor: formComponentBorder,
+        borderWidth: 1,
         height: 40,
         borderRadius: 100,
-        backgroundColor: typeof disabled !== 'undefined' && disabled === true ? formComponentDisableBackground : 'transparent'
+        backgroundColor:
+          typeof disabled !== 'undefined' && disabled === true
+            ? formComponentDisableBackground
+            : 'transparent',
       }}
       // inputStyle={{ fontSize: 14, paddingHorizontal: 10, color: fontColor, paddingLeft: 6}}
-      inputStyle={{ fontSize: 13, paddingHorizontal: 15, color: fontColor}}
+      inputStyle={{fontSize: 13, paddingHorizontal: 15, color: fontColor}}
       onBlur={onBlur}
       errorMessage={errorMessage}
-      errorStyle={{marginLeft: 5, marginTop: 0, fontSize: 10, color: dangerHexColor}}
+      errorStyle={{
+        marginLeft: 5,
+        marginTop: 0,
+        fontSize: 10,
+        color: dangerHexColor,
+      }}
     />
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   inputContainer: {},
@@ -66,7 +79,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 0,
     marginLeft: 10,
-  }
-})
+  },
+});
 
-export default FormIconInput
+export default FormIconInput;

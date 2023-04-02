@@ -1,43 +1,29 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Fab, Card, CardItem, Body, Left, Right, Badge} from 'native-base';
 
 import {
-  primaryBlueHexColor,
-  seperator,
   primaryHexColor,
+  seperator,
   textMutedColor,
-  backgroundGrey,
 } from '../../constants/themeColors';
 
-import {
-  badgeCss,
-  common,
-  callLogCardLayout,
-  commonLabelDescription,
-  badgeColorCode,
-} from '../../assets/style';
+import {common} from '../../assets/style';
 
 import NoRecordsFound from '../../components/NoRecordsFound';
-
-import {NavigationEvents} from 'react-navigation';
 
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
 import Loader from '../../provider/Loader';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 import moment from 'moment';
 

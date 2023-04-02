@@ -1,42 +1,38 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  Dimensions,
-  KeyboardAvoidingView,
-  Platform,
 } from 'react-native';
 
-import {Fab, Badge} from 'native-base';
+import {Badge, Fab} from 'native-base';
 
-import {common, badgeCssXs, modalLayout} from '../../../assets/style';
+import {badgeCssXs, common, modalLayout} from '../../../assets/style';
 
 import {
-  primaryBlueHexColor,
-  primaryHexColor,
-  seperator,
-  textMutedColor,
-  mainBgColor,
   backgroundGrey,
   fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  seperator,
+  textMutedColor,
 } from '../../../constants/themeColors';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
 import Loader from '../../../provider/Loader';
 
-import NoRecordsFound from '../../../components/NoRecordsFound';
 import ModalSaveButton from '../../../components/ModalSaveButton';
+import NoRecordsFound from '../../../components/NoRecordsFound';
 
-import FormInput from '../../../components/FormInput';
-import FormSelectPicker from '../../../components/FormSelectPicker';
-import FormRadioButton from '../../../components/FormRadioButton';
 import FormDatePicker from '../../../components/FormDatePicker';
-import FormTimePicker from '../../../components/FormTimePicker';
+import FormRadioButton from '../../../components/FormRadioButton';
+import FormSelectPicker from '../../../components/FormSelectPicker';
 import FormTextArea from '../../../components/FormTextArea';
+import FormTimePicker from '../../../components/FormTimePicker';
 
 import {Formik} from 'formik';
 import moment from 'moment';
@@ -51,8 +47,8 @@ import FlashMessage from 'react-native-flash-message';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -197,7 +193,7 @@ export default class LeadInteractions extends Component {
           <Badge style={badgeCssXs(rowData.statustextcolor)}>
             <Text style={common.bagdeTextXs}>{rowData.statustext}</Text>
           </Badge>
-          {rowData.status ===4 ? (
+          {rowData.status === 4 ? (
             <Text style={{fontSize: 12}}>
               on{' '}
               <Text style={[{color: fontColor}, common.fontBold]}>

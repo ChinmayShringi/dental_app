@@ -1,32 +1,25 @@
 import React, {Component} from 'react';
 import {
+  Alert,
+  Dimensions,
+  FlatList,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
-  View,
-  TouchableOpacity,
-  Image,
-  Alert,
-  ScrollView,
   TextInput,
-  FlatList,
-  Button,
-  KeyboardAvoidingView,
-  Dimensions,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import {common} from '../../../assets/style';
 
 import {
-  primaryHexColor,
-  primaryBlueHexColor,
-  successHexColor,
   backgroundGrey,
-  textMutedColor,
-  formComponentBorder,
-  fontColor,
   dangerHexColor,
+  fontColor,
   mainBgColor,
-  circleBgColor,
+  successHexColor,
+  textMutedColor,
 } from '../../../constants/themeColors';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -37,8 +30,8 @@ import Loader from '../../../provider/Loader';
 
 import {ActionSheet} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -392,7 +385,7 @@ export default class LeadMessages extends Component {
                       <TouchableOpacity
                         activeOpacity={0.9}
                         onPress={() => {
-                          if (item.type == 'out') {
+                          if (item.type === 'out') {
                             this.showEditMessageOptions(item);
                           }
                         }}>

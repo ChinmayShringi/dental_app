@@ -275,7 +275,7 @@ class AdminQCLeads extends Component {
                       ]}>
                       {item.statustext}
                     </Text>
-                    {item.status ===4 ? (
+                    {item.status === 4 ? (
                       <Text style={commonLabelDescription.labelValue}>
                         On{' '}
                         <Text style={common.fontBold}>

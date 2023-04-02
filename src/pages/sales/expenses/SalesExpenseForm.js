@@ -1,54 +1,33 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  Image,
+  KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Dimensions,
   TouchableOpacity,
-  Image,
+  View,
 } from 'react-native';
 
-import {
-  // Fab,
-  // Container,
-  // Header,
-  // Tab,
-  // Tabs,
-  // TabHeading,
-  Button,
-  // Card,
-  // CardItem,
-  // Body,
-  // Left,
-  // Right
-} from 'native-base';
+import {Button} from 'native-base';
 
 import {
+  dangerHexColor,
+  mainBgColor,
   primaryBlueHexColor,
   primaryHexColor,
-  dangerHexColor,
-  successHexColor,
   seperator,
+  successHexColor,
   textMutedColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
 } from '../../../constants/themeColors';
 
 import {common, commonCard} from '../../../assets/style';
 
-import FormInput from '../../../components/FormInput';
-import FormButton from '../../../components/FormButton';
-import FormSelectPicker from '../../../components/FormSelectPicker';
-import FormRadioButton from '../../../components/FormRadioButton';
 import FormDatePicker from '../../../components/FormDatePicker';
+import FormInput from '../../../components/FormInput';
+import FormSelectPicker from '../../../components/FormSelectPicker';
 import FormTextArea from '../../../components/FormTextArea';
-
-import {NavigationEvents} from 'react-navigation';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
@@ -56,24 +35,22 @@ import Loader from '../../../provider/Loader';
 
 import {Formik} from 'formik';
 
-import moment from 'moment';
 import update from 'immutability-helper';
+import moment from 'moment';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {ActionSheet} from 'native-base';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {LinearGradient} from 'expo-linear-gradient';
+import {ActionSheet} from 'native-base';
 import ImagePicker from 'react-native-image-crop-picker';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 
-import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');
 const carouselWidth = appScreenWidth.width - 50;
 const imageHeight = Math.round(((carouselWidth - 10) * 10) / 14);
-const imageWidth = carouselWidth - 34;
 
 class SalesExpenseForm extends Component {
   api = new Api();
@@ -196,7 +173,7 @@ class SalesExpenseForm extends Component {
           'Error: User cancelled image selection';
 
         // Permission Missing
-        if (e == permissionErrorMessage) {
+        if (e === permissionErrorMessage) {
           this.api.showPermissionRelatedError(
             'Missing Permissions!',
             'Please enable camera and storage permissions to use this feature.',
@@ -221,7 +198,7 @@ class SalesExpenseForm extends Component {
           'Error: User cancelled image selection';
 
         // Permission Missing
-        if (e == permissionErrorMessage) {
+        if (e === permissionErrorMessage) {
           this.api.showPermissionRelatedError(
             'Missing Permissions!',
             'Please enable storage permission to use this feature.',
@@ -271,7 +248,7 @@ class SalesExpenseForm extends Component {
 
   onClickEditImage = (index, istobedeleted) => {
     let BUTTONS = [];
-    if (istobedeleted == 0) {
+    if (istobedeleted === 0) {
       BUTTONS = [
         {text: 'Remove Image', icon: 'trash', iconColor: dangerHexColor},
         {text: 'Cancel', icon: 'close', iconColor: successHexColor},
@@ -302,7 +279,7 @@ class SalesExpenseForm extends Component {
   };
 
   removeSelectedImage = (index, istobedeleted) => {
-    let newValue = istobedeleted == 0 ? 1 : 0;
+    let newValue = istobedeleted === 0 ? 1 : 0;
     this.setState({
       expenseImages: update(this.state.expenseImages, {
         [index]: {
