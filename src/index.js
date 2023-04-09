@@ -24,7 +24,7 @@ const store = createStore(allReducers);
 import NetInfo from '@react-native-community/netinfo';
 import SplashScreen from 'react-native-splash-screen';
 
-import {fcmService} from './provider/FCMService';
+// import {fcmService} from './provider/FCMService';
 
 // import * as Location from 'expo-location';
 // import * as TaskManager from 'expo-task-manager';
@@ -244,11 +244,11 @@ export default class App extends React.Component {
       });
 
       // REGISTER FOR FCM(PUSH NOTIFICATIONS)
-      await fcmService.register(
-        this.onRegister,
-        this.onNotification,
-        this.onOpenNotification,
-      );
+      // await fcmService.register(
+      //   this.onRegister,
+      //   this.onNotification,
+      //   this.onOpenNotification,
+      // );
     } else {
       this.setState({isAppHasNetwork: false});
       this.hideSplashScreen(true);
@@ -294,28 +294,28 @@ export default class App extends React.Component {
     console.log('[NotificationFCM] onNotification: ', notify);
 
     // For Android
-    const channelObj = {
-      channelId: 'SampleChannelID',
-      channelName: 'SampleChannelName',
-      channelDes: 'SampleChannelDes',
-    };
-    const channel = fcmService.buildChannel(channelObj);
+    // const channelObj = {
+    //   channelId: 'SampleChannelID',
+    //   channelName: 'SampleChannelName',
+    //   channelDes: 'SampleChannelDes',
+    // };
+    // const channel = fcmService.buildChannel(channelObj);
 
-    const buildNotify = {
-      dataId: notify._notificationId,
-      title: notify._title,
-      content: notify._body,
-      sound: 'default',
-      channel: channel,
-      data: {},
-      colorBgIcon: '#1A243B',
-      largeIcon: 'ic_launcher',
-      smallIcon: 'ic_action_name',
-      vibrate: true,
-    };
+    // const buildNotify = {
+    //   dataId: notify._notificationId,
+    //   title: notify._title,
+    //   content: notify._body,
+    //   sound: 'default',
+    //   channel: channel,
+    //   data: {},
+    //   colorBgIcon: '#1A243B',
+    //   largeIcon: 'ic_launcher',
+    //   smallIcon: 'ic_action_name',
+    //   vibrate: true,
+    // };
 
-    const notification = fcmService.buildNotification(buildNotify);
-    fcmService.displayNotification(notification);
+    // const notification = fcmService.buildNotification(buildNotify);
+    // fcmService.displayNotification(notification);
   }
 
   onOpenNotification(notify) {
