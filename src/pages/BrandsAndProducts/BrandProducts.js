@@ -1,41 +1,29 @@
+import {Card, CardItem} from 'native-base';
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
   ActivityIndicator,
-  TouchableOpacity,
-  Image,
   Dimensions,
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import {Card, CardItem, Body} from 'native-base';
 
-import {
-  dangerHexColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
-} from '../../constants/themeColors';
+import {mainBgColor} from '../../constants/themeColors';
 
 import {common, commonCard} from '../../assets/style';
 
-import NoRecordsFound from '../../components/NoRecordsFound';
 import ListingSearchBar from '../../components/ListingSearchBar';
-
-import {NavigationEvents} from 'react-navigation';
+import NoRecordsFound from '../../components/NoRecordsFound';
 
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
-import Loader from '../../provider/Loader';
 
-import {LinearGradient} from 'expo-linear-gradient';
+// import {LinearGradient} from 'expo-linear-gradient';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 const appScreenWidth = Dimensions.get('window');
 const cardWidth = (appScreenWidth.width - 38) / 2;
@@ -160,10 +148,10 @@ export default class BrandProducts extends Component {
                 }}
                 resizeMode="cover"
               />
-              <LinearGradient
+              {/* <LinearGradient
                 colors={['rgba(0, 0.1, 0.1, 0.2)', 'transparent']}
                 style={styles.imageGradient}
-              />
+              /> */}
             </CardItem>
           </TouchableOpacity>
         </Card>

@@ -1,33 +1,31 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  Linking,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-  Dimensions,
-  RefreshControl,
 } from 'react-native';
 
 import {common, commonLabelDescription} from '../../../assets/style';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import NotFound from '../../../components/NotFound';
 
 import {
+  mainBgColor,
   primaryHexColor,
   textMutedColor,
-  mainBgColor,
 } from '../../../constants/themeColors';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 

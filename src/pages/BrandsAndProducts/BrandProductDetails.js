@@ -1,55 +1,40 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
   Dimensions,
   Image,
   RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
 import {
+  callLogCardLayout,
   common,
   commonCard,
   commonLabelDescription,
-  callLogCardLayout,
 } from '../../assets/style';
 
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
-import Loader from '../../provider/Loader';
 
 import NotFound from '../../components/NotFound';
 
 import {
-  primaryHexColor,
-  seperator,
-  mainBgColor,
-  backgroundGrey,
   fontColor,
-  circleBgColor,
-  textMutedColor,
+  mainBgColor,
+  primaryHexColor,
 } from '../../constants/themeColors';
 
-import {
-  Container,
-  Header,
-  Content,
-  List,
-  ListItem,
-  Left,
-  Body,
-  Right,
-  Thumbnail,
-} from 'native-base';
+import {Body, Left, List, ListItem} from 'native-base';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 const appScreenWidth = Dimensions.get('window');
 const cardWidth = appScreenWidth.width;
@@ -431,7 +416,7 @@ export default class BrandProductDetails extends Component {
                           ]}>
                           Benefits
                         </Text>
-                        <View style={[common.seperator, {marginTop: 0}]}></View>
+                        <View style={[common.seperator, {marginTop: 0}]} />
                         {this.state.benefits.length > 0 ? (
                           <View>{this.benefitsRender()}</View>
                         ) : (
@@ -450,7 +435,7 @@ export default class BrandProductDetails extends Component {
                           ]}>
                           Preparation Guidelines
                         </Text>
-                        <View style={[common.seperator, {marginTop: 0}]}></View>
+                        <View style={[common.seperator, {marginTop: 0}]} />
                         <Text style={{color: fontColor, fontSize: 12}}>
                           {this.state.brandProduct.preparationguidelines}
                         </Text>

@@ -1,33 +1,14 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Dimensions,
-} from 'react-native';
+import {Dimensions, KeyboardAvoidingView, ScrollView, View} from 'react-native';
 
-import {
-  primaryBlueHexColor,
-  primaryHexColor,
-  dangerHexColor,
-  successHexColor,
-  mainBgColor,
-} from '../../constants/themeColors';
+import {mainBgColor} from '../../constants/themeColors';
 
 import {common} from '../../assets/style';
 
-import FormInput from '../../components/FormInput';
-import FormButton from '../../components/FormButton';
-import FormSelectPicker from '../../components/FormSelectPicker';
-import FormRadioButton from '../../components/FormRadioButton';
 import FormDatePicker from '../../components/FormDatePicker';
+import FormSelectPicker from '../../components/FormSelectPicker';
 import FormTextArea from '../../components/FormTextArea';
 import FormTimePicker from '../../components/FormTimePicker';
-
-import {NavigationEvents} from 'react-navigation';
 
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
@@ -449,5 +430,3 @@ export default class LeaveApplicationForm extends Component {
     );
   }
 }
-
-

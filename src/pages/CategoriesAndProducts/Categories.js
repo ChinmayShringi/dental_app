@@ -1,44 +1,37 @@
+import {Body, Card, CardItem} from 'native-base';
 import React, {Component} from 'react';
 import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  Image,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Image,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Card, CardItem, Body} from 'native-base';
 
 import {
-  primaryHexColor,
-  dangerHexColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryHexColor,
 } from '../../constants/themeColors';
 
 import {common, commonCard, modalLayout} from '../../assets/style';
 
-import NoRecordsFound from '../../components/NoRecordsFound';
 import ListingSearchBar from '../../components/ListingSearchBar';
-
-import {NavigationEvents} from 'react-navigation';
+import NoRecordsFound from '../../components/NoRecordsFound';
 
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
-import Loader from '../../provider/Loader';
 
-import {LinearGradient} from 'expo-linear-gradient';
+// import {LinearGradient} from 'expo-linear-gradient';
 
-import Modal from 'react-native-modal';
 import {MaterialIcons} from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Modal from 'react-native-modal';
 
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 const appScreenWidth = Dimensions.get('window');
 const cardWidth = (appScreenWidth.width - 38) / 2;
@@ -102,15 +95,6 @@ export default class Categories extends Component {
       this.getData,
     );
   };
-
-  // getInitialData = () => {
-  //     this.setState({
-  //         loading: true,
-  //         currentPage: 1,
-  //         data: []
-  //     });
-  //     this.getData();
-  // }
 
   getData() {
     const formData = new FormData();
@@ -179,10 +163,10 @@ export default class Categories extends Component {
                 style={{height: imageHeight, width: imageWidth, flex: 1}}
                 resizeMode="cover"
               />
-              <LinearGradient
+              {/* <LinearGradient
                 colors={['rgba(0, 0.1, 0.1, 0.2)', 'transparent']}
                 style={styles.imageGradient}
-              />
+              /> */}
             </CardItem>
             <CardItem
               style={{
@@ -394,51 +378,11 @@ export default class Categories extends Component {
                 }}
                 resizeMode="cover"
               />
-              <LinearGradient
+              {/* <LinearGradient
                 colors={['rgba(0, 0.1, 0.1, 0.2)', 'transparent']}
                 style={styles.modalImageGradient}
-              />
-              {/* <View style={styles.warrantyContainer}>
-                                <Icon
-                                    name="certificate"
-                                    size={56}
-                                    color={dangerHexColor}
-                                    style={{position: 'relative', flex: 1}}
-                                />
-                                <Text style={styles.warrantyTextContainer}>
-                                    <Text
-                                        style={{
-                                            fontWeight: 'bold',
-                                            fontSize: 13,
-                                        }}
-                                    >
-                                        {item.warranty}
-                                    </Text>
-                                    {"\n"}
-                                    {item.warranty > 1 ? 'Years' : 'Year' }
-                                    {"\n"}
-                                    Warranty
-                                </Text>
-                            </View> */}
+              /> */}
             </CardItem>
-            {/* <CardItem>
-                            <Body>
-                                <Text style={[commonCard.cardTitle, {marginBottom: 0}]}>
-                                    {item.name}
-                                </Text>
-                                <Text style={[commonCard.cardDescription, {fontSize: 12, marginBottom: 2}]}>
-                                    {item.categoryname} | {item.subcategoryname}
-                                </Text>
-                                <Text style={styles.productPrice}>
-                                    <Icon
-                                        name="inr"
-                                        size={14}
-                                        color="#333"
-                                    />
-                                    &nbsp;{item.formatedprice}
-                                </Text>
-                            </Body>
-                        </CardItem> */}
           </TouchableOpacity>
         </Card>
       </View>
@@ -464,28 +408,6 @@ export default class Categories extends Component {
       skeletonLayoutItem,
       skeletonLayoutItem,
     ];
-
-    // const modalSkeletonLayoutItem = {
-    //     width: modalImageWidth + 10,
-    //     height: modalImageHeight + 80,
-    //     borderRadius: 8,
-    //     marginTop: 5,
-    //     marginBottom: 5
-    // };
-    // const modalSkeletonLayout = [
-    //     modalSkeletonLayoutItem,
-    //     modalSkeletonLayoutItem,
-    // ];
-
-    const modalSkeletonLayoutItem = {
-      width: modalCardWidth,
-      height: modalCardHeight,
-      marginRight: 5,
-      marginLeft: 5,
-      marginTop: 5,
-      marginBottom: 5,
-      borderRadius: 8,
-    };
     const modalSkeletonLayout = [
       skeletonLayoutItem,
       skeletonLayoutItem,

@@ -1,32 +1,16 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, View} from 'react-native';
 
-import {
-  primaryBlueHexColor,
-  primaryHexColor,
-  dangerHexColor,
-  successHexColor,
-  mainBgColor,
-} from '../../../constants/themeColors';
+import {mainBgColor} from '../../../constants/themeColors';
 
 import {common} from '../../../assets/style';
 
-import FormInput from '../../../components/FormInput';
-import FormButton from '../../../components/FormButton';
-import FormSelectPicker from '../../../components/FormSelectPicker';
-import FormRadioButton from '../../../components/FormRadioButton';
 import FormDatePicker from '../../../components/FormDatePicker';
+import FormInput from '../../../components/FormInput';
+import FormRadioButton from '../../../components/FormRadioButton';
+import FormSelectPicker from '../../../components/FormSelectPicker';
 import FormTextArea from '../../../components/FormTextArea';
 import FormTimePicker from '../../../components/FormTimePicker';
-
-import {NavigationEvents} from 'react-navigation';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
@@ -36,7 +20,6 @@ import {Formik} from 'formik';
 
 import moment from 'moment';
 
-import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
 
 class ReceptionCollectionCallForm extends Component {
@@ -769,8 +752,6 @@ class ReceptionCollectionCallForm extends Component {
     );
   }
 }
-
-
 
 const mapStateToProps = state => {
   return {

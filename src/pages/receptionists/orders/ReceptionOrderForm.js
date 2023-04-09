@@ -1,68 +1,51 @@
 import React, {Component} from 'react';
 import {
+  Alert,
+  Dimensions,
+  FlatList,
+  Image,
+  KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Dimensions,
-  Image,
   TouchableOpacity,
-  FlatList,
-  Alert,
+  View,
 } from 'react-native';
 
-import {
-  Fab,
-  Container,
-  Header,
-  Tab,
-  Tabs,
-  TabHeading,
-  Button,
-  Card,
-  CardItem,
-  Body,
-  Left,
-  Right,
-} from 'native-base';
+import {Body, Button, Card, CardItem, Tab, TabHeading, Tabs} from 'native-base';
 
 import {
-  primaryBlueHexColor,
-  primaryHexColor,
+  backgroundGrey,
   dangerHexColor,
-  successHexColor,
-  seperator,
-  textMutedColor,
   fontColor,
   mainBgColor,
-  backgroundGrey,
+  primaryBlueHexColor,
+  primaryHexColor,
+  seperator,
+  successHexColor,
+  textMutedColor,
 } from '../../../constants/themeColors';
 
 import {
-  common,
-  tabStyle,
-  commonLabelDescription,
-  commonCard,
   callLogCardLayout,
+  common,
+  commonCard,
+  commonLabelDescription,
   modalLayout,
+  tabStyle,
 } from '../../../assets/style';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import FormInput from '../../../components/FormInput';
-import FormButton from '../../../components/FormButton';
-import FormSelectPicker from '../../../components/FormSelectPicker';
-import FormRadioButton from '../../../components/FormRadioButton';
 import FormCheckBox from '../../../components/FormCheckBox';
 import FormDatePicker from '../../../components/FormDatePicker';
+import FormInput from '../../../components/FormInput';
+import FormRadioButton from '../../../components/FormRadioButton';
+import FormSelectPicker from '../../../components/FormSelectPicker';
 import FormTextArea from '../../../components/FormTextArea';
 
 import ModalSaveButton from '../../../components/ModalSaveButton';
 import TeethSkeleton from '../../../components/TeethSkeleton';
-
-import {NavigationEvents} from 'react-navigation';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
@@ -71,16 +54,16 @@ import Loader from '../../../provider/Loader';
 import {Formik} from 'formik';
 
 import {MaterialIcons} from '@expo/vector-icons';
-import Modal from 'react-native-modal';
 import FlashMessage from 'react-native-flash-message';
+import Modal from 'react-native-modal';
 
 import {ActionSheet} from 'native-base';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {LinearGradient} from 'expo-linear-gradient';
+// import {LinearGradient} from 'expo-linear-gradient';
 import ImagePicker from 'react-native-image-crop-picker';
 
-import moment from 'moment';
 import update from 'immutability-helper';
+import moment from 'moment';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');
@@ -475,17 +458,18 @@ export default class ReceptionOrderForm extends Component {
             resizeMode="contain"
           />
           {item.istobedeleted !== 0 ? (
-            <LinearGradient
-              colors={['rgba(255, 255, 255, 0.8)', 'rgba(255, 255, 255, 0.8)']}
-              style={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                height: imageHeight,
-              }}
-            />
-          ) : null}
+            <></>
+          ) : // <LinearGradient
+          //   colors={['rgba(255, 255, 255, 0.8)', 'rgba(255, 255, 255, 0.8)']}
+          //   style={{
+          //     position: 'absolute',
+          //     left: 0,
+          //     right: 0,
+          //     top: 0,
+          //     height: imageHeight,
+          //   }}
+          // />
+          null}
           {item.istobedeleted !== 0 ? (
             <Icon
               name="trash"

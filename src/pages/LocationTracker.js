@@ -8,10 +8,10 @@ import {
   ScrollView,
 } from 'react-native';
 
-import * as Permissions from 'expo-permissions';
+// import * as Permissions from 'expo-permissions';
 
-import * as TaskManager from 'expo-task-manager';
-import * as Location from 'expo-location';
+// import * as TaskManager from 'expo-task-manager';
+// import * as Location from 'expo-location';
 import {EventEmitter} from 'fbemitter';
 
 import Api from '../provider/Api';
@@ -82,49 +82,49 @@ export default class LocationTracker extends Component {
 
   askLocationPermission = () => {
     (async () => {
-      const {status, permissions} = await Permissions.askAsync(
-        Permissions.LOCATION,
-      );
-      if (status === 'granted') {
-        alert('Permission granted');
-      } else {
-        alert('Permission Denied');
-      }
+      // const {status, permissions} = await Permissions.askAsync(
+      //   Permissions.LOCATION,
+      // );
+      // if (status === 'granted') {
+      //   alert('Permission granted');
+      // } else {
+      //   alert('Permission Denied');
+      // }
     })();
   };
 
   startTracking = async () => {
     (async () => {
-      const {status, permissions} = await Permissions.askAsync(
-        Permissions.LOCATION,
-      );
-      if (status === 'granted') {
-        this.setState({
-          isTrackingOn: true,
-        });
-        await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
-          accuracy: Location.Accuracy.BestForNavigation,
-          timeInterval: 1000,
-          distanceInterval: 1,
-          deferredUpdatesInterval: 1000,
-          deferredUpdatesDistance: 1,
-          showsBackgroundLocationIndicator: true,
-          foregroundService: {
-            notificationTitle: 'Location Tracker',
-            notificationBody: 'Impression Lab Management System',
-          },
-        });
-      } else {
-        alert('Location Permission Needed');
-      }
+      // const {status, permissions} = await Permissions.askAsync(
+      //   Permissions.LOCATION,
+      // );
+      // if (status === 'granted') {
+      //   this.setState({
+      //     isTrackingOn: true,
+      //   });
+      //   await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
+      //     accuracy: Location.Accuracy.BestForNavigation,
+      //     timeInterval: 1000,
+      //     distanceInterval: 1,
+      //     deferredUpdatesInterval: 1000,
+      //     deferredUpdatesDistance: 1,
+      //     showsBackgroundLocationIndicator: true,
+      //     foregroundService: {
+      //       notificationTitle: 'Location Tracker',
+      //       notificationBody: 'Impression Lab Management System',
+      //     },
+      //   });
+      // } else {
+      //   alert('Location Permission Needed');
+      // }
     })();
   };
 
   stopTracking = async () => {
-    this.setState({
-      isTrackingOn: false,
-    });
-    await Location.stopLocationUpdatesAsync(LOCATION_TASK_NAME);
+    // this.setState({
+    //   isTrackingOn: false,
+    // });
+    // await Location.stopLocationUpdatesAsync(LOCATION_TASK_NAME);
   };
 
   clearLocations = () => {
@@ -220,16 +220,16 @@ export default class LocationTracker extends Component {
   }
 }
 
-TaskManager.defineTask(LOCATION_TASK_NAME, ({data, error}) => {
-  if (error) {
-    alert(error);
-    return;
-  }
-  if (data) {
-    const {locations} = data;
-    eventEmitter.emit(taskEventName, locations);
-  }
-});
+// TaskManager.defineTask(LOCATION_TASK_NAME, ({data, error}) => {
+//   if (error) {
+//     alert(error);
+//     return;
+//   }
+//   if (data) {
+//     const {locations} = data;
+//     eventEmitter.emit(taskEventName, locations);
+//   }
+// });
 
 const styles = StyleSheet.create({
   container: {

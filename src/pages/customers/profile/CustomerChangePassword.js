@@ -1,32 +1,16 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, View} from 'react-native';
 
+import {common} from '../../../assets/style';
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
 import Loader from '../../../provider/Loader';
-import {common} from '../../../assets/style';
 
 import FormInput from '../../../components/FormInput';
-import FormButton from '../../../components/FormButton';
 
 import {Formik} from 'formik';
 
-import {
-  primaryHexColor,
-  dangerHexColor,
-  successHexColor,
-  mainBgColor,
-} from '../../../constants/themeColors';
-
-import {NavigationEvents} from 'react-navigation';
+import {mainBgColor} from '../../../constants/themeColors';
 
 export default class CustomerChangePassword extends Component {
   api = new Api();
@@ -201,5 +185,3 @@ export default class CustomerChangePassword extends Component {
     );
   }
 }
-
-

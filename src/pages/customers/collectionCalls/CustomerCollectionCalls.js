@@ -1,44 +1,38 @@
+import {Body, Card, CardItem, Fab, Left, Right} from 'native-base';
 import React, {Component} from 'react';
 import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Fab, Card, CardItem, Body, Left, Right, Badge} from 'native-base';
 
 import {
-  primaryBlueHexColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryBlueHexColor,
 } from '../../../constants/themeColors';
 
 import {
-  badgeCss,
-  common,
-  callLogCardLayout,
-  commonLabelDescription,
   badgeColorCode,
+  callLogCardLayout,
+  common,
+  commonLabelDescription,
 } from '../../../assets/style';
 
-import NoRecordsFound from '../../../components/NoRecordsFound';
 import ListingSearchBar from '../../../components/ListingSearchBar';
-
-import {NavigationEvents} from 'react-navigation';
+import NoRecordsFound from '../../../components/NoRecordsFound';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -249,17 +243,6 @@ export default class CustomerCollectionCalls extends Component {
                     )}
                   </View>
                 </View>
-                {/* <View style={commonLabelDescription.listContainer}>
-                                    <View style={[commonLabelDescription.listLabelContainer, { width: 160}]}>
-                                        <Text style={commonLabelDescription.labelText}>Parcel Collection Status</Text> 
-                                    </View>
-                                    <View style={commonLabelDescription.listSeperator}>
-                                        <Text style={commonLabelDescription.labelText}>:</Text> 
-                                    </View>
-                                    <View>
-                                        <Text>{item.parcelcollecationstatustext}</Text>
-                                    </View>
-                                </View> */}
                 <View style={commonLabelDescription.listContainer}>
                   <View
                     style={[
@@ -281,12 +264,6 @@ export default class CustomerCollectionCalls extends Component {
                     </Text>
                   </View>
                 </View>
-                {/* <Text style={{marginTop: 2}}>
-                                    <Text style={common.fontBold}>Pickup On:</Text> {item.displaypickupdate}
-                                </Text>
-                                <Text style={{marginTop: 2}}>
-                                    <Text style={common.fontBold}>Parcel Collection Status:</Text> {item.parcelcollecationstatustext}
-                                </Text> */}
               </Body>
             </CardItem>
           </TouchableOpacity>

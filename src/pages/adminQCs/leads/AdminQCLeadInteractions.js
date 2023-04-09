@@ -1,43 +1,27 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Dimensions,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 
-import {Fab, Badge} from 'native-base';
+import {Badge} from 'native-base';
 
-import {common, badgeCssXs, modalLayout} from '../../../assets/style';
+import {badgeCssXs, common} from '../../../assets/style';
 
 import {
-  primaryBlueHexColor,
-  primaryHexColor,
-  seperator,
-  textMutedColor,
-  mainBgColor,
   backgroundGrey,
   fontColor,
-  circleBgColor,
+  mainBgColor,
+  seperator,
+  textMutedColor,
 } from '../../../constants/themeColors';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import NoRecordsFound from '../../../components/NoRecordsFound';
-import moment from 'moment';
 
 import Timeline from 'react-native-timeline-flatlist';
 
-import {MaterialIcons} from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 

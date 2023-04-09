@@ -1,32 +1,19 @@
-import React, {Component, useState, Fragment} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  RefreshControl,
-} from 'react-native';
+import React, {Component} from 'react';
+import {RefreshControl, ScrollView, StyleSheet, Text, View} from 'react-native';
 
-import {Button, ListItem, Left, Body, Right} from 'native-base';
-import {Badge} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {common, callLogCardLayout} from '../../assets/style';
+import {common} from '../../assets/style';
 
 import {
-  successHexColor,
-  primaryHexColor,
-  textMutedColor,
-  primaryBlueHexColor,
+  backgroundGrey,
   dangerHexColor,
-  seperator,
-  primaryPurpleHexColor,
-  warningHexColor,
   fontColor,
   mainBgColor,
-  backgroundGrey,
-  circleBgColor,
+  primaryBlueHexColor,
+  primaryPurpleHexColor,
+  successHexColor,
+  warningHexColor,
 } from '../../constants/themeColors';
 
 import Api from '../../provider/Api';
@@ -36,39 +23,6 @@ import Loader from '../../provider/Loader';
 import moment from 'moment';
 
 import {Calendar} from 'react-native-calendars';
-
-const testIDs = {
-  menu: {
-    CONTAINER: 'menu',
-    CALENDARS: 'calendars_btn',
-    CALENDAR_LIST: 'calendar_list_btn',
-    HORIZONTAL_LIST: 'horizontal_list_btn',
-    AGENDA: 'agenda_btn',
-    EXPANDABLE_CALENDAR: 'expandable_calendar_btn',
-    WEEK_CALENDAR: 'week_calendar_btn',
-  },
-  calendars: {
-    CONTAINER: 'calendars',
-    FIRST: 'first_calendar',
-    LAST: 'last_calendar',
-  },
-  calendarList: {
-    CONTAINER: 'calendarList',
-  },
-  horizontalList: {
-    CONTAINER: 'horizontalList',
-  },
-  agenda: {
-    CONTAINER: 'agenda',
-    ITEM: 'item',
-  },
-  expandableCalendar: {
-    CONTAINER: 'expandableCalendar',
-  },
-  weekCalendar: {
-    CONTAINER: 'weekCalendar',
-  },
-};
 
 export default class EmployeeAttendanceReport extends Component {
   api = new Api();
@@ -272,25 +226,8 @@ export default class EmployeeAttendanceReport extends Component {
                 textDayFontSize: 14,
                 monthTextColor: fontColor,
                 textMonthFontSize: 16,
-                // calendarBackground: '#333248',
-                // textSectionTitleColor: 'white',
-                // textSectionTitleDisabledColor: 'gray',
-                // dayTextColor: 'red',
-                // todayTextColor: 'white',
-                // selectedDayTextColor: 'white',
-                // monthTextColor: 'white',
-                // indicatorColor: 'white',
                 selectedDayBackgroundColor: primaryBlueHexColor,
                 arrowColor: primaryBlueHexColor,
-                // textDisabledColor: 'red',
-                // 'stylesheet.calendar.header': {
-                //     week: {
-                //         marginTop: 30,
-                //         marginHorizontal: 12,
-                //         flexDirection: 'row',
-                //         justifyContent: 'space-between'
-                //     }
-                // }
               }}
             />
           </ScrollView>
@@ -303,13 +240,11 @@ export default class EmployeeAttendanceReport extends Component {
 const styles = StyleSheet.create({
   calendar: {
     marginBottom: 10,
-    backgroundColor: primaryBlueHexColor,
-    backgroundColor: '#fff',
+    backgroundColor: primaryBlueHexColor || '#fff',
     paddingBottom: 5,
     // borderBottomWidth: 1,
     // borderBottomColor: seperator
     flex: 1,
-    backgroundColor: '#fff',
     margin: 10,
     padding: 15,
     borderRadius: 8,

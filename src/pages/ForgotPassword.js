@@ -16,7 +16,7 @@ import Dataprovider from '../provider/Dataprovider';
 import Loader from '../provider/Loader';
 import Modal from 'react-native-modal';
 import {login, common} from '../assets/style';
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Formik} from 'formik';
@@ -203,12 +203,12 @@ export default class ForgotPassword extends Component {
               animationInTiming={500}
               animationOutTiming={500}>
               <View style={styles.modalBody}>
-                <MaterialIcons
+                {/* <MaterialIcons
                   name="close"
                   size={28}
                   style={styles.closeButton}
                   onPress={this.toggleSuccessModal}
-                />
+                /> */}
                 <View style={styles.bodyContent}>
                   <View style={styles.contentContainer}>
                     <Icon

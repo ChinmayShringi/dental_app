@@ -1,29 +1,14 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, View} from 'react-native';
 
-import {
-  primaryBlueHexColor,
-  primaryHexColor,
-  dangerHexColor,
-  successHexColor,
-  mainBgColor,
-} from '../../../constants/themeColors';
+import {mainBgColor} from '../../../constants/themeColors';
 
 import {common} from '../../../assets/style';
 
 import FormDatePicker from '../../../components/FormDatePicker';
-import FormTextArea from '../../../components/FormTextArea';
 import FormSelectPicker from '../../../components/FormSelectPicker';
+import FormTextArea from '../../../components/FormTextArea';
 import FormTimePicker from '../../../components/FormTimePicker';
-
-import {NavigationEvents} from 'react-navigation';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
@@ -318,5 +303,3 @@ export default class CustomerCollectionCallForm extends Component {
     );
   }
 }
-
-

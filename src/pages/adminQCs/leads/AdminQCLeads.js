@@ -1,47 +1,33 @@
+import {Body, Card, CardItem} from 'native-base';
 import React, {Component} from 'react';
 import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Linking,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Fab, Card, CardItem, Body, Left, Right, Badge} from 'native-base';
+
+import {mainBgColor, primaryHexColor} from '../../../constants/themeColors';
 
 import {
-  primaryHexColor,
-  primaryBlueHexColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
-} from '../../../constants/themeColors';
-
-import {
-  badgeCss,
-  common,
-  callLogCardLayout,
-  headerStyles,
   badgeColorCode,
+  callLogCardLayout,
+  common,
   commonLabelDescription,
 } from '../../../assets/style';
 
-import NoRecordsFound from '../../../components/NoRecordsFound';
 import ListingSearchBar from '../../../components/ListingSearchBar';
+import NoRecordsFound from '../../../components/NoRecordsFound';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
-import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
 
 const screenWidth = Dimensions.get('window').width;

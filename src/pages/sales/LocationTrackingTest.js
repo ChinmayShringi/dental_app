@@ -27,7 +27,7 @@ import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 import moment from 'moment';
 
-import * as TaskManager from 'expo-task-manager';
+// import * as TaskManager from 'expo-task-manager';
 import {locationTrackingProps} from '../../constants/defaultValues';
 const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
 
@@ -75,10 +75,10 @@ export default class LocationTrackingTest extends Component {
     });
 
     (async () => {
-      let isRegistered = await TaskManager.isTaskRegisteredAsync(
-        LOCATION_TASK_NAME,
-      );
-      console.log(isRegistered);
+      // let isRegistered = await TaskManager.isTaskRegisteredAsync(
+      //   LOCATION_TASK_NAME,
+      // );
+      // console.log(isRegistered);
     })();
   }
 

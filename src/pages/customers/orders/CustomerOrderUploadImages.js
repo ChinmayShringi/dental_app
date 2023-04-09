@@ -1,69 +1,37 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
   Dimensions,
   Image,
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
-  FlatList,
-  Alert,
+  View,
 } from 'react-native';
 
-import {
-  Fab,
-  Container,
-  Header,
-  Tab,
-  Tabs,
-  TabHeading,
-  Button,
-  Card,
-  CardItem,
-  Body,
-  Left,
-  Right,
-} from 'native-base';
+import {Button} from 'native-base';
 
 import {
+  dangerHexColor,
+  fontColor,
+  mainBgColor,
   primaryBlueHexColor,
   primaryHexColor,
-  dangerHexColor,
-  successHexColor,
   seperator,
+  successHexColor,
   textMutedColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
 } from '../../../constants/themeColors';
 
 import {
   common,
-  tabStyle,
-  commonLabelDescription,
   commonCard,
-  callLogCardLayout,
-  modalLayout,
+  commonLabelDescription,
 } from '../../../assets/style';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import FormInput from '../../../components/FormInput';
 import FormButton from '../../../components/FormButton';
-import FormSelectPicker from '../../../components/FormSelectPicker';
-import FormRadioButton from '../../../components/FormRadioButton';
-import FormCheckBox from '../../../components/FormCheckBox';
-import FormDatePicker from '../../../components/FormDatePicker';
-import FormTextArea from '../../../components/FormTextArea';
-
-import ModalSaveButton from '../../../components/ModalSaveButton';
-import TeethSkeleton from '../../../components/TeethSkeleton';
-
-import {NavigationEvents} from 'react-navigation';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
@@ -71,23 +39,17 @@ import Loader from '../../../provider/Loader';
 
 import {Formik} from 'formik';
 
-import {MaterialIcons} from '@expo/vector-icons';
-import Modal from 'react-native-modal';
-import FlashMessage from 'react-native-flash-message';
-
+// import {LinearGradient} from 'expo-linear-gradient';
 import {ActionSheet} from 'native-base';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {LinearGradient} from 'expo-linear-gradient';
 import ImagePicker from 'react-native-image-crop-picker';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 
-import moment from 'moment';
 import update from 'immutability-helper';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');
 const carouselWidth = appScreenWidth.width - 30;
 const imageHeight = Math.round(((carouselWidth - 10) * 10) / 14);
-const imageWidth = carouselWidth - 34;
 
 export default class CustomerOrderUploadImages extends Component {
   api = new Api();
@@ -138,17 +100,18 @@ export default class CustomerOrderUploadImages extends Component {
             resizeMode="contain"
           />
           {item.istobedeleted !== 0 ? (
-            <LinearGradient
-              colors={['rgba(255, 255, 255, 0.8)', 'rgba(255, 255, 255, 0.8)']}
-              style={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                height: imageHeight,
-              }}
-            />
-          ) : null}
+            <></>
+          ) : // <LinearGradient
+          //   colors={['rgba(255, 255, 255, 0.8)', 'rgba(255, 255, 255, 0.8)']}
+          //   style={{
+          //     position: 'absolute',
+          //     left: 0,
+          //     right: 0,
+          //     top: 0,
+          //     height: imageHeight,
+          //   }}
+          // />
+          null}
           {item.istobedeleted !== 0 ? (
             <Icon
               name="trash"
@@ -193,8 +156,6 @@ export default class CustomerOrderUploadImages extends Component {
       })
       .catch(e => {
         let permissionErrorMessage = 'Error: Required permission missing';
-        let selectionCancelledErrorMessage =
-          'Error: User cancelled image selection';
 
         // Permission Missing
         if (e === permissionErrorMessage) {
@@ -218,8 +179,6 @@ export default class CustomerOrderUploadImages extends Component {
       })
       .catch(e => {
         let permissionErrorMessage = 'Error: Required permission missing';
-        let selectionCancelledErrorMessage =
-          'Error: User cancelled image selection';
 
         // Permission Missing
         if (e === permissionErrorMessage) {

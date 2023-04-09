@@ -1,18 +1,10 @@
-import React, {Component, useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import React, {Component} from 'react';
+import {Dimensions, Text, View} from 'react-native';
 
 import {
   backgroundGrey,
-  primaryBlueHexColor,
   mainBgColor,
-  fontColor,
-  circleBgColor,
+  primaryBlueHexColor,
 } from '../../../../constants/themeColors';
 
 import {common} from '../../../../assets/style';
@@ -22,7 +14,7 @@ import QrCodePermissionDenied from '../../../../components/QrCodePermissionDenie
 import {Button} from 'native-base';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {BarCodeScanner} from 'expo-barcode-scanner';
+// import {BarCodeScanner} from 'expo-barcode-scanner';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -40,16 +32,16 @@ export default class ProductionScanQrCodeForUnAssignedJob extends Component {
   }
 
   askCameraPermission = async () => {
-    const {status} = await BarCodeScanner.requestPermissionsAsync();
-    if (status === 'granted') {
-      this.setState({
-        hasPermission: true,
-      });
-    } else {
-      this.setState({
-        hasPermission: false,
-      });
-    }
+    // const {status} = await BarCodeScanner.requestPermissionsAsync();
+    // if (status === 'granted') {
+    //   this.setState({
+    //     hasPermission: true,
+    //   });
+    // } else {
+    //   this.setState({
+    //     hasPermission: false,
+    //   });
+    // }
   };
 
   handleBarCodeScanned = ({type, data}) => {
@@ -75,13 +67,13 @@ export default class ProductionScanQrCodeForUnAssignedJob extends Component {
       <View style={{flex: 1, backgroundColor: mainBgColor}}>
         <View
           style={[common.listingContainer, {backgroundColor: backgroundGrey}]}>
-          <BarCodeScanner
+          {/* <BarCodeScanner
             onBarCodeScanned={
               this.state.scanned ? undefined : this.handleBarCodeScanned
             }
             barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
             style={StyleSheet.absoluteFillObject}
-          />
+          /> */}
           {this.state.scanned && (
             <Button
               block
@@ -117,5 +109,3 @@ export default class ProductionScanQrCodeForUnAssignedJob extends Component {
     );
   }
 }
-
-

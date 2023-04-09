@@ -1,44 +1,32 @@
+import {Body, Card, CardItem, Left, Right} from 'native-base';
 import React, {Component} from 'react';
 import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Fab, Card, CardItem, Body, Left, Right, Badge} from 'native-base';
+
+import {backgroundGrey, mainBgColor} from '../../../constants/themeColors';
 
 import {
-  primaryBlueHexColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
-} from '../../../constants/themeColors';
-
-import {
-  badgeCss,
-  common,
-  callLogCardLayout,
-  commonLabelDescription,
   badgeColorCode,
+  callLogCardLayout,
+  common,
+  commonLabelDescription,
 } from '../../../assets/style';
 
-import NoRecordsFound from '../../../components/NoRecordsFound';
 import ListingSearchBar from '../../../components/ListingSearchBar';
-
-import {NavigationEvents} from 'react-navigation';
+import NoRecordsFound from '../../../components/NoRecordsFound';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -419,18 +407,6 @@ export default class CustomerOrders extends Component {
             {!this.state.loading && this.state.data.length === 0 ? (
               <NoRecordsFound onPress={this.reloadPageData} />
             ) : null}
-            {/* <Fab
-                            active={false}
-                            direction="up"
-                            containerStyle={{ }}
-                            style={{ backgroundColor: primaryBlueHexColor }}
-                            position="bottomRight"
-                            onPress={() =>  {
-                                this.props.navigation.push('CustomerComplaintForm', { 'pageHeading': 'Add Complaint' })
-                            }}
-                        >
-                            <Icon name="plus" />
-                        </Fab> */}
           </SkeletonContent>
         </View>
       </View>

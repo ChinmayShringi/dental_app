@@ -558,7 +558,7 @@ export default class EmployeeLeaveApplicationDetails extends Component {
                         </Text>
                       </View>
                     </View>
-                    {this.state.leaveApplication.status ===0 ? (
+                    {this.state.leaveApplication.status === 0 ? (
                       <View style={commonLabelDescription.listContainer}>
                         <View
                           style={[
@@ -592,7 +592,7 @@ export default class EmployeeLeaveApplicationDetails extends Component {
                         </View>
                       </View>
                     ) : null}
-                    {this.state.leaveApplication.status ===2 ? (
+                    {this.state.leaveApplication.status === 2 ? (
                       <View style={styles.buttonBlock}>
                         <View style={styles.buttonContainer}>
                           <Button
@@ -656,9 +656,7 @@ export default class EmployeeLeaveApplicationDetails extends Component {
                         <View style={{flex: 1}}>
                           <KeyboardAvoidingView
                             style={{flex: 1, flexDirection: 'column'}}
-                            behavior={
-                              'padding'
-                            }
+                            behavior={'padding'}
                             enabled
                             keyboardVerticalOffset={100}>
                             <View style={modalLayout.bodyContent}>

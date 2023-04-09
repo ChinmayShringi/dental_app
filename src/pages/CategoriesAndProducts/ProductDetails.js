@@ -1,39 +1,35 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
   Dimensions,
   Image,
   RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
 import {common, commonCard} from '../../assets/style';
 
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
-import Loader from '../../provider/Loader';
 
 import NotFound from '../../components/NotFound';
 
 import {
-  primaryHexColor,
-  seperator,
-  mainBgColor,
-  backgroundGrey,
   fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryHexColor,
 } from '../../constants/themeColors';
 
-import {Content, List, ListItem, Body} from 'native-base';
+import {Body, Content, List, ListItem} from 'native-base';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 const appScreenWidth = Dimensions.get('window');
 const cardWidth = appScreenWidth.width;

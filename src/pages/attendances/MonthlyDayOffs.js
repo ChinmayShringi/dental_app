@@ -1,31 +1,24 @@
-import React, {Component, useState, Fragment} from 'react';
+import React, {Component} from 'react';
 import {
+  Dimensions,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
-  RefreshControl,
-  Dimensions,
 } from 'react-native';
-
-import {Button, ListItem, Left, Body, Right} from 'native-base';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {common} from '../../assets/style';
 
 import {
-  successHexColor,
-  primaryHexColor,
-  textMutedColor,
-  fontColor,
-  primaryBlueHexColor,
-  dangerHexColor,
-  seperator,
-  mainBgColor,
   backgroundGrey,
-  circleBgColor,
+  dangerHexColor,
+  fontColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  successHexColor,
 } from '../../constants/themeColors';
 
 import Api from '../../provider/Api';
@@ -37,39 +30,6 @@ import moment from 'moment';
 import {Calendar} from 'react-native-calendars';
 
 const screenWidth = Dimensions.get('window').width;
-
-const testIDs = {
-  menu: {
-    CONTAINER: 'menu',
-    CALENDARS: 'calendars_btn',
-    CALENDAR_LIST: 'calendar_list_btn',
-    HORIZONTAL_LIST: 'horizontal_list_btn',
-    AGENDA: 'agenda_btn',
-    EXPANDABLE_CALENDAR: 'expandable_calendar_btn',
-    WEEK_CALENDAR: 'week_calendar_btn',
-  },
-  calendars: {
-    CONTAINER: 'calendars',
-    FIRST: 'first_calendar',
-    LAST: 'last_calendar',
-  },
-  calendarList: {
-    CONTAINER: 'calendarList',
-  },
-  horizontalList: {
-    CONTAINER: 'horizontalList',
-  },
-  agenda: {
-    CONTAINER: 'agenda',
-    ITEM: 'item',
-  },
-  expandableCalendar: {
-    CONTAINER: 'expandableCalendar',
-  },
-  weekCalendar: {
-    CONTAINER: 'weekCalendar',
-  },
-};
 
 export default class MonthlyDayOffs extends Component {
   api = new Api();
@@ -133,10 +93,6 @@ export default class MonthlyDayOffs extends Component {
   };
 
   render() {
-    const screenLayout = {
-      width: screenWidth / 2,
-    };
-
     return (
       <View style={{flex: 1, backgroundColor: mainBgColor}}>
         <View
@@ -255,77 +211,10 @@ export default class MonthlyDayOffs extends Component {
                 textDayFontSize: 14,
                 monthTextColor: fontColor,
                 textMonthFontSize: 16,
-                // calendarBackground: '#333248',
-                // textSectionTitleColor: 'white',
-                // textSectionTitleDisabledColor: 'gray',
-                // dayTextColor: 'red',
-                // todayTextColor: 'white',
-                // selectedDayTextColor: 'white',
-                // monthTextColor: 'white',
-                // indicatorColor: 'white',
                 selectedDayBackgroundColor: dangerHexColor,
                 arrowColor: primaryBlueHexColor,
-                // textDisabledColor: 'red',
-                // 'stylesheet.calendar.header': {
-                //     week: {
-                //         marginTop: 30,
-                //         marginHorizontal: 12,
-                //         flexDirection: 'row',
-                //         justifyContent: 'space-between'
-                //     }
-                // }
               }}
             />
-            {/* <View>
-                            <ListItem icon>
-                                <Left style={styles.legendIconContainer} >
-                                    <View>
-                                        <Icon active  name="circle" size={8} color={successHexColor} />
-                                    </View>
-                                </Left>
-                                <Body>
-                                    <View >
-                                        <Text style={[common.fontBold]}>Full Day Present</Text>
-                                    </View>
-                                </Body>
-                            </ListItem>
-                            <ListItem icon>
-                                <Left style={styles.legendIconContainer} >
-                                    <View>
-                                        <Icon active  name="circle" size={8} color={primaryBlueHexColor} />
-                                    </View>
-                                </Left>
-                                <Body>
-                                    <View >
-                                        <Text style={[common.fontBold]}>Half Day (Present / Leave)</Text>
-                                    </View>
-                                </Body>
-                            </ListItem>
-                            <ListItem icon>
-                                <Left style={styles.legendIconContainer} >
-                                    <View>
-                                        <Icon active  name="circle" size={8} color={dangerHexColor} />
-                                    </View>
-                                </Left>
-                                <Body>
-                                    <View >
-                                        <Text style={[common.fontBold]}>Full Day Leave</Text>
-                                    </View>
-                                </Body>
-                            </ListItem>
-                            <ListItem icon>
-                                <Left style={styles.legendIconContainer} >
-                                    <View>
-                                        <Icon active  name="circle-o" size={18} color={dangerHexColor} />
-                                    </View>
-                                </Left>
-                                <Body>
-                                    <View>
-                                        <Text style={common.fontBold}>Full Day Absent</Text>
-                                    </View>
-                                </Body>
-                            </ListItem>
-                        </View> */}
           </ScrollView>
         </View>
       </View>
@@ -336,13 +225,9 @@ export default class MonthlyDayOffs extends Component {
 const styles = StyleSheet.create({
   calendar: {
     marginBottom: 10,
-    backgroundColor: primaryBlueHexColor,
-    backgroundColor: '#fff',
+    backgroundColor: primaryBlueHexColor || '#fff',
     paddingBottom: 5,
-    // borderBottomWidth: 1,
-    // borderBottomColor: seperator
     flex: 1,
-    backgroundColor: '#fff',
     margin: 10,
     padding: 15,
     borderRadius: 8,

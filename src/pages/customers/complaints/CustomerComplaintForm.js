@@ -1,35 +1,18 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, View} from 'react-native';
 
-import {
-  primaryBlueHexColor,
-  primaryHexColor,
-  dangerHexColor,
-  successHexColor,
-  mainBgColor,
-} from '../../../constants/themeColors';
+import {mainBgColor} from '../../../constants/themeColors';
 
 import {common} from '../../../assets/style';
 
 import FormSelectPicker from '../../../components/FormSelectPicker';
 import FormTextArea from '../../../components/FormTextArea';
 
-import {NavigationEvents} from 'react-navigation';
-
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
 import Loader from '../../../provider/Loader';
 
 import {Formik} from 'formik';
-
-import moment from 'moment';
 
 export default class CustomerComplaintForm extends Component {
   api = new Api();
@@ -248,5 +231,3 @@ export default class CustomerComplaintForm extends Component {
     );
   }
 }
-
-

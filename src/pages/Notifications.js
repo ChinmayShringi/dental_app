@@ -152,7 +152,7 @@ class Notifications extends Component {
       <View
         style={[
           styles.itemContainer,
-          {backgroundColor: item.readstatus ===0 ? '#e6e7e8' : '#fff'},
+          {backgroundColor: item.readstatus === 0 ? '#e6e7e8' : '#fff'},
         ]}>
         <TouchableOpacity
           activeOpacity={0.5}
@@ -240,7 +240,7 @@ class Notifications extends Component {
   };
 
   redirectOnNotificationDetailPage = item => {
-    if (item.readstatus ===0) {
+    if (item.readstatus === 0) {
       this.setState({transparentLoader: true});
       const formData = new FormData();
       formData.append('notificationid', item.notificationid);
@@ -420,7 +420,7 @@ class Notifications extends Component {
         notificationData.appusertype === '4'
       ) {
         // JOB REJECTED
-        if (notificationType === 401 || notificationType == 402) {
+        if (notificationType === 401 || notificationType === 402) {
           if (
             notificationData.orderdetail !== null ||
             notificationData.orderdetail !== ''

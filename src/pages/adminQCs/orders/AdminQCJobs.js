@@ -1,27 +1,22 @@
+import {Body, Button, Card, CardItem} from 'native-base';
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  FlatList,
+  Image,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  FlatList,
-  ActivityIndicator,
-  KeyboardAvoidingView,
+  View,
 } from 'react-native';
-import {Card, CardItem, Body, Left, Right, Badge, Button} from 'native-base';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
-  callLogCardLayout,
-  modalLayout,
   badgeColorCode,
+  callLogCardLayout,
+  common,
+  commonLabelDescription,
+  modalLayout,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
@@ -32,25 +27,21 @@ import NoRecordsFound from '../../../components/NoRecordsFound';
 import TeethSkeleton from '../../../components/TeethSkeleton';
 
 import {
-  primaryHexColor,
-  seperator,
-  primaryBlueHexColor,
-  textMutedColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
+  textMutedColor,
 } from '../../../constants/themeColors';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {MaterialIcons} from '@expo/vector-icons';
-import Modal from 'react-native-modal';
+// import * as Print from 'expo-print';
 import FlashMessage from 'react-native-flash-message';
-import QRCode from 'react-native-qrcode-svg';
-import * as Print from 'expo-print';
+import Modal from 'react-native-modal';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -551,15 +542,15 @@ export default class AdminQCJobs extends Component {
   };
 
   printQrCode = () => {
-    Print.printAsync({
-      html: `
-                <div style="text-align: center;">
-                    <h3 style="text-align: center; font-size: 40px">Job ID #${this.state.orderdetailidforqrcode}</h3>
-                    <img src="${this.state.qrcodefilepath}" style="width: 500px; height: auto" align="center"/>
-                </div>
-            `,
-      orientation: Print.Orientation.portrait,
-    });
+    // Print.printAsync({
+    //   html: `
+    //             <div style="text-align: center;">
+    //                 <h3 style="text-align: center; font-size: 40px">Job ID #${this.state.orderdetailidforqrcode}</h3>
+    //                 <img src="${this.state.qrcodefilepath}" style="width: 500px; height: auto" align="center"/>
+    //             </div>
+    //         `,
+    //   orientation: Print.Orientation.portrait,
+    // });
   };
 
   render() {

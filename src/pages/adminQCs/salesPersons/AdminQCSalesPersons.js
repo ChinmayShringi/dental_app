@@ -1,40 +1,34 @@
+import {Body, Card, CardItem, Left, Thumbnail} from 'native-base';
 import React, {Component} from 'react';
 import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Linking,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Fab, Card, CardItem, Body, Left, Thumbnail} from 'native-base';
 
 import {
-  primaryBlueHexColor,
-  textMutedColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
   circleBgColor,
+  fontColor,
+  mainBgColor,
 } from '../../../constants/themeColors';
 
-import {common, callLogCardLayout} from '../../../assets/style';
+import {callLogCardLayout, common} from '../../../assets/style';
 
-import NoRecordsFound from '../../../components/NoRecordsFound';
 import ListingSearchBar from '../../../components/ListingSearchBar';
-
-import {NavigationEvents} from 'react-navigation';
+import NoRecordsFound from '../../../components/NoRecordsFound';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -335,26 +329,3 @@ export default class AdminQCSalesPersons extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  textWithIconContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'relative',
-    marginTop: 2,
-  },
-  textWithIconContainerIcon: {
-    position: 'absolute',
-    left: 4,
-    top: 3,
-    width: 16,
-    textAlign: 'center',
-    color: circleBgColor,
-  },
-  textWithIconContainerText: {
-    marginLeft: 24,
-    fontSize: 12,
-    color: fontColor,
-  },
-});

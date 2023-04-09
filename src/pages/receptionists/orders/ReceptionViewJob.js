@@ -1,23 +1,19 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  Image,
+  KeyboardAvoidingView,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  RefreshControl,
-  KeyboardAvoidingView,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
+  common,
+  commonLabelDescription,
   modalLayout,
 } from '../../../assets/style';
 
@@ -29,33 +25,23 @@ import NotFound from '../../../components/NotFound';
 import TeethSkeleton from '../../../components/TeethSkeleton';
 
 import {
-  primaryHexColor,
-  seperator,
-  textMutedColor,
-  primaryBlueHexColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  textMutedColor,
 } from '../../../constants/themeColors';
 
 import {MaterialIcons} from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
-import * as Print from 'expo-print';
+import Icon from 'react-native-vector-icons/FontAwesome';
+// import * as Print from 'expo-print';
 
-import {Badge, Button} from 'native-base';
+import {Button} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
-
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
-const appScreenWidth = Dimensions.get('window');
-const carouselWidth = appScreenWidth.width - 30;
-const imageHeight = Math.round(((carouselWidth - 10) * 10) / 16);
-const imageWidth = carouselWidth - 34;
 
 export default class ReceptionViewJob extends Component {
   api = new Api();
@@ -162,15 +148,15 @@ export default class ReceptionViewJob extends Component {
   };
 
   printQrCode = () => {
-    Print.printAsync({
-      html: `
-                <div style="text-align: center;">
-                    <h3 style="text-align: center; font-size: 40px">Job ID #${this.state.orderdetailidforqrcode}</h3>
-                    <img src="${this.state.qrcodefilepath}" style="width: 500px; height: auto" align="center"/>
-                </div>
-            `,
-      orientation: Print.Orientation.portrait,
-    });
+    // Print.printAsync({
+    //   html: `
+    //             <div style="text-align: center;">
+    //                 <h3 style="text-align: center; font-size: 40px">Job ID #${this.state.orderdetailidforqrcode}</h3>
+    //                 <img src="${this.state.qrcodefilepath}" style="width: 500px; height: auto" align="center"/>
+    //             </div>
+    //         `,
+    //   orientation: Print.Orientation.portrait,
+    // });
   };
 
   render() {

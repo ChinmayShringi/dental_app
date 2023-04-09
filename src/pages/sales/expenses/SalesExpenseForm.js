@@ -40,7 +40,7 @@ import moment from 'moment';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {LinearGradient} from 'expo-linear-gradient';
+// import {LinearGradient} from 'expo-linear-gradient';
 import {ActionSheet} from 'native-base';
 import ImagePicker from 'react-native-image-crop-picker';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -312,17 +312,18 @@ class SalesExpenseForm extends Component {
             resizeMode="contain"
           />
           {item.istobedeleted !== 0 ? (
-            <LinearGradient
-              colors={['rgba(255, 255, 255, 0.8)', 'rgba(255, 255, 255, 0.8)']}
-              style={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                height: imageHeight,
-              }}
-            />
-          ) : null}
+            <></>
+          ) : // <LinearGradient
+          //   colors={['rgba(255, 255, 255, 0.8)', 'rgba(255, 255, 255, 0.8)']}
+          //   style={{
+          //     position: 'absolute',
+          //     left: 0,
+          //     right: 0,
+          //     top: 0,
+          //     height: imageHeight,
+          //   }}
+          // />
+          null}
           {item.istobedeleted !== 0 ? (
             <Icon
               name="trash"

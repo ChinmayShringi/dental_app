@@ -22,7 +22,7 @@ import {
 import HeaderSaveButton from './components/HeaderSaveButton';
 import HeaderSearchButton from './components/HeaderSearchButton';
 
-import {MaterialIcons, MaterialCommunityIcons} from '@expo/vector-icons';
+// import {MaterialIcons, MaterialCommunityIcons} from '@expo/vector-icons';
 
 import {headerStyles} from './assets/style';
 
@@ -573,11 +573,11 @@ export const tabStack = createMaterialBottomTabNavigator(
         tabBarLabel: 'Dashboard',
         tabBarIcon: ({tintColor}) => (
           <View>
-            <MaterialIcons
+            {/* <MaterialIcons
               style={[{color: tintColor}]}
               name="dashboard"
               size={24}
-            />
+            /> */}
           </View>
         ),
       },
@@ -588,7 +588,7 @@ export const tabStack = createMaterialBottomTabNavigator(
         tabBarLabel: 'Sales',
         tabBarIcon: ({tintColor}) => (
           <View>
-            <MaterialIcons style={[{color: tintColor}]} name="home" size={24} />
+            {/* <MaterialIcons style={[{color: tintColor}]} name="home" size={24} /> */}
           </View>
         ),
         activeColor: '#ffffff',
@@ -1100,7 +1100,8 @@ export const SignedIn = createDrawerNavigator(
       navigationOptions: {
         title: 'Home',
         drawerIcon: ({tintColor}) => (
-          <MaterialIcons style={[{color: tintColor}]} name="home" size={20} />
+          <></>
+          // <MaterialIcons style={[{color: tintColor}]} name="home" size={20} />
         ),
       },
     },
@@ -1110,11 +1111,12 @@ export const SignedIn = createDrawerNavigator(
       navigationOptions: {
         title: 'Dashboard',
         drawerIcon: ({tintColor}) => (
-          <MaterialIcons
-            style={[{color: tintColor}]}
-            name="dashboard"
-            size={20}
-          />
+          <></>
+          // <MaterialIcons
+          //   style={[{color: tintColor}]}
+          //   name="dashboard"
+          //   size={20}
+          // />
         ),
       },
     },
@@ -1124,7 +1126,8 @@ export const SignedIn = createDrawerNavigator(
       navigationOptions: {
         title: 'Products',
         drawerIcon: ({tintColor}) => (
-          <MaterialIcons style={[{color: tintColor}]} name="layers" size={20} />
+          <></>
+          // <MaterialIcons style={[{color: tintColor}]} name="layers" size={20} />
         ),
       },
     },
@@ -1134,7 +1137,8 @@ export const SignedIn = createDrawerNavigator(
       navigationOptions: {
         title: 'Edit Profile',
         drawerIcon: ({tintColor}) => (
-          <MaterialIcons style={[{color: tintColor}]} name="edit" size={20} />
+          <></>
+          // <MaterialIcons style={[{color: tintColor}]} name="edit" size={20} />
         ),
       },
     },
@@ -1295,11 +1299,11 @@ export const ProductionUnAssignedJobsStack = createStackNavigator({
               navigation.state.params.redirectToQrCodeScanningPage()
             }
             style={{margin: 15}}>
-            <MaterialCommunityIcons
+            {/* <MaterialCommunityIcons
               name="qrcode-scan"
               size={24}
               style={{color: '#333'}}
-            />
+            /> */}
           </TouchableOpacity>
         ),
         headerStyle: headerStyle,
@@ -1378,11 +1382,11 @@ export const ProductionOngoingJobsStack = createStackNavigator({
               navigation.state.params.redirectToQrCodeScanningPage()
             }
             style={{margin: 15}}>
-            <MaterialCommunityIcons
+            {/* <MaterialCommunityIcons
               name="qrcode-scan"
               size={24}
               style={{color: '#333'}}
-            />
+            /> */}
           </TouchableOpacity>
         ),
         headerStyle: headerStyle,
@@ -1479,11 +1483,11 @@ export const ProductionAssignedJobsStack = createStackNavigator({
               navigation.state.params.redirectToQrCodeScanningPage()
             }
             style={{margin: 15}}>
-            <MaterialCommunityIcons
+            {/* <MaterialCommunityIcons
               name="qrcode-scan"
               size={24}
               style={{color: '#333'}}
-            />
+            /> */}
           </TouchableOpacity>
         ),
         headerStyle: headerStyle,

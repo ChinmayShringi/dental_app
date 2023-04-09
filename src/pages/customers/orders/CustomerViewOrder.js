@@ -1,21 +1,19 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  Image,
+  Linking,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
+  common,
+  commonCard,
+  commonLabelDescription,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
@@ -25,22 +23,17 @@ import Loader from '../../../provider/Loader';
 import NotFound from '../../../components/NotFound';
 
 import {
-  primaryHexColor,
-  seperator,
-  primaryBlueHexColor,
   mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
 } from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Badge, Button} from 'native-base';
+import {Button} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
@@ -50,7 +43,6 @@ const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');
 const carouselWidth = appScreenWidth.width - 30;
 const imageHeight = Math.round(((carouselWidth - 10) * 10) / 16);
-const imageWidth = carouselWidth - 34;
 
 export default class CustomerViewOrder extends Component {
   api = new Api();

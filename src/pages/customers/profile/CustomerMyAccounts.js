@@ -1,48 +1,31 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  RefreshControl,
+  View,
 } from 'react-native';
 
-import {
-  Container,
-  Header,
-  Content,
-  Button,
-  ListItem,
-  Left,
-  Body,
-  Right,
-  Switch,
-  Separator,
-} from 'native-base';
+import {Body, Button, Left, ListItem, Right} from 'native-base';
 
 import {common, commonLabelDescription} from '../../../assets/style';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
-
-import NotFound from '../../../components/NotFound';
 
 import {
-  primaryHexColor,
-  textMutedColor,
-  primaryBlueHexColor,
-  mainBgColor,
   fontColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
 } from '../../../constants/themeColors';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -178,62 +161,6 @@ export default class CustomerMyAccounts extends Component {
         borderRadius: 4,
         marginBottom: 8,
       },
-      // {
-      //     width: screenWidth - 50,
-      //     height: 1,
-      //     marginTop: 15,
-      //     marginBottom: 15,
-      // },
-      // {
-      //     width: 120,
-      //     height: 20,
-      //     borderRadius: 4,
-      //     marginTop: 0,
-      //     marginBottom: 20,
-      // },
-      // {
-      //     width: 200,
-      //     height: 14,
-      //     borderRadius: 4,
-      //     marginTop: 0,
-      //     marginBottom: 8,
-      // },
-      // {
-      //     width: 220,
-      //     height: 14,
-      //     borderRadius: 4,
-      //     marginBottom: 8,
-      // },
-      // {
-      //     width: 220,
-      //     height: 14,
-      //     borderRadius: 4,
-      //     marginBottom: 8,
-      // },
-      // {
-      //     width: 210,
-      //     height: 14,
-      //     borderRadius: 4,
-      //     marginBottom: 8,
-      // },
-      // {
-      //     width: 190,
-      //     height: 14,
-      //     borderRadius: 4,
-      //     marginBottom: 8,
-      // },
-      // {
-      //     width: 190,
-      //     height: 14,
-      //     borderRadius: 4,
-      //     marginBottom: 8,
-      // },
-      // {
-      //     width: 220,
-      //     height: 14,
-      //     borderRadius: 4,
-      //     marginBottom: 8,
-      // },
     ];
 
     return (

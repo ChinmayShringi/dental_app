@@ -1,44 +1,37 @@
+import {Card, CardItem} from 'native-base';
 import React, {Component} from 'react';
 import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  Image,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Image,
-  Dimensions,
+  View,
 } from 'react-native';
-import {Card, CardItem, Body} from 'native-base';
 
 import {
-  primaryHexColor,
-  dangerHexColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryHexColor,
 } from '../../constants/themeColors';
 
 import {common, commonCard, modalLayout} from '../../assets/style';
 
-import NoRecordsFound from '../../components/NoRecordsFound';
 import ListingSearchBar from '../../components/ListingSearchBar';
-
-import {NavigationEvents} from 'react-navigation';
+import NoRecordsFound from '../../components/NoRecordsFound';
 
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
-import Loader from '../../provider/Loader';
 
-import {LinearGradient} from 'expo-linear-gradient';
+// import {LinearGradient} from 'expo-linear-gradient';
 
-import Modal from 'react-native-modal';
 import {MaterialIcons} from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Modal from 'react-native-modal';
 
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 const appScreenWidth = Dimensions.get('window');
 const cardWidth = (appScreenWidth.width - 38) / 2;
@@ -164,27 +157,7 @@ export default class Brands extends Component {
                 }}
                 resizeMode="contain"
               />
-              {/* <LinearGradient
-                                colors={['rgba(0, 0.1, 0.1, 0.2)', 'transparent']}
-                                style={styles.imageGradient}
-                            /> */}
             </CardItem>
-            {/* <CardItem style={{
-                            paddingLeft: 5,
-                            paddingRight: 5,
-                            paddingTop: 5,
-                            paddingBottom: 5
-                        }}>
-                            <Body>
-                                <Text 
-                                    style={[styles.cardTitle]}
-                                    numberOfLines={1}
-                                    ellipsizeMode="tail"
-                                >
-                                    {item.name}
-                                </Text>
-                            </Body>
-                        </CardItem> */}
           </TouchableOpacity>
         </Card>
       </View>
@@ -381,10 +354,10 @@ export default class Brands extends Component {
                 }}
                 resizeMode="cover"
               />
-              <LinearGradient
+              {/* <LinearGradient
                 colors={['rgba(0, 0.1, 0.1, 0.2)', 'transparent']}
                 style={styles.modalImageGradient}
-              />
+              /> */}
             </CardItem>
           </TouchableOpacity>
         </Card>
@@ -412,15 +385,6 @@ export default class Brands extends Component {
       skeletonLayoutItem,
     ];
 
-    const modalSkeletonLayoutItem = {
-      width: modalCardWidth,
-      height: modalCardHeight,
-      marginRight: 5,
-      marginLeft: 5,
-      marginTop: 5,
-      marginBottom: 5,
-      borderRadius: 8,
-    };
     const modalSkeletonLayout = [
       skeletonLayoutItem,
       skeletonLayoutItem,

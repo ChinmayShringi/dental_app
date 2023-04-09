@@ -11,7 +11,7 @@ import QrCodePermissionDenied from '../../../components/QrCodePermissionDenied';
 // import { Button } from 'react-native-elements';
 import {Button} from 'native-base';
 
-import {BarCodeScanner} from 'expo-barcode-scanner';
+// import {BarCodeScanner} from 'expo-barcode-scanner';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const screenWidth = Dimensions.get('window').width;
@@ -44,16 +44,16 @@ export default class SupervisorScanQrCodeOrSearchUsingJobId extends Component {
   }
 
   askCameraPermission = async () => {
-    const {status} = await BarCodeScanner.requestPermissionsAsync();
-    if (status === 'granted') {
-      this.setState({
-        hasPermission: true,
-      });
-    } else {
-      this.setState({
-        hasPermission: false,
-      });
-    }
+    // const {status} = await BarCodeScanner.requestPermissionsAsync();
+    // if (status === 'granted') {
+    //   this.setState({
+    //     hasPermission: true,
+    //   });
+    // } else {
+    //   this.setState({
+    //     hasPermission: false,
+    //   });
+    // }
   };
 
   handleBarCodeScanned = ({type, data}) => {
@@ -83,13 +83,13 @@ export default class SupervisorScanQrCodeOrSearchUsingJobId extends Component {
           padding: 15,
           backgroundColor: backgroundGrey,
         }}>
-        <BarCodeScanner
+        {/* <BarCodeScanner
           onBarCodeScanned={
             this.state.scanned ? undefined : this.handleBarCodeScanned
           }
           barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
           style={StyleSheet.absoluteFillObject}
-        />
+        /> */}
         {this.state.scanned && (
           <Button
             block

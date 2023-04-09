@@ -1,40 +1,31 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
-  RefreshControl,
   TouchableOpacity,
-  Linking,
-  Dimensions,
+  View,
 } from 'react-native';
 
 import {
+  badgeColorCode,
   common,
   commonLabelDescription,
-  badgeColorCode,
 } from '../../assets/style';
 
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
-import Loader from '../../provider/Loader';
 
 import NotFound from '../../components/NotFound';
 
-import {
-  primaryHexColor,
-  textMutedColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
-} from '../../constants/themeColors';
+import {mainBgColor, primaryHexColor} from '../../constants/themeColors';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -114,11 +105,6 @@ export default class LeaveApplicationDetails extends Component {
         marginLeft: screenWidth - 74,
         width: 24,
         height: 20,
-        height:
-          this.state.leaveApplication !== null &&
-          this.state.leaveApplication.status ===2
-            ? 20
-            : 0,
         borderRadius: 2,
         marginTop: 0,
       },
@@ -199,7 +185,7 @@ export default class LeaveApplicationDetails extends Component {
               {this.state.leaveApplication !== null && !this.state.loading ? (
                 <View>
                   {this.state.leaveApplication !== null &&
-                  this.state.leaveApplication.status ===2 ? (
+                  this.state.leaveApplication.status === 2 ? (
                     <View
                       style={{
                         flex: 1,
@@ -207,7 +193,7 @@ export default class LeaveApplicationDetails extends Component {
                         justifyContent: 'space-between',
                       }}>
                       <View style={{alignSelf: 'flex-start'}}>
-                        <Text></Text>
+                        <Text />
                       </View>
                       <View style={{alignSelf: 'flex-end'}}>
                         <View style={{flex: 1, flexDirection: 'row'}}>
@@ -397,7 +383,7 @@ export default class LeaveApplicationDetails extends Component {
                         </Text>
                       </View>
                     </View>
-                    {this.state.leaveApplication.status ===0 ? (
+                    {this.state.leaveApplication.status === 0 ? (
                       <View style={commonLabelDescription.listContainer}>
                         <View
                           style={[

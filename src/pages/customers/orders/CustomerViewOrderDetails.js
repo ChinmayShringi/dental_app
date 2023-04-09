@@ -1,47 +1,31 @@
+import {Body, Card, CardItem} from 'native-base';
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  FlatList,
-  ActivityIndicator,
+  View,
 } from 'react-native';
-import {Card, CardItem, Body, Left, Right, Badge} from 'native-base';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
-  callLogCardLayout,
   badgeColorCode,
+  callLogCardLayout,
+  common,
+  commonLabelDescription,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import NoRecordsFound from '../../../components/NoRecordsFound';
 import TeethSkeleton from '../../../components/TeethSkeleton';
 
-import {
-  primaryHexColor,
-  seperator,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
-} from '../../../constants/themeColors';
+import {backgroundGrey, mainBgColor} from '../../../constants/themeColors';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -438,90 +422,6 @@ export default class CustomerViewOrderDetails extends Component {
                     </Text>
                   </View>
                 </View>
-
-                {/* <View style={[common.seperator, { width: '100%' }]}></View>
-
-                                <View style={commonLabelDescription.listContainer}>
-                                    <View style={[commonLabelDescription.listLabelContainer, styles.priceLabelConatiner]}>
-                                        <Text style={[commonLabelDescription.labelText, styles.priceLabelText]}>No. of Teeths * Price</Text> 
-                                    </View>
-                                    <View style={[commonLabelDescription.listSeperator, styles.mathSymbolContainer]}>
-                                        <Text style={commonLabelDescription.labelText}>
-                                            +
-                                        </Text> 
-                                    </View>
-                                    <View style={styles.priceContainer}>
-                                        <Text style={styles.priceText}>
-                                            {item.numberofteeths} * {item.price}
-                                        </Text>
-                                    </View>
-                                </View>
-
-                                <View style={commonLabelDescription.listContainer}>
-                                    <View style={[commonLabelDescription.listLabelContainer, styles.priceLabelConatiner]}>
-                                        <Text style={[commonLabelDescription.labelText, styles.priceLabelText]}>Discount Percentage</Text> 
-                                    </View>
-                                    <View style={[commonLabelDescription.listSeperator, styles.mathSymbolContainer]}>
-                                        <Text style={commonLabelDescription.labelText}>
-                                            -
-                                        </Text> 
-                                    </View>
-                                    <View style={styles.priceContainer}>
-                                        <Text style={styles.priceText}>
-                                            {item.discountpercentage}
-                                        </Text>
-                                    </View>
-                                </View>
-
-                                <View style={commonLabelDescription.listContainer}>
-                                    <View style={[commonLabelDescription.listLabelContainer, styles.priceLabelConatiner]}>
-                                        <Text style={[commonLabelDescription.labelText, styles.priceLabelText]}>Discount Amount</Text> 
-                                    </View>
-                                    <View style={[commonLabelDescription.listSeperator, styles.mathSymbolContainer]}>
-                                        <Text style={commonLabelDescription.labelText}>
-                                            -
-                                        </Text> 
-                                    </View>
-                                    <View style={styles.priceContainer}>
-                                        <Text style={styles.priceText}>
-                                            {item.discountamount}
-                                        </Text>
-                                    </View>
-                                </View>
-
-                                <View style={commonLabelDescription.listContainer}>
-                                    <View style={[commonLabelDescription.listLabelContainer, styles.priceLabelConatiner]}>
-                                        <Text style={[commonLabelDescription.labelText, styles.priceLabelText]}>Modification Charges</Text> 
-                                    </View>
-                                    <View style={[commonLabelDescription.listSeperator, styles.mathSymbolContainer]}>
-                                        <Text style={commonLabelDescription.labelText}>
-                                            +
-                                        </Text> 
-                                    </View>
-                                    <View style={styles.priceContainer}>
-                                        <Text style={styles.priceText}>
-                                            {item.modificationcharges}
-                                        </Text>
-                                    </View>
-                                </View>
-
-                                <View style={[common.seperator, { width: '100%', marginTop: 5, marginBottom: 0, borderBottomColor: '#333' }]}></View>
-
-                                <View style={commonLabelDescription.listContainer}>
-                                    <View style={[commonLabelDescription.listLabelContainer, styles.priceLabelConatiner]}>
-                                        <Text style={[commonLabelDescription.labelText, styles.priceLabelText]}>Total Amount</Text> 
-                                    </View>
-                                    <View style={[commonLabelDescription.listSeperator, styles.mathSymbolContainer]}>
-                                        <Text style={commonLabelDescription.labelText}>
-                                            =
-                                        </Text> 
-                                    </View>
-                                    <View style={styles.priceContainer}>
-                                        <Text style={styles.priceText}>
-                                            {item.totalprice}
-                                        </Text>
-                                    </View>
-                                </View> */}
               </Body>
             </CardItem>
           </TouchableOpacity>

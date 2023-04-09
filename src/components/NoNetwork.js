@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import {textMutedColor} from '../constants/themeColors';
 
 export default class NoNetwork extends Component {
@@ -13,13 +13,13 @@ export default class NoNetwork extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MaterialIcons
+        {/* <MaterialIcons
           name="cloud-off"
           size={130}
           style={{
             color: '#ff7972',
           }}
-        />
+        /> */}
         <Text style={styles.errortTitle}>Whoops!</Text>
         <Text style={styles.errortDescription}>
           No internet connection found. Check your connection or try again
