@@ -25,8 +25,8 @@ import NetInfo from '@react-native-community/netinfo';
 import SplashScreen from 'react-native-splash-screen';
 
 // import {fcmService} from './provider/FCMService';
+import {Geolocation} from 'react-native';
 
-// import * as Location from 'expo-location';
 // import * as TaskManager from 'expo-task-manager';
 import {locationTrackingProps} from './constants/defaultValues';
 const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
@@ -191,7 +191,7 @@ export default class App extends React.Component {
           if (loggedInUser.appusertype === 5) {
             if (!loggedInUser.isdepartmenthead) {
               (async () => {
-                // await Location.stopLocationUpdatesAsync(LOCATION_TASK_NAME);
+                await Geolocation.stopObserving(LOCATION_TASK_NAME);
                 if (Platform.OS === 'android') {
                   LocationServicesDialogBox.stopListener();
                 }

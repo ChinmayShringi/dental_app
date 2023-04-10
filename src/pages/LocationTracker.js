@@ -12,6 +12,7 @@ import {
 
 // import * as TaskManager from 'expo-task-manager';
 // import * as Location from 'expo-location';
+import {Geolocation} from 'react-native';
 import {EventEmitter} from 'fbemitter';
 
 import Api from '../provider/Api';
@@ -121,10 +122,10 @@ export default class LocationTracker extends Component {
   };
 
   stopTracking = async () => {
-    // this.setState({
-    //   isTrackingOn: false,
-    // });
-    // await Location.stopLocationUpdatesAsync(LOCATION_TASK_NAME);
+    this.setState({
+      isTrackingOn: false,
+    });
+    await Geolocation.stopObserving(LOCATION_TASK_NAME);
   };
 
   clearLocations = () => {

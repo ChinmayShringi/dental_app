@@ -16,7 +16,8 @@ import AnimatedEllipsis from 'react-native-animated-ellipsis';
 var api = new Api();
 var dataProvider = new Dataprovider();
 
-// import * as Location from 'expo-location';
+import {Geolocation} from 'react-native';
+
 import {locationTrackingProps} from '../constants/defaultValues';
 const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
 
@@ -35,7 +36,7 @@ class DrawerLogoutButton extends Component {
   }
 
   stopTracking = async () => {
-    // await Location.stopLocationUpdatesAsync(LOCATION_TASK_NAME);
+    await Geolocation.stopObserving(LOCATION_TASK_NAME);
     if (Platform.OS === 'android') {
       LocationServicesDialogBox.stopListener();
     }
