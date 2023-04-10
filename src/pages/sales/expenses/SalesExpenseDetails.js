@@ -42,7 +42,7 @@ import {
   successHexColor,
 } from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Button} from 'native-base';
@@ -827,12 +827,12 @@ class SalesExpenseDetails extends Component {
                       <Loader loading={this.state.transparentLoader} />
                       <View style={modalLayout.body}>
                         <View style={modalLayout.header}>
-                          <MaterialIcons
+                          {/* <MaterialIcons
                             name="close"
                             size={28}
                             style={modalLayout.headerMenuicon}
                             onPress={this.toggleJobFormModal}
-                          />
+                          /> */}
                           <View>
                             <Text style={modalLayout.headertext}>
                               Reject Expense

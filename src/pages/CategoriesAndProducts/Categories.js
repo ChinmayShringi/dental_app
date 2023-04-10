@@ -27,7 +27,7 @@ import Dataprovider from '../../provider/Dataprovider';
 
 // import {LinearGradient} from 'expo-linear-gradient';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 
 import SkeletonContent from 'react-native-skeleton-content';
@@ -465,12 +465,12 @@ export default class Categories extends Component {
             {/* <Loader loading={this.state.modalLoading}/> */}
             <View style={modalLayout.body}>
               <View style={modalLayout.header}>
-                <MaterialIcons
+                {/* <MaterialIcons
                   name="close"
                   size={28}
                   style={modalLayout.headerMenuicon}
                   onPress={this.toggleSearchModal}
-                />
+                /> */}
                 <View>
                   <Text style={modalLayout.headertext}>Search Products</Text>
                 </View>

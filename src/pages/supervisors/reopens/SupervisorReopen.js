@@ -40,7 +40,7 @@ import {Formik} from 'formik';
 import Modal from 'react-native-modal';
 import FlashMessage from 'react-native-flash-message';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Button} from 'native-base';
@@ -1106,12 +1106,12 @@ export default class SupervisorReopen extends Component {
                       <Loader loading={this.state.transparentLoader} />
                       <View style={modalLayout.body}>
                         <View style={modalLayout.header}>
-                          <MaterialIcons
+                          {/* <MaterialIcons
                             name="close"
                             size={28}
                             style={modalLayout.headerMenuicon}
                             onPress={this.toggleJobFormModal}
-                          />
+                          /> */}
                           <View>
                             <Text style={modalLayout.headertext}>
                               Assign Department

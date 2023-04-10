@@ -1,24 +1,19 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  KeyboardAvoidingView,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  RefreshControl,
-  Alert,
-  KeyboardAvoidingView,
+  View,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
+  common,
+  commonLabelDescription,
   modalLayout,
 } from '../../../assets/style';
 
@@ -35,27 +30,22 @@ import FormInput from '../../../components/FormInput';
 import ModalSaveButton from '../../../components/ModalSaveButton';
 
 import {
-  primaryHexColor,
-  seperator,
-  primaryBlueHexColor,
-  dangerHexColor,
-  successHexColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
 } from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Badge, Button} from 'native-base';
+import {Button} from 'native-base';
 
-import Modal from 'react-native-modal';
 import FlashMessage from 'react-native-flash-message';
+import Modal from 'react-native-modal';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import update from 'immutability-helper';
 
@@ -1242,12 +1232,12 @@ export default class ReceptionRejectedJob extends Component {
                       <Loader loading={this.state.modalLoader} />
                       <View style={modalLayout.body}>
                         <View style={modalLayout.header}>
-                          <MaterialIcons
+                          {/* <MaterialIcons
                             name="close"
                             size={28}
                             style={modalLayout.headerMenuicon}
                             onPress={this.toggleFormModal}
-                          />
+                          /> */}
                           <View>
                             <Text style={modalLayout.headertext}>
                               Reopen Job
@@ -1266,9 +1256,7 @@ export default class ReceptionRejectedJob extends Component {
                           <View style={{flex: 1}}>
                             <KeyboardAvoidingView
                               style={{flex: 1, flexDirection: 'column'}}
-                              behavior={
-                                'padding'
-                              }
+                              behavior={'padding'}
                               enabled
                               keyboardVerticalOffset={100}>
                               <View style={modalLayout.bodyContent}>

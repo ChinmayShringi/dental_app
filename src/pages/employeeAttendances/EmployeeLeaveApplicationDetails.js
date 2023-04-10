@@ -1,21 +1,19 @@
 import React, {Component} from 'react';
 import {
+  Alert,
+  Dimensions,
+  KeyboardAvoidingView,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  RefreshControl,
-  TouchableOpacity,
-  Linking,
-  Dimensions,
-  Alert,
-  KeyboardAvoidingView,
 } from 'react-native';
 
 import {
+  badgeColorCode,
   common,
   commonLabelDescription,
-  badgeColorCode,
   modalLayout,
 } from '../../assets/style';
 
@@ -26,32 +24,27 @@ import Loader from '../../provider/Loader';
 import NotFound from '../../components/NotFound';
 
 import {
-  primaryHexColor,
-  textMutedColor,
-  successHexColor,
   dangerHexColor,
-  primaryBlueHexColor,
   mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
+  primaryBlueHexColor,
+  successHexColor,
 } from '../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Badge, Button} from 'native-base';
+import {Button} from 'native-base';
 
 import {Formik} from 'formik';
 
 import FormTextArea from '../../components/FormTextArea';
 import ModalSaveButton from '../../components/ModalSaveButton';
 
-import Modal from 'react-native-modal';
 import FlashMessage from 'react-native-flash-message';
+import Modal from 'react-native-modal';
 
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -632,12 +625,12 @@ export default class EmployeeLeaveApplicationDetails extends Component {
                     <Loader loading={this.state.transparentLoader} />
                     <View style={modalLayout.body}>
                       <View style={modalLayout.header}>
-                        <MaterialIcons
+                        {/* <MaterialIcons
                           name="close"
                           size={28}
                           style={modalLayout.headerMenuicon}
                           onPress={this.toggleJobFormModal}
-                        />
+                        /> */}
                         <View>
                           <Text style={modalLayout.headertext}>
                             Reject Leave Request

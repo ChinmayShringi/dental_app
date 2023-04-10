@@ -1,68 +1,48 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  RefreshControl,
+  View,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  callLogCardLayout,
-  commonCard,
   badgeColorCode,
-  dashBoardStyle,
+  callLogCardLayout,
+  common,
+  commonLabelDescription,
   commonShowCountCarousel,
+  dashBoardStyle,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import NotFound from '../../../components/NotFound';
 
 import {
-  successHexColor,
+  backgroundGrey,
+  fontColor,
+  primaryBlueHexColor,
   primaryHexColor,
   primaryPurpleHexColor,
-  seperator,
-  mainBgColor,
-  backgroundGrey,
-  primaryBlueHexColor,
-  fontColor,
   primarywarningHexColor,
   primarywhiteHexColor,
-  textMutedColor,
-  primaryOrangeHexColor,
+  successHexColor,
 } from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {
-  Fab,
-  Card,
-  CardItem,
-  Header,
-  Body,
-  Left,
-  Right,
-  Badge,
-} from 'native-base';
+import {Body, Card, CardItem, Left, Right} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 
-import {NavigationEvents} from 'react-navigation';
 // BANER CAROUSEL
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');

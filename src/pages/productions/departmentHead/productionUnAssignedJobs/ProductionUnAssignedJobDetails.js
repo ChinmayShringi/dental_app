@@ -1,24 +1,19 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  KeyboardAvoidingView,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  RefreshControl,
-  Alert,
-  KeyboardAvoidingView,
+  View,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
+  common,
+  commonLabelDescription,
   modalLayout,
 } from '../../../../assets/style';
 
@@ -30,36 +25,29 @@ import NotFound from '../../../../components/NotFound';
 import TeethSkeleton from '../../../../components/TeethSkeleton';
 
 import {
-  primaryHexColor,
-  seperator,
-  primaryBlueHexColor,
-  dangerHexColor,
-  successHexColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
+  successHexColor,
 } from '../../../../constants/themeColors';
 
-import FormTextArea from '../../../../components/FormTextArea';
 import FormRadioButton from '../../../../components/FormRadioButton';
 import FormSelectPicker from '../../../../components/FormSelectPicker';
 import ModalSaveButton from '../../../../components/ModalSaveButton';
 
 import {Formik} from 'formik';
 
-import Modal from 'react-native-modal';
 import FlashMessage from 'react-native-flash-message';
+import Modal from 'react-native-modal';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Badge, Button} from 'native-base';
+import {Button} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
-
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');
@@ -1204,12 +1192,12 @@ export default class ProductionUnAssignedJobDetails extends Component {
                       <Loader loading={this.state.transparentLoader} />
                       <View style={modalLayout.body}>
                         <View style={modalLayout.header}>
-                          <MaterialIcons
+                          {/* <MaterialIcons
                             name="close"
                             size={28}
                             style={modalLayout.headerMenuicon}
                             onPress={this.toggleAssignTaskFormModal}
-                          />
+                          /> */}
                           <View>
                             <Text style={modalLayout.headertext}>
                               Assign Employee
@@ -1228,9 +1216,7 @@ export default class ProductionUnAssignedJobDetails extends Component {
                           <View style={{flex: 1, backgroundColor: mainBgColor}}>
                             <KeyboardAvoidingView
                               style={{flex: 1, flexDirection: 'column'}}
-                              behavior={
-                                'padding'
-                              }
+                              behavior={'padding'}
                               enabled
                               keyboardVerticalOffset={100}>
                               <View style={modalLayout.bodyContent}>

@@ -1,25 +1,18 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  RefreshControl,
-  Alert,
-  KeyboardAvoidingView,
+  View,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
-  modalLayout,
+  common,
+  commonLabelDescription,
 } from '../../../../assets/style';
 
 import Api from '../../../../provider/Api';
@@ -30,26 +23,13 @@ import NotFound from '../../../../components/NotFound';
 import TeethSkeleton from '../../../../components/TeethSkeleton';
 
 import {
-  primaryHexColor,
-  seperator,
-  primaryBlueHexColor,
-  dangerHexColor,
-  successHexColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
-  circleBgColor,
+  mainBgColor,
+  primaryHexColor,
 } from '../../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {Badge, Button} from 'native-base';
-
-import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
-
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 

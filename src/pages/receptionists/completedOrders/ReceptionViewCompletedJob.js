@@ -1,52 +1,29 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  RefreshControl,
-  KeyboardAvoidingView,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
+  common,
+  commonLabelDescription,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import NotFound from '../../../components/NotFound';
 import TeethSkeleton from '../../../components/TeethSkeleton';
 
-import {
-  primaryHexColor,
-  seperator,
-  textMutedColor,
-  primaryBlueHexColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
-} from '../../../constants/themeColors';
+import {backgroundGrey, mainBgColor} from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import {Badge, Button} from 'native-base';
-
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
-
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');

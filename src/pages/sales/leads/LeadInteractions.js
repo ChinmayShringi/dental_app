@@ -41,7 +41,7 @@ import Timeline from 'react-native-timeline-flatlist';
 
 import Modal from 'react-native-modal';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 
 import FlashMessage from 'react-native-flash-message';
 
@@ -672,12 +672,12 @@ export default class LeadInteractions extends Component {
             <Loader loading={this.state.loading} />
             <View style={modalLayout.body}>
               <View style={modalLayout.header}>
-                <MaterialIcons
+                {/* <MaterialIcons
                   name="close"
                   size={28}
                   style={modalLayout.headerMenuicon}
                   onPress={this.toggleInteractionFormModal}
-                />
+                /> */}
                 <View>
                   <Text style={modalLayout.headertext}>Add Interaction</Text>
                 </View>

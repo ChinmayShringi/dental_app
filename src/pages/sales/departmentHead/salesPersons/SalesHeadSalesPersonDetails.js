@@ -1,53 +1,42 @@
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  Linking,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
+  View,
 } from 'react-native';
 
-import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  callLogCardLayout,
-} from '../../../../assets/style';
+import {callLogCardLayout, common} from '../../../../assets/style';
 
 import Api from '../../../../provider/Api';
 import Dataprovider from '../../../../provider/Dataprovider';
-import Loader from '../../../../provider/Loader';
 
 import NotFound from '../../../../components/NotFound';
 
 import {
-  primaryHexColor,
-  seperator,
-  textMutedColor,
-  mainBgColor,
   backgroundGrey,
-  fontColor,
   circleBgColor,
-  successHexColor,
-  dangerHexColor,
-  primaryPurpleHexColor,
+  fontColor,
+  mainBgColor,
   primaryBlueHexColor,
+  primaryHexColor,
+  primaryPurpleHexColor,
+  successHexColor,
 } from '../../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 
-import {Badge} from 'native-base';
 import {Avatar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
-import {loggedInUserDetails} from '../../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
 
 class SalesHeadSalesPersonDetails extends Component {
@@ -255,7 +244,7 @@ class SalesHeadSalesPersonDetails extends Component {
                               borderRadius: 4,
                             }}>
                             <Text style={{color: primaryHexColor}}>
-                              <MaterialIcons name="edit" size={18} />
+                              {/* <MaterialIcons name="edit" size={18} /> */}
                             </Text>
                           </TouchableOpacity>
                         </View>

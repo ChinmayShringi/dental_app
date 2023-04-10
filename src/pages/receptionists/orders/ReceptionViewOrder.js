@@ -1,23 +1,21 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
+  Alert,
   Dimensions,
   Image,
   RefreshControl,
-  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
+  common,
+  commonCard,
+  commonLabelDescription,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
@@ -27,22 +25,17 @@ import Loader from '../../../provider/Loader';
 import NotFound from '../../../components/NotFound';
 
 import {
-  primaryHexColor,
-  seperator,
-  primaryBlueHexColor,
   mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
+  primaryBlueHexColor,
+  primaryHexColor,
 } from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Badge, Button} from 'native-base';
+import {Button} from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
@@ -1123,7 +1116,7 @@ export default class ReceptionViewOrder extends Component {
                         </View>
                       )}
                     </View>
-                    {this.state.order.status ===1 ? (
+                    {this.state.order.status === 1 ? (
                       <Button
                         block
                         iconLeft

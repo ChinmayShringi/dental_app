@@ -1,26 +1,22 @@
 import React, {Component} from 'react';
 import {
+  Alert,
+  Dimensions,
+  KeyboardAvoidingView,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  RefreshControl,
-  Alert,
-  KeyboardAvoidingView,
+  View,
 } from 'react-native';
 
-import {Badge, Button} from 'native-base';
+import {Button} from 'native-base';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
   badgeColorCode,
+  common,
+  commonLabelDescription,
   modalLayout,
 } from '../../../assets/style';
 
@@ -32,32 +28,31 @@ import NotFound from '../../../components/NotFound';
 import TeethSkeleton from '../../../components/TeethSkeleton';
 
 import {
+  backgroundGrey,
+  dangerHexColor,
+  fontColor,
+  mainBgColor,
+  primaryBlueHexColor,
   primaryHexColor,
   seperator,
-  primaryBlueHexColor,
-  dangerHexColor,
   successHexColor,
   textMutedColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
 } from '../../../constants/themeColors';
 
-import FormTextArea from '../../../components/FormTextArea';
 import FormInput from '../../../components/FormInput';
+import FormTextArea from '../../../components/FormTextArea';
 import ModalSaveButton from '../../../components/ModalSaveButton';
 
 import {Formik} from 'formik';
 
-import Modal from 'react-native-modal';
 import FlashMessage from 'react-native-flash-message';
+import Modal from 'react-native-modal';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import {SwipeableFlatList} from 'react-native-swipeable-flat-list';
 
@@ -1771,7 +1766,7 @@ export default class ProductionAssignedJobDetails extends Component {
                         </View>
                       ) : null}
 
-                      {this.state.productionProcess.status ===5 ? (
+                      {this.state.productionProcess.status === 5 ? (
                         <View>
                           {this.state.inventoryConsumptions.length > 0 ? (
                             <SwipeableFlatList
@@ -1861,7 +1856,7 @@ export default class ProductionAssignedJobDetails extends Component {
                       ) : null}
                     </View>
                     {this.state.productionProcess.status === 1 ||
-                    this.state.productionProcess.status ==='1' ? (
+                    this.state.productionProcess.status === '1' ? (
                       <View style={styles.buttonBlock}>
                         <View style={styles.buttonContainer}>
                           <Button
@@ -1889,7 +1884,7 @@ export default class ProductionAssignedJobDetails extends Component {
                     ) : null}
 
                     {this.state.productionProcess.status === 2 ||
-                    this.state.productionProcess.status ==='2' ? (
+                    this.state.productionProcess.status === '2' ? (
                       <View style={styles.buttonBlock}>
                         <View style={styles.buttonContainer}>
                           <Button
@@ -1916,7 +1911,7 @@ export default class ProductionAssignedJobDetails extends Component {
                     ) : null}
 
                     {this.state.productionProcess.status === 4 ||
-                    this.state.productionProcess.status ==='4' ? (
+                    this.state.productionProcess.status === '4' ? (
                       <View>
                         <View
                           style={[
@@ -2033,12 +2028,12 @@ export default class ProductionAssignedJobDetails extends Component {
                       <Loader loading={this.state.transparentLoader} />
                       <View style={modalLayout.body}>
                         <View style={modalLayout.header}>
-                          <MaterialIcons
+                          {/* <MaterialIcons
                             name="close"
                             size={28}
                             style={modalLayout.headerMenuicon}
                             onPress={this.toggleRejectJobFormModal}
-                          />
+                          /> */}
                           <View>
                             <Text style={modalLayout.headertext}>
                               Reject Job
@@ -2056,9 +2051,7 @@ export default class ProductionAssignedJobDetails extends Component {
                         <View style={{flex: 1, backgroundColor: mainBgColor}}>
                           <KeyboardAvoidingView
                             style={{flex: 1, flexDirection: 'column'}}
-                            behavior={
-                              'padding'
-                            }
+                            behavior={'padding'}
                             enabled
                             keyboardVerticalOffset={100}>
                             <View style={modalLayout.bodyContent}>
@@ -2123,12 +2116,12 @@ export default class ProductionAssignedJobDetails extends Component {
                       animationOutTiming={500}>
                       <View style={modalLayout.body}>
                         <View style={modalLayout.header}>
-                          <MaterialIcons
+                          {/* <MaterialIcons
                             name="close"
                             size={28}
                             style={modalLayout.headerMenuicon}
                             onPress={this.toggleUpdateQtyFormModal}
-                          />
+                          /> */}
                           <View>
                             <Text style={modalLayout.headertext}>
                               Update Item's Quantity
@@ -2149,9 +2142,7 @@ export default class ProductionAssignedJobDetails extends Component {
                           <View style={{flex: 1, backgroundColor: mainBgColor}}>
                             <KeyboardAvoidingView
                               style={{flex: 1, flexDirection: 'column'}}
-                              behavior={
-                                'padding'
-                              }
+                              behavior={'padding'}
                               enabled
                               keyboardVerticalOffset={100}>
                               <View style={modalLayout.bodyContent}>
@@ -2339,12 +2330,12 @@ export default class ProductionAssignedJobDetails extends Component {
                       <Loader loading={this.state.transparentLoader} />
                       <View style={modalLayout.body}>
                         <View style={modalLayout.header}>
-                          <MaterialIcons
+                          {/* <MaterialIcons
                             name="close"
                             size={28}
                             style={modalLayout.headerMenuicon}
                             onPress={this.toggleStopTaskFormModal}
-                          />
+                          /> */}
                           <View>
                             <Text style={modalLayout.headertext}>
                               Complete Task
@@ -2364,9 +2355,7 @@ export default class ProductionAssignedJobDetails extends Component {
                         <View style={{flex: 1, backgroundColor: mainBgColor}}>
                           <KeyboardAvoidingView
                             style={{flex: 1, flexDirection: 'column'}}
-                            behavior={
-                              'padding'
-                            }
+                            behavior={'padding'}
                             enabled
                             keyboardVerticalOffset={100}>
                             <View style={modalLayout.bodyContent}>

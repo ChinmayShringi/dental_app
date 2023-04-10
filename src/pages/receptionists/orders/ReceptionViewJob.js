@@ -31,7 +31,7 @@ import {
   textMutedColor,
 } from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import * as Print from 'expo-print';
@@ -1006,12 +1006,12 @@ export default class ReceptionViewJob extends Component {
                   <Loader loading={this.state.modalLoader} />
                   <View style={modalLayout.body}>
                     <View style={modalLayout.header}>
-                      <MaterialIcons
+                      {/* <MaterialIcons
                         name="close"
                         size={28}
                         style={modalLayout.headerMenuicon}
                         onPress={this.toggleQrCodeModal}
-                      />
+                      /> */}
                       <View>
                         <Text style={modalLayout.headertext}>QR Code</Text>
                       </View>

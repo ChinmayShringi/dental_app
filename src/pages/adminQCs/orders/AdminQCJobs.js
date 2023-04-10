@@ -34,7 +34,7 @@ import {
   textMutedColor,
 } from '../../../constants/themeColors';
 
-import {MaterialIcons} from '@expo/vector-icons';
+// import {MaterialIcons} from '@expo/vector-icons';
 // import * as Print from 'expo-print';
 import FlashMessage from 'react-native-flash-message';
 import Modal from 'react-native-modal';
@@ -635,12 +635,12 @@ export default class AdminQCJobs extends Component {
               <Loader loading={this.state.modalLoader} />
               <View style={modalLayout.body}>
                 <View style={modalLayout.header}>
-                  <MaterialIcons
+                  {/* <MaterialIcons
                     name="close"
                     size={28}
                     style={modalLayout.headerMenuicon}
                     onPress={this.toggleQrCodeModal}
-                  />
+                  /> */}
                   <View>
                     <Text style={modalLayout.headertext}>QR Code</Text>
                   </View>

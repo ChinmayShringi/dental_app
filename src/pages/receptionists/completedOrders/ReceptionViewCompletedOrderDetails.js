@@ -1,51 +1,31 @@
+import {Body, Card, CardItem} from 'native-base';
 import React, {Component} from 'react';
 import {
+  Dimensions,
+  FlatList,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Linking,
-  Dimensions,
-  Image,
-  FlatList,
-  ActivityIndicator,
-  KeyboardAvoidingView,
+  View,
 } from 'react-native';
-import {Card, CardItem, Body, Left, Right, Badge, Button} from 'native-base';
 
 import {
-  common,
-  badgeCss,
-  commonLabelDescription,
-  commonCard,
-  callLogCardLayout,
   badgeColorCode,
+  callLogCardLayout,
+  common,
+  commonLabelDescription,
 } from '../../../assets/style';
 
 import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
-import Loader from '../../../provider/Loader';
 
 import NoRecordsFound from '../../../components/NoRecordsFound';
 import TeethSkeleton from '../../../components/TeethSkeleton';
 
-import {
-  primaryHexColor,
-  seperator,
-  primaryBlueHexColor,
-  textMutedColor,
-  mainBgColor,
-  backgroundGrey,
-  fontColor,
-  circleBgColor,
-} from '../../../constants/themeColors';
+import {backgroundGrey, mainBgColor} from '../../../constants/themeColors';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {MaterialIcons} from '@expo/vector-icons';
-
-import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 import SkeletonContent from 'react-native-skeleton-content';
+import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
