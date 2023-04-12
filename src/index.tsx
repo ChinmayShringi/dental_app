@@ -33,9 +33,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 import {DeviceEventEmitter} from 'react-native';
 import moment from 'moment';
-import { createRootNavigator } from './routes';
-
-
+import createRootNavigator from './routes';
 
 var api = new Api();
 var dataProvider = new Dataprovider();
@@ -43,20 +41,21 @@ var dataProvider = new Dataprovider();
 export default function App() {
   const [signedIn, setSignedIn] = useState(false);
   const [checkedSignIn, setCheckedSignIn] = useState(false);
-  const [userType, setUserType] = useState(null);
-  const [appUserType, setAppUserType] = useState(null);
-  const [isDepartmentHead, setIsDepartmentHead] = useState(false);
+  // const [userType, setUserType] = useState(null);
+  // const [appUserType, setAppUserType] = useState(null);
+  // const [isDepartmentHead, setIsDepartmentHead] = useState(false);
   const [isAppHasNetwork, setIsAppHasNetwork] = useState(false);
   const [isUpdatingCoordinatesOnServer, setIsUpdatingCoordinatesOnServer] =
     useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  const [Layout, setLayout] = useState(createRootNavigator(
+  const Layout = createRootNavigator(
     signedIn,
-    userType,
-    appUserType,
-    isDepartmentHead,
-  ));
+    // userType,
+    // appUserType,
+    // isDepartmentHead,
+  );
+
   const hideSplashScreen = (isSetTimeout: any) => {
     if (isSetTimeout) {
       setTimeout(() => {
@@ -170,9 +169,9 @@ export default function App() {
       await isSignedIn()
         .then(res => {
           setSignedIn(res.status);
-          setUserType(res.userType);
-          setAppUserType(res.appUserType);
-          setIsDepartmentHead(res.isDepartmentHead);
+          // setUserType(res.userType);
+          // setAppUserType(res.appUserType);
+          // setIsDepartmentHead(res.isDepartmentHead);
           setCheckedSignIn(true);
         })
         .catch(() => console.log('An error occurred'));
@@ -204,11 +203,11 @@ export default function App() {
         // USER
         // SALES USER
         if (
-          signedIn &&
-          userType !== null &&
-          (userType === 3 || userType === '3') &&
-          appUserType !== null &&
-          (appUserType === 5 || appUserType === '5')
+          signedIn
+          // userType !== null &&
+          // (userType === 3 || userType === '3') &&
+          // appUserType !== null &&
+          // (appUserType === 5 || appUserType === '5')
         ) {
           setTimeout(() => {
             updateCoordinatesOnServer();
@@ -285,9 +284,9 @@ export default function App() {
               dataProvider.deleteLocationCoordinates().then(() => {
                 setSignedIn(false);
                 setCheckedSignIn(true);
-                setUserType(null);
-                setAppUserType(null);
-                setIsDepartmentHead(false);
+                // setUserType(null);
+                // setAppUserType(null);
+                // setIsDepartmentHead(false);
                 setIsLoggingOut(false);
               });
             });
@@ -408,7 +407,7 @@ export default function App() {
   if (isLoggingOut) {
     return <Loader loading={isLoggingOut} />;
   }
-  console.log('called')
+  console.log('called');
 
   console.log('object');
   return (
