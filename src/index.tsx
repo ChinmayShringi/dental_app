@@ -1,7 +1,6 @@
-import React from 'react';
-import {Root} from 'native-base';
+/* eslint-disable prettier/prettier */
+import React, {useState} from 'react';
 import {View, StyleSheet, Platform, StatusBar, Alert} from 'react-native';
-import {createRootNavigator} from './routes';
 import {isSignedIn} from './auth';
 
 import Loader from './provider/Loader';
@@ -25,45 +24,56 @@ import NetInfo from '@react-native-community/netinfo';
 import SplashScreen from 'react-native-splash-screen';
 
 // import {fcmService} from './provider/FCMService';
-import {Geolocation} from 'react-native';
+// import Geolocation from 'react-native-geolocation-service';
 
 // import * as TaskManager from 'expo-task-manager';
-import {locationTrackingProps} from './constants/defaultValues';
-const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
-import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
+// import {locationTrackingProps} from './constants/defaultValues';
+// const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
+// import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
 
 import {DeviceEventEmitter} from 'react-native';
-
 import moment from 'moment';
+import { createRootNavigator } from './routes';
+
+
 
 var api = new Api();
 var dataProvider = new Dataprovider();
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+export default function App() {
+  const [signedIn, setSignedIn] = useState(false);
+  const [checkedSignIn, setCheckedSignIn] = useState(false);
+  const [userType, setUserType] = useState(null);
+  const [appUserType, setAppUserType] = useState(null);
+  const [isDepartmentHead, setIsDepartmentHead] = useState(false);
+  const [isAppHasNetwork, setIsAppHasNetwork] = useState(false);
+  const [isUpdatingCoordinatesOnServer, setIsUpdatingCoordinatesOnServer] =
+    useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-    this.state = {
-      signedIn: false,
-      checkedSignIn: false,
-      userType: null,
-      appUserType: null,
-      isDepartmentHead: false,
-      isAppHasNetwork: false,
-      isUpdatingCoordinatesOnServer: false,
-      isLoggingOut: false,
-    };
+  const [Layout, setLayout] = useState(createRootNavigator(
+    signedIn,
+    userType,
+    appUserType,
+    isDepartmentHead,
+  ));
+  const hideSplashScreen = (isSetTimeout: any) => {
+    if (isSetTimeout) {
+      setTimeout(() => {
+        SplashScreen.hide();
+      }, 2000);
+    } else {
+      SplashScreen.hide();
+    }
+  };
 
+  React.useEffect(() => {
     StatusBar.setBarStyle('dark-content');
     // if (Platform.OS === "android") {
     //   StatusBar.setBackgroundColor("rgba(0,0,0,0)");
     //   StatusBar.setTranslucent(true);
     // }
-
-    this.onRegister = this.onRegister.bind(this);
-  }
-
-  componentDidMount() {
+    // const onRegister = () => {};
     dataProvider.getData('user').then(loggedInUser => {
       // USER IS LOGGED IN
       if (loggedInUser !== null) {
@@ -86,7 +96,7 @@ export default class App extends React.Component {
               'YYYY-MM-DD H:mm:ss',
             );
             if (checkOutDateTime.isBefore(currentDateTime)) {
-              this.makeUserLogout(loggedInUser);
+              makeUserLogout(loggedInUser);
             }
           }
           // CHECKOUT TIME IS BEFORE CHECKIN AS PER 24 HOUR FORMAT
@@ -109,7 +119,7 @@ export default class App extends React.Component {
                 'YYYY-MM-DD H:mm:ss',
               ).add(1, 'days');
               if (logOutDateTime.isBefore(currentDateTime)) {
-                this.makeUserLogout(loggedInUser);
+                makeUserLogout(loggedInUser);
               }
             }
           }
@@ -117,11 +127,76 @@ export default class App extends React.Component {
       }
     });
 
+    const updateCoordinatesOnServer = () => {
+      if (isAppHasNetwork && !isUpdatingCoordinatesOnServer) {
+        setIsUpdatingCoordinatesOnServer(true);
+        dataProvider.getLocationCoordinates().then(data => {
+          if (data !== null) {
+            const formData = new FormData();
+            formData.append('coordinatesobject', JSON.stringify(data));
+
+            let options = {
+              api: 'v_1/location-tracking/add-locations-object',
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+              },
+              data: formData,
+              refreshOn401: true,
+            };
+
+            api.callPostApi(options).then(responseData => {
+              setIsUpdatingCoordinatesOnServer(false);
+              if (responseData.status_code === 200) {
+                // api.showSuccessMessage(responseData.response.message, null);
+                // console.log(responseData.response.message);
+                dataProvider.deleteLocationCoordinates().then(() => {
+                  console.log('Coordinates deleted from local storage');
+                });
+              } else {
+                // let errormessage = null;
+                // if(typeof responseData.status_code !== 'undefined' && responseData.status_code === 422) {
+                //     errormessage = responseData.response.data.message;
+                // }
+                // api.showErrorMessage(responseData.response.message, errormessage);
+              }
+            });
+          }
+        });
+      }
+    };
+    const prepareResources = async () => {
+      await isSignedIn()
+        .then(res => {
+          setSignedIn(res.status);
+          setUserType(res.userType);
+          setAppUserType(res.appUserType);
+          setIsDepartmentHead(res.isDepartmentHead);
+          setCheckedSignIn(true);
+        })
+        .catch(() => console.log('An error occurred'));
+
+      if (Platform.OS === 'ios' || Platform.OS === 'android') {
+        await NetInfo.fetch().then(state => {
+          setIsAppHasNetwork(!!state.isConnected);
+        });
+
+        // REGISTER FOR FCM(PUSH NOTIFICATIONS)
+        // await fcmService.register(
+        //   this.onRegister,
+        //   this.onNotification,
+        //   this.onOpenNotification,
+        // );
+      } else {
+        setIsAppHasNetwork(false);
+        hideSplashScreen(true);
+      }
+    };
+
     // WILL LISTEN EVENT WHEN DEVICE NETWORK GETS CHANGED
     NetInfo.addEventListener(state => {
-      this.setState({
-        isAppHasNetwork: state.isConnected,
-      });
+      setIsAppHasNetwork(!!state.isConnected);
 
       // Connected to the internet
       if (state.isConnected) {
@@ -129,14 +204,14 @@ export default class App extends React.Component {
         // USER
         // SALES USER
         if (
-          this.state.signedIn &&
-          this.state.userType !== null &&
-          (this.state.userType === 3 || this.state.userType === '3') &&
-          this.state.appUserType !== null &&
-          (this.state.appUserType === 5 || this.state.appUserType === '5')
+          signedIn &&
+          userType !== null &&
+          (userType === 3 || userType === '3') &&
+          appUserType !== null &&
+          (appUserType === 5 || appUserType === '5')
         ) {
           setTimeout(() => {
-            this.updateCoordinatesOnServer();
+            updateCoordinatesOnServer();
           }, 3000);
         }
       }
@@ -168,11 +243,11 @@ export default class App extends React.Component {
       );
     }
 
-    this.prepareResources();
-  }
+    prepareResources();
+  });
 
-  makeUserLogout = loggedInUser => {
-    this.setState({isLoggingOut: true});
+  const makeUserLogout = (loggedInUser: any) => {
+    setIsLoggingOut(true);
     api
       .callPostApi({
         api: 'v_1/logout',
@@ -191,9 +266,9 @@ export default class App extends React.Component {
           if (loggedInUser.appusertype === 5) {
             if (!loggedInUser.isdepartmenthead) {
               (async () => {
-                await Geolocation.stopObserving(LOCATION_TASK_NAME);
+                // await Geolocation.stopObserving(LOCATION_TASK_NAME);
                 if (Platform.OS === 'android') {
-                  LocationServicesDialogBox.stopListener();
+                  // LocationServicesDialogBox.stopListener();
                 }
               })();
             }
@@ -208,14 +283,12 @@ export default class App extends React.Component {
           dataProvider.deleteData('token').then(() => {
             dataProvider.deleteData('deviceToken').then(() => {
               dataProvider.deleteLocationCoordinates().then(() => {
-                this.setState({
-                  signedIn: false,
-                  checkedSignIn: true,
-                  userType: null,
-                  appUserType: null,
-                  isDepartmentHead: false,
-                  isLoggingOut: false,
-                });
+                setSignedIn(false);
+                setCheckedSignIn(true);
+                setUserType(null);
+                setAppUserType(null);
+                setIsDepartmentHead(false);
+                setIsLoggingOut(false);
               });
             });
           });
@@ -223,253 +296,153 @@ export default class App extends React.Component {
       });
   };
 
-  prepareResources = async () => {
-    await isSignedIn()
-      .then(res => {
-        this.setState({
-          signedIn: res.status,
-          userType: res.userType,
-          appUserType: res.appUserType,
-          isDepartmentHead: res.isDepartmentHead,
-          checkedSignIn: true,
-        });
-      })
-      .catch(() => alert('An error occurred'));
-
-    if (Platform.OS === 'ios' || Platform.OS === 'android') {
-      await NetInfo.fetch().then(state => {
-        this.setState({
-          isAppHasNetwork: state.isConnected,
-        });
-      });
-
-      // REGISTER FOR FCM(PUSH NOTIFICATIONS)
-      // await fcmService.register(
-      //   this.onRegister,
-      //   this.onNotification,
-      //   this.onOpenNotification,
-      // );
-    } else {
-      this.setState({isAppHasNetwork: false});
-      this.hideSplashScreen(true);
-    }
+  const toggleNetworkModal = () => {
+    setIsAppHasNetwork(!isAppHasNetwork);
   };
 
-  toggleNetworkModal = () => {
-    this.setState({isAppHasNetwork: !this.state.isAppHasNetwork});
-  };
+  // const onRegister = (token: any) => {
+  //   console.log('[NotificationFCM] onRegister: ', token);
 
-  onRegister(token) {
-    console.log('[NotificationFCM] onRegister: ', token);
+  //   dataProvider.getData('deviceToken').then(deviceToken => {
+  //     // USER IS LOGGED IN
+  //     if (signedIn) {
+  //       // Device token in NULL in local storage
+  //       if (deviceToken === null) {
+  //         updateDeviceTokenOnServer(token);
+  //       }
+  //       // Device token NOT NULL in local storage
+  //       else {
+  //         // Device token got refreshed
+  //         if (deviceToken !== token) {
+  //           updateDeviceTokenOnServer(token);
+  //         } else {
+  //           hideSplashScreen(true);
+  //         }
+  //       }
+  //     }
+  //     // USER NOT LOGGED IN
+  //     else {
+  //       // Update device token in local storage
+  //       dataProvider.saveData('deviceToken', token).then(() => {
+  //         console.log('deviceToken updated in local storage.');
+  //         hideSplashScreen(true);
+  //       });
+  //     }
+  //   });
+  // };
 
-    dataProvider.getData('deviceToken').then(deviceToken => {
-      // USER IS LOGGED IN
-      if (this.state.signedIn) {
-        // Device token in NULL in local storage
-        if (deviceToken === null) {
-          this.updateDeviceTokenOnServer(token);
-        }
-        // Device token NOT NULL in local storage
-        else {
-          // Device token got refreshed
-          if (deviceToken !== token) {
-            this.updateDeviceTokenOnServer(token);
-          } else {
-            this.hideSplashScreen(true);
-          }
-        }
-      }
-      // USER NOT LOGGED IN
-      else {
-        // Update device token in local storage
-        dataProvider.saveData('deviceToken', token).then(() => {
-          console.log('deviceToken updated in local storage.');
-          this.hideSplashScreen(true);
-        });
-      }
-    });
+  // const onNotification = (notify: any) => {
+  //   console.log('[NotificationFCM] onNotification: ', notify);
+
+  //   // For Android
+  //   // const channelObj = {
+  //   //   channelId: 'SampleChannelID',
+  //   //   channelName: 'SampleChannelName',
+  //   //   channelDes: 'SampleChannelDes',
+  //   // };
+  //   // const channel = fcmService.buildChannel(channelObj);
+
+  //   // const buildNotify = {
+  //   //   dataId: notify._notificationId,
+  //   //   title: notify._title,
+  //   //   content: notify._body,
+  //   //   sound: 'default',
+  //   //   channel: channel,
+  //   //   data: {},
+  //   //   colorBgIcon: '#1A243B',
+  //   //   largeIcon: 'ic_launcher',
+  //   //   smallIcon: 'ic_action_name',
+  //   //   vibrate: true,
+  //   // };
+
+  //   // const notification = fcmService.buildNotification(buildNotify);
+  //   // fcmService.displayNotification(notification);
+  // };
+
+  // const onOpenNotification = (notify: any) => {
+  //   console.log('[NotificationFCM] onOpenNotification: ', notify);
+  // };
+
+  // const updateDeviceTokenOnServer = (deviceToken: any) => {
+  //   if (deviceToken !== null) {
+  //     // Update device token in local storage
+  //     dataProvider.saveData('deviceToken', deviceToken).then(() => {
+  //       const formData = new FormData();
+  //       formData.append('devicetoken', deviceToken);
+
+  //       let options = {
+  //         api: 'v_1/update-devicetoken',
+  //         method: 'POST',
+  //         headers: {
+  //           Accept: 'application/json',
+  //           'Content-Type': 'multipart/form-data',
+  //         },
+  //         data: formData,
+  //         refreshOn401: true,
+  //       };
+
+  //       api.callPostApi(options).then(responseData => {
+  //         hideSplashScreen(false);
+
+  //         if (responseData.status_code === 200) {
+  //           console.log('Device token updated on server');
+  //         } else {
+  //           dataProvider.deleteData('deviceToken').then(() => {
+  //             console.log('Failed to update device token');
+  //           });
+  //         }
+  //       });
+  //     });
+  //   } else {
+  //     hideSplashScreen(true);
+  //   }
+  // };
+
+  // console.log("checkedSignIn---" + checkedSignIn);
+
+  // If we haven't checked AsyncStorage yet, don't render anything (better ways to do this)
+  if (!checkedSignIn) {
+    return null;
   }
 
-  onNotification(notify) {
-    console.log('[NotificationFCM] onNotification: ', notify);
-
-    // For Android
-    // const channelObj = {
-    //   channelId: 'SampleChannelID',
-    //   channelName: 'SampleChannelName',
-    //   channelDes: 'SampleChannelDes',
-    // };
-    // const channel = fcmService.buildChannel(channelObj);
-
-    // const buildNotify = {
-    //   dataId: notify._notificationId,
-    //   title: notify._title,
-    //   content: notify._body,
-    //   sound: 'default',
-    //   channel: channel,
-    //   data: {},
-    //   colorBgIcon: '#1A243B',
-    //   largeIcon: 'ic_launcher',
-    //   smallIcon: 'ic_action_name',
-    //   vibrate: true,
-    // };
-
-    // const notification = fcmService.buildNotification(buildNotify);
-    // fcmService.displayNotification(notification);
+  if (isLoggingOut) {
+    return <Loader loading={isLoggingOut} />;
   }
+  console.log('called')
 
-  onOpenNotification(notify) {
-    console.log('[NotificationFCM] onOpenNotification: ', notify);
-  }
+  console.log('object');
+  return (
+    <Provider store={store}>
+      <View style={{flex: 1}}>
+        <View style={styles.container}>
+          <Layout />
 
-  updateDeviceTokenOnServer = deviceToken => {
-    if (deviceToken !== null) {
-      // Update device token in local storage
-      dataProvider.saveData('deviceToken', deviceToken).then(() => {
-        const formData = new FormData();
-        formData.append('devicetoken', deviceToken);
-
-        let options = {
-          api: 'v_1/update-devicetoken',
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-          },
-          data: formData,
-          refreshOn401: true,
-        };
-
-        api.callPostApi(options).then(responseData => {
-          this.hideSplashScreen(false);
-
-          if (responseData.status_code === 200) {
-            console.log('Device token updated on server');
-          } else {
-            dataProvider.deleteData('deviceToken').then(() => {
-              console.log('Failed to update device token');
-            });
-          }
-        });
-      });
-    } else {
-      this.hideSplashScreen(true);
-    }
-  };
-
-  hideSplashScreen = isSetTimeout => {
-    if (isSetTimeout) {
-      setTimeout(() => {
-        SplashScreen.hide();
-      }, 2000);
-    } else {
-      SplashScreen.hide();
-    }
-  };
-
-  updateCoordinatesOnServer = () => {
-    if (
-      this.state.isAppHasNetwork &&
-      !this.state.isUpdatingCoordinatesOnServer
-    ) {
-      this.setState({isUpdatingCoordinatesOnServer: true});
-
-      dataProvider.getLocationCoordinates().then(data => {
-        if (data !== null) {
-          const formData = new FormData();
-          formData.append('coordinatesobject', JSON.stringify(data));
-
-          let options = {
-            api: 'v_1/location-tracking/add-locations-object',
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'multipart/form-data',
-            },
-            data: formData,
-            refreshOn401: true,
-          };
-
-          api.callPostApi(options).then(responseData => {
-            this.setState({isUpdatingCoordinatesOnServer: false});
-            if (responseData.status_code === 200) {
-              // api.showSuccessMessage(responseData.response.message, null);
-              // console.log(responseData.response.message);
-              dataProvider.deleteLocationCoordinates().then(() => {
-                console.log('Coordinates deleted from local storage');
-              });
-            } else {
-              // let errormessage = null;
-              // if(typeof responseData.status_code !== 'undefined' && responseData.status_code === 422) {
-              //     errormessage = responseData.response.data.message;
-              // }
-              // api.showErrorMessage(responseData.response.message, errormessage);
-            }
-          });
-        }
-      });
-    }
-  };
-
-  render() {
-    const {
-      checkedSignIn,
-      signedIn,
-      userType,
-      appUserType,
-      isDepartmentHead,
-      isLoggingOut,
-    } = this.state;
-    // console.log("checkedSignIn---" + checkedSignIn);
-
-    // If we haven't checked AsyncStorage yet, don't render anything (better ways to do this)
-    if (!checkedSignIn) {
-      return null;
-    }
-
-    if (isLoggingOut) {
-      return <Loader loading={this.state.isLoggingOut} />;
-    }
-
-    const Layout = createRootNavigator(
-      signedIn,
-      userType,
-      appUserType,
-      isDepartmentHead,
-    );
-    return (
-      <Provider store={store}>
-        <Root style={{flex: 1}}>
-          <View style={styles.container}>
-            <Layout />
-
-            <Modal
-              isVisible={!this.state.isAppHasNetwork}
-              onBackButtonPress={this.toggleNetworkModal}
-              backdropOpacity={0.5}
-              style={styles.modalContainer}
-              animationInTiming={500}
-              animationOutTiming={500}>
-              <View style={styles.modalBody}>
-                {/* <MaterialIcons
+          <Modal
+            isVisible={!isAppHasNetwork}
+            onBackButtonPress={toggleNetworkModal}
+            backdropOpacity={0.5}
+            style={styles.modalContainer}
+            animationInTiming={500}
+            animationOutTiming={500}>
+            <View style={styles.modalBody}>
+              {/* <MaterialIcons
                   name="close"
                   size={28}
                   style={styles.closeButton}
                   onPress={this.toggleNetworkModal}
                 /> */}
-                <View style={styles.bodyContent}>
-                  <NoNetwork />
-                </View>
+              <View style={styles.bodyContent}>
+                <NoNetwork />
               </View>
-            </Modal>
+            </View>
+          </Modal>
 
-            {/* GLOBAL FLASH MESSAGE COMPONENT INSTANCE */}
-            <FlashMessage position="top" animated={true} />
-          </View>
-        </Root>
-      </Provider>
-    );
-  }
+          {/* GLOBAL FLASH MESSAGE COMPONENT INSTANCE */}
+          <FlashMessage position="top" animated={true} />
+        </View>
+      </View>
+    </Provider>
+  );
 }
 
 const styles = StyleSheet.create({

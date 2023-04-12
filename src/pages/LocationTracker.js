@@ -8,13 +8,9 @@ import {
   ScrollView,
 } from 'react-native';
 
-// import * as Permissions from 'expo-permissions';
-
-// import * as TaskManager from 'expo-task-manager';
-// import * as Location from 'expo-location';
-import {Geolocation} from 'react-native';
+import {Geolocation, PermissionsAndroid} from 'react-native';
 import {EventEmitter} from 'fbemitter';
-
+// import {TaskManager} from 'react-native-background-task';
 import Api from '../provider/Api';
 
 const LOCATION_TASK_NAME = 'background-location-tracking';
@@ -81,44 +77,58 @@ export default class LocationTracker extends Component {
     this.eventSubscription.remove();
   }
 
-  askLocationPermission = () => {
-    (async () => {
-      // const {status, permissions} = await Permissions.askAsync(
-      //   Permissions.LOCATION,
-      // );
-      // if (status === 'granted') {
-      //   alert('Permission granted');
-      // } else {
-      //   alert('Permission Denied');
-      // }
-    })();
+  askLocationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Location Permission Needed',
+          message:
+            'This app needs location permission to track your location in the background.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        alert('Permission granted');
+      } else {
+        alert('Permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
   };
 
   startTracking = async () => {
-    (async () => {
-      // const {status, permissions} = await Permissions.askAsync(
-      //   Permissions.LOCATION,
-      // );
-      // if (status === 'granted') {
-      //   this.setState({
-      //     isTrackingOn: true,
-      //   });
-      //   await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
-      //     accuracy: Location.Accuracy.BestForNavigation,
-      //     timeInterval: 1000,
-      //     distanceInterval: 1,
-      //     deferredUpdatesInterval: 1000,
-      //     deferredUpdatesDistance: 1,
-      //     showsBackgroundLocationIndicator: true,
-      //     foregroundService: {
-      //       notificationTitle: 'Location Tracker',
-      //       notificationBody: 'Impression Lab Management System',
-      //     },
-      //   });
-      // } else {
-      //   alert('Location Permission Needed');
-      // }
-    })();
+    await this.askLocationPermission();
+
+    if (
+      await PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      )
+    ) {
+      this.setState({
+        isTrackingOn: true,
+      });
+      Geolocation.watchPosition(
+        position => {
+          eventEmitter.emit(taskEventName, [position]);
+        },
+        error => {
+          console.warn(error);
+        },
+        {
+          enableHighAccuracy: true,
+          distanceFilter: 1,
+          interval: 1000,
+          fastestInterval: 1000,
+          showLocationDialog: true,
+        },
+      );
+    } else {
+      alert('Location permission needed');
+    }
   };
 
   stopTracking = async () => {

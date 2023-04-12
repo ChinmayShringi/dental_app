@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
@@ -11,7 +12,7 @@ import {
 
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 
 import {createStackNavigator} from 'react-navigation-stack';
 import {
@@ -341,8 +342,8 @@ const inactiveDrawerIconColor = circleBgColor;
 const drawerWidth = Dimensions.get('window').width - 110;
 const drawerLabelWidth = drawerWidth - 78;
 
-class NavigationDrawerStructure extends Component {
-  constructor(props) {
+class NavigationDrawerStructure extends Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {};
   }
@@ -416,7 +417,7 @@ class NavigationDrawerStructure extends Component {
   }
 }
 
-const CustomDrawerContentComponent = props => (
+const CustomDrawerContentComponent = (props: any) => (
   <ScrollView>
     <DrawerUserDetails {...props} />
 
@@ -438,49 +439,32 @@ export const SignedOut = createStackNavigator(
       screen: Login,
       navigationOptions: {
         title: 'Sign In',
-        headerStyles,
       },
     },
     ForgotPassword: {
       screen: ForgotPassword,
       navigationOptions: {
         title: 'Forgot Password',
-        headerStyles,
       },
     },
     Signup: {
       screen: Signup,
       navigationOptions: {
         title: 'Sign Up',
-        headerStyles,
       },
     },
     LocationTracker: {
       screen: LocationTracker,
       navigationOptions: {
         title: 'Location Tracker',
-        headerStyles,
       },
     },
     ShowLocationHistory: {
       screen: ShowLocationHistory,
       navigationOptions: {
         title: 'Show Location History',
-        headerStyles,
       },
     },
-  },
-  {
-    initialRouteName: 'Login',
-    headerMode: 'none',
-  },
-  {
-    Login: {
-      screen: Login,
-    },
-    // Signup: {
-    //   screen: Signup,
-    // },
   },
   {
     initialRouteName: 'Login',
@@ -571,7 +555,7 @@ export const tabStack = createMaterialBottomTabNavigator(
       screen: dashboardStack,
       navigationOptions: {
         tabBarLabel: 'Dashboard',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             {/* <MaterialIcons
               style={[{color: tintColor}]}
@@ -586,14 +570,11 @@ export const tabStack = createMaterialBottomTabNavigator(
       screen: SalesStack,
       navigationOptions: {
         tabBarLabel: 'Sales',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             {/* <MaterialIcons style={[{color: tintColor}]} name="home" size={24} /> */}
           </View>
         ),
-        activeColor: '#ffffff',
-        inactiveColor: '#ebaabd',
-        barStyle: {backgroundColor: '#d13560'},
       },
     },
   },
@@ -621,7 +602,7 @@ export const EditProfileStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -658,7 +639,7 @@ export const MyAccountsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Edit"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -683,7 +664,7 @@ export const MyAccountsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -710,7 +691,7 @@ export const CategoriesStack = createStackNavigator({
         ),
         headerRight: () => (
           <HeaderSearchButton
-            onPress={() => navigation.state.params.toggleSearch()}
+            onPress={() => navigation?.state?.params?.toggleSearch()}
           />
         ),
         headerStyle: headerStyle,
@@ -724,7 +705,7 @@ export const CategoriesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -740,7 +721,7 @@ export const CategoriesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -756,7 +737,7 @@ export const CategoriesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -782,7 +763,7 @@ export const BrandsStack = createStackNavigator({
         ),
         headerRight: () => (
           <HeaderSearchButton
-            onPress={() => navigation.state.params.toggleSearch()}
+            onPress={() => navigation?.state?.params?.toggleSearch()}
           />
         ),
         headerStyle: headerStyle,
@@ -796,7 +777,7 @@ export const BrandsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -812,7 +793,7 @@ export const BrandsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -852,7 +833,9 @@ export const NotificationsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleClearNotifications()}
+            onPress={() =>
+              navigation?.state?.params?.handleClearNotifications()
+            }
             title="Clear"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -881,7 +864,9 @@ export const LocationTrackingTestStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleClearNotifications()}
+            onPress={() =>
+              navigation?.state?.params?.handleClearNotifications()
+            }
             title="Clear"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -897,18 +882,12 @@ export const LocationTrackingTestStack = createStackNavigator({
 export const MonthlyDayOffsStack = createStackNavigator({
   MonthlyDayOffs: {
     screen: MonthlyDayOffs,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
 export const LeaveApplicationsStack = createStackNavigator({
   LeaveApplications: {
     screen: LeaveApplications,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
@@ -918,7 +897,7 @@ export const AttendancesTabStack = createMaterialBottomTabNavigator(
       screen: MonthlyDayOffsStack,
       navigationOptions: {
         tabBarLabel: 'Monthly Dayoffs',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="calendar" size={20} />
           </View>
@@ -929,7 +908,7 @@ export const AttendancesTabStack = createMaterialBottomTabNavigator(
       screen: LeaveApplicationsStack,
       navigationOptions: {
         tabBarLabel: 'Leave Applications',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="list" size={20} />
           </View>
@@ -969,7 +948,7 @@ export const AttendancesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -977,7 +956,7 @@ export const AttendancesStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Apply"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -995,7 +974,7 @@ export const AttendancesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -1009,18 +988,12 @@ export const AttendancesStack = createStackNavigator({
 export const EmployeeAttendanceReportStack = createStackNavigator({
   EmployeeAttendanceReport: {
     screen: EmployeeAttendanceReport,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
 export const EmployeeLeaveApplicationsStack = createStackNavigator({
   EmployeeLeaveApplications: {
     screen: EmployeeLeaveApplications,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
@@ -1030,7 +1003,7 @@ export const EmployeeAttendancesTabStack = createMaterialBottomTabNavigator(
       screen: EmployeeAttendanceReportStack,
       navigationOptions: {
         tabBarLabel: 'Attendance Report',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="calendar" size={20} />
           </View>
@@ -1041,7 +1014,7 @@ export const EmployeeAttendancesTabStack = createMaterialBottomTabNavigator(
       screen: EmployeeLeaveApplicationsStack,
       navigationOptions: {
         tabBarLabel: 'Leave Applications',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="list" size={20} />
           </View>
@@ -1081,7 +1054,7 @@ export const EmployeeAttendancesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -1095,22 +1068,20 @@ export const EmployeeAttendancesStack = createStackNavigator({
 export const SignedIn = createDrawerNavigator(
   {
     Home: {
-      name: 'Home',
       screen: homeStack,
       navigationOptions: {
         title: 'Home',
-        drawerIcon: ({tintColor}) => (
+        drawerIcon: ({tintColor}: any) => (
           <></>
           // <MaterialIcons style={[{color: tintColor}]} name="home" size={20} />
         ),
       },
     },
     Dashboard: {
-      name: <Text>Dashboard</Text>,
       screen: tabStack,
       navigationOptions: {
         title: 'Dashboard',
-        drawerIcon: ({tintColor}) => (
+        drawerIcon: ({tintColor}: any) => (
           <></>
           // <MaterialIcons
           //   style={[{color: tintColor}]}
@@ -1121,22 +1092,20 @@ export const SignedIn = createDrawerNavigator(
       },
     },
     Categories: {
-      name: <Text>Products</Text>,
       screen: CategoriesStack,
       navigationOptions: {
         title: 'Products',
-        drawerIcon: ({tintColor}) => (
+        drawerIcon: ({tintColor}: any) => (
           <></>
           // <MaterialIcons style={[{color: tintColor}]} name="layers" size={20} />
         ),
       },
     },
     EditProfile: {
-      name: 'EditProfile',
       screen: EditProfileStack,
       navigationOptions: {
         title: 'Edit Profile',
-        drawerIcon: ({tintColor}) => (
+        drawerIcon: ({tintColor}: any) => (
           <></>
           // <MaterialIcons style={[{color: tintColor}]} name="edit" size={20} />
         ),
@@ -1165,18 +1134,12 @@ export const SignedIn = createDrawerNavigator(
 export const ProductionEmployeeDetailsStack = createStackNavigator({
   ProductionEmployeeDetails: {
     screen: ProductionEmployeeDetails,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
 export const ProductionEmployeeAssignedJobsStack = createStackNavigator({
   ProductionEmployeeAssignedJobs: {
     screen: ProductionEmployeeAssignedJobs,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
@@ -1186,7 +1149,7 @@ export const ProductionEmployeeTabStack = createMaterialBottomTabNavigator(
       screen: ProductionEmployeeDetailsStack,
       navigationOptions: {
         tabBarLabel: 'Personal Details',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
           </View>
@@ -1197,7 +1160,7 @@ export const ProductionEmployeeTabStack = createMaterialBottomTabNavigator(
       screen: ProductionEmployeeAssignedJobsStack,
       navigationOptions: {
         tabBarLabel: 'Assigned Jobs',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="cubes" size={20} />
           </View>
@@ -1237,7 +1200,7 @@ export const ProductionEmployeesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -1253,7 +1216,7 @@ export const ProductionEmployeesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -1296,7 +1259,7 @@ export const ProductionUnAssignedJobsStack = createStackNavigator({
         headerRight: () => (
           <TouchableOpacity
             onPress={() =>
-              navigation.state.params.redirectToQrCodeScanningPage()
+              navigation?.state?.params?.redirectToQrCodeScanningPage()
             }
             style={{margin: 15}}>
             {/* <MaterialCommunityIcons
@@ -1379,7 +1342,7 @@ export const ProductionOngoingJobsStack = createStackNavigator({
         headerRight: () => (
           <TouchableOpacity
             onPress={() =>
-              navigation.state.params.redirectToQrCodeScanningPage()
+              navigation?.state?.params?.redirectToQrCodeScanningPage()
             }
             style={{margin: 15}}>
             {/* <MaterialCommunityIcons
@@ -1480,7 +1443,7 @@ export const ProductionAssignedJobsStack = createStackNavigator({
         headerRight: () => (
           <TouchableOpacity
             onPress={() =>
-              navigation.state.params.redirectToQrCodeScanningPage()
+              navigation?.state?.params?.redirectToQrCodeScanningPage()
             }
             style={{margin: 15}}>
             {/* <MaterialCommunityIcons
@@ -1583,7 +1546,7 @@ export const AdminQCViewOrderTabStack = createMaterialBottomTabNavigator(
       screen: AdminQCOrder,
       navigationOptions: {
         tabBarLabel: 'Order',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
           </View>
@@ -1594,7 +1557,7 @@ export const AdminQCViewOrderTabStack = createMaterialBottomTabNavigator(
       screen: AdminQCJobs,
       navigationOptions: {
         tabBarLabel: 'Job Details',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="cubes" size={20} />
           </View>
@@ -1631,7 +1594,7 @@ export const AdminQCOrdersStack = createStackNavigator({
   //   screen: ReceptionCustomerDetails,
   //   navigationOptions: ({ navigation }) => {
   //     return {
-  //       headerTitle: () => <NavigationDrawerStructure navigation={ navigation } title={navigation.state.params.pageHeading} isShowDrawerToggleButton={false} isShowLogoInsteadOfTitle={false} />,
+  //       headerTitle: () => <NavigationDrawerStructure navigation={ navigation } title={navigation?.state?.params?.pageHeading} isShowDrawerToggleButton={false} isShowLogoInsteadOfTitle={false} />,
   //     }
   //   }
   // },
@@ -1675,7 +1638,7 @@ export const AdminQCSalesPersonTabStack = createMaterialBottomTabNavigator(
       screen: AdminQCSalesPerson,
       navigationOptions: {
         tabBarLabel: 'Personal Details',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
           </View>
@@ -1686,7 +1649,7 @@ export const AdminQCSalesPersonTabStack = createMaterialBottomTabNavigator(
       screen: SalesHeadSalesPersonTrackingHistory,
       navigationOptions: {
         tabBarLabel: 'Location Tracking',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="history" size={20} />
           </View>
@@ -1726,7 +1689,7 @@ export const AdminQCSalesPersonsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -1743,7 +1706,7 @@ export const AdminQCLeadTabStack = createMaterialBottomTabNavigator(
       screen: AdminQCLead,
       navigationOptions: {
         tabBarLabel: 'Lead Details',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
           </View>
@@ -1754,7 +1717,7 @@ export const AdminQCLeadTabStack = createMaterialBottomTabNavigator(
       screen: AdminQCLeadInteractions,
       navigationOptions: {
         tabBarLabel: 'Interactions',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="id-badge" size={20} />
           </View>
@@ -1808,11 +1771,10 @@ export const AdminQCLeadsStack = createStackNavigator({
 export const AdminQCHeadUserRoutes = createDrawerNavigator(
   {
     AdminQCHeadDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: AdminQCHeadDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -1840,11 +1802,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCScanQrCodeForUnAssignedJob: {
-      name: <Text>Scan Qr Code</Text>,
       screen: ProductionScanQrCodeForUnAssignedJobStack,
       navigationOptions: {
         title: 'Scan Qr Code',
-        // drawerIcon:({tintColor})=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -1872,11 +1833,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCUnAssignedJobs: {
-      name: <Text>Unassigned Jobs</Text>,
       screen: ProductionUnAssignedJobsStack,
       navigationOptions: {
         title: 'Unassigned Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -1904,11 +1864,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCOngoingJobs: {
-      name: <Text>Ongoing Jobs</Text>,
       screen: ProductionOngoingJobsStack,
       navigationOptions: {
         title: 'Ongoing Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -1936,11 +1895,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCEmployees: {
-      name: <Text>Employees</Text>,
       screen: ProductionEmployeesStack,
       navigationOptions: {
         title: 'Employees',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -1968,11 +1926,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCOrders: {
-      name: <Text>Orders</Text>,
       screen: AdminQCOrdersStack,
       navigationOptions: {
         title: 'Orders',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2000,11 +1957,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCSalesPersons: {
-      name: <Text>Sales Persons</Text>,
       screen: AdminQCSalesPersonsStack,
       navigationOptions: {
         title: 'Sales Persons',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2032,11 +1988,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCLeads: {
-      name: <Text>Leads</Text>,
       screen: AdminQCLeadsStack,
       navigationOptions: {
         title: 'Leads',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2064,11 +2019,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     EmployeeAttendances: {
-      name: 'Employees Attendances',
       screen: EmployeeAttendancesStack,
       navigationOptions: {
         title: 'Employees Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2096,11 +2050,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2128,11 +2081,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2160,7 +2112,6 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -2201,7 +2152,7 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -2214,11 +2165,10 @@ export const AdminQCHeadUserRoutes = createDrawerNavigator(
 export const AdminQCUserRoutes = createDrawerNavigator(
   {
     AdminQCDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: AdminQCDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2246,11 +2196,10 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCScanQrCodeForAssignedJob: {
-      name: <Text>Scan Qr Code</Text>,
       screen: ProductionScanQrCodeForAssignedJobStack,
       navigationOptions: {
         title: 'Scan Qr Code',
-        // drawerIcon:({tintColor})=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2278,11 +2227,10 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCAssignedJobs: {
-      name: <Text>Assigned Jobs</Text>,
       screen: ProductionAssignedJobsStack,
       navigationOptions: {
         title: 'Assigned Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2310,11 +2258,10 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCOrders: {
-      name: <Text>Orders</Text>,
       screen: AdminQCOrdersStack,
       navigationOptions: {
         title: 'Orders',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2342,11 +2289,10 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCSalesPersons: {
-      name: <Text>Sales Persons</Text>,
       screen: AdminQCSalesPersonsStack,
       navigationOptions: {
         title: 'Sales Persons',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2374,11 +2320,10 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     AdminQCLeads: {
-      name: <Text>Leads</Text>,
       screen: AdminQCLeadsStack,
       navigationOptions: {
         title: 'Leads',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2406,11 +2351,10 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2438,11 +2382,10 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2470,7 +2413,6 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -2507,11 +2449,10 @@ export const AdminQCUserRoutes = createDrawerNavigator(
       },
     },
     // EditProfile: {
-    //   name: 'EditProfile',
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -2573,11 +2514,10 @@ export const PackagingDashboardStack = createStackNavigator({
 export const PackagingHeadUserRoutes = createDrawerNavigator(
   {
     PackagingHeadDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: PackagingHeadDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2605,11 +2545,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     PackagingScanQrCodeForUnAssignedJob: {
-      name: <Text>Scan Qr Code</Text>,
       screen: ProductionScanQrCodeForUnAssignedJobStack,
       navigationOptions: {
         title: 'Scan Qr Code',
-        // drawerIcon:({tintColor})=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2637,11 +2576,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     PackagingUnAssignedJobs: {
-      name: <Text>Unassigned Jobs</Text>,
       screen: ProductionUnAssignedJobsStack,
       navigationOptions: {
         title: 'Unassigned Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2669,11 +2607,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     PackagingOngoingJobs: {
-      name: <Text>Ongoing Jobs</Text>,
       screen: ProductionOngoingJobsStack,
       navigationOptions: {
         title: 'Ongoing Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2701,11 +2638,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     PackagingEmployees: {
-      name: <Text>Employees</Text>,
       screen: ProductionEmployeesStack,
       navigationOptions: {
         title: 'Employees',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2733,11 +2669,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     EmployeeAttendances: {
-      name: 'Employees Attendances',
       screen: EmployeeAttendancesStack,
       navigationOptions: {
         title: 'Employees Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2765,11 +2700,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2797,11 +2731,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2829,7 +2762,6 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -2866,11 +2798,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
       },
     },
     // EditProfile: {
-    //   name: 'EditProfile',
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -2883,11 +2814,10 @@ export const PackagingHeadUserRoutes = createDrawerNavigator(
 export const PackagingUserRoutes = createDrawerNavigator(
   {
     PackagingDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: PackagingDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2915,11 +2845,10 @@ export const PackagingUserRoutes = createDrawerNavigator(
       },
     },
     PackagingScanQrCodeForAssignedJob: {
-      name: <Text>Scan Qr Code</Text>,
       screen: ProductionScanQrCodeForAssignedJobStack,
       navigationOptions: {
         title: 'Scan Qr Code',
-        // drawerIcon:({tintColor})=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2947,11 +2876,10 @@ export const PackagingUserRoutes = createDrawerNavigator(
       },
     },
     PackagingAssignedJobs: {
-      name: <Text>Assigned Jobs</Text>,
       screen: ProductionAssignedJobsStack,
       navigationOptions: {
         title: 'Assigned Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -2979,11 +2907,10 @@ export const PackagingUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3011,11 +2938,10 @@ export const PackagingUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3043,7 +2969,6 @@ export const PackagingUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -3080,11 +3005,10 @@ export const PackagingUserRoutes = createDrawerNavigator(
       },
     },
     // EditProfile: {
-    //   name: 'EditProfile',
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -3145,11 +3069,10 @@ export const ProductionDashboardStack = createStackNavigator({
 export const ProductionHeadUserRoutes = createDrawerNavigator(
   {
     ProductionHeadDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: ProductionHeadDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>,
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>,
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3177,12 +3100,11 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     ProductionScanQrCodeForUnAssignedJob: {
-      name: <Text>Scan Qr Code</Text>,
       screen: ProductionScanQrCodeForUnAssignedJobStack,
       navigationOptions: {
         title: 'Scan Qr Code',
-        // drawerIcon:({tintColor})=> <Icon name="qrcode" size={20} style={[{color: tintColor}]} />
-        // drawerIcon:({tintColor})=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="qrcode" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3210,11 +3132,10 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     ProductionUnAssignedJobs: {
-      name: <Text>Unassigned Jobs</Text>,
       screen: ProductionUnAssignedJobsStack,
       navigationOptions: {
         title: 'Unassigned Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3242,11 +3163,10 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     ProductionOngoingJobs: {
-      name: <Text>Ongoing Jobs</Text>,
       screen: ProductionOngoingJobsStack,
       navigationOptions: {
         title: 'Ongoing Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3274,11 +3194,10 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     ProductionEmployees: {
-      name: <Text>Employees</Text>,
       screen: ProductionEmployeesStack,
       navigationOptions: {
         title: 'Employees',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3306,11 +3225,10 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     EmployeeAttendances: {
-      name: 'Employees Attendances',
       screen: EmployeeAttendancesStack,
       navigationOptions: {
         title: 'Employees Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3338,11 +3256,10 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3370,11 +3287,10 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3402,7 +3318,6 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -3439,11 +3354,10 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
       },
     },
     // EditProfile: {
-    //   name: 'EditProfile',
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -3457,11 +3371,10 @@ export const ProductionHeadUserRoutes = createDrawerNavigator(
 export const ProductionUserRoutes = createDrawerNavigator(
   {
     ProductionDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: ProductionDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3489,11 +3402,10 @@ export const ProductionUserRoutes = createDrawerNavigator(
       },
     },
     ProductionScanQrCodeForAssignedJob: {
-      name: <Text>Scan Qr Code</Text>,
       screen: ProductionScanQrCodeForAssignedJobStack,
       navigationOptions: {
         title: 'Scan Qr Code',
-        // drawerIcon:({tintColor})=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3521,11 +3433,10 @@ export const ProductionUserRoutes = createDrawerNavigator(
       },
     },
     ProductionAssignedJobs: {
-      name: <Text>Assigned Jobs</Text>,
       screen: ProductionAssignedJobsStack,
       navigationOptions: {
         title: 'Assigned Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3553,11 +3464,10 @@ export const ProductionUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3585,11 +3495,10 @@ export const ProductionUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -3617,7 +3526,6 @@ export const ProductionUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -3654,11 +3562,10 @@ export const ProductionUserRoutes = createDrawerNavigator(
       },
     },
     // EditProfile: {
-    //   name: 'EditProfile',
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -3735,7 +3642,7 @@ export const ReceptionCustomersStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -3751,7 +3658,7 @@ export const ReceptionCustomersStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -3759,7 +3666,7 @@ export const ReceptionCustomersStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -3796,7 +3703,7 @@ export const ReceptionCollectionCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -3812,7 +3719,7 @@ export const ReceptionCollectionCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -3820,7 +3727,7 @@ export const ReceptionCollectionCallsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -3857,7 +3764,7 @@ export const ReceptionDeliveryCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -3873,7 +3780,7 @@ export const ReceptionDeliveryCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -3881,7 +3788,7 @@ export const ReceptionDeliveryCallsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -3918,7 +3825,7 @@ export const ReceptionComplaintsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -3934,7 +3841,7 @@ export const ReceptionComplaintsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -3942,7 +3849,7 @@ export const ReceptionComplaintsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -3962,7 +3869,7 @@ export const ReceptionViewOrderDetailsTabStack =
         screen: ReceptionViewOrder,
         navigationOptions: {
           tabBarLabel: 'Order',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
             </View>
@@ -3973,7 +3880,7 @@ export const ReceptionViewOrderDetailsTabStack =
         screen: ReceptionViewOrderDetails,
         navigationOptions: {
           tabBarLabel: 'Job Details',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="cubes" size={20} />
             </View>
@@ -4013,7 +3920,7 @@ export const ReceptionOrdersStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4021,7 +3928,7 @@ export const ReceptionOrdersStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -4039,7 +3946,7 @@ export const ReceptionOrdersStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4089,7 +3996,7 @@ export const ReceptionViewCompletedOrderDetailsTabStack =
         screen: ReceptionViewCompletedOrder,
         navigationOptions: {
           tabBarLabel: 'Order',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
             </View>
@@ -4100,7 +4007,7 @@ export const ReceptionViewCompletedOrderDetailsTabStack =
         screen: ReceptionViewCompletedOrderDetails,
         navigationOptions: {
           tabBarLabel: 'Job Details',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="cubes" size={20} />
             </View>
@@ -4140,7 +4047,7 @@ export const ReceptionCompletedOrdersStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4239,7 +4146,7 @@ export const ReceptionCompletedJobsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4306,7 +4213,7 @@ export const ReceptionRejectedJobsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4320,11 +4227,10 @@ export const ReceptionRejectedJobsStack = createStackNavigator({
 export const ReceptionUserRoutes = createDrawerNavigator(
   {
     ReceptionDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: ReceptionDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4352,11 +4258,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionCategories: {
-      name: <Text>Products</Text>,
       screen: CategoriesStack,
       navigationOptions: {
         title: 'Products',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4384,7 +4289,6 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionBrands: {
-      name: <Text>Brands</Text>,
       screen: BrandsStack,
       navigationOptions: {
         title: 'Brands',
@@ -4415,11 +4319,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionCustomers: {
-      name: <Text>Customers</Text>,
       screen: ReceptionCustomersStack,
       navigationOptions: {
         title: 'Customers',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4447,11 +4350,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionCollectionCalls: {
-      name: <Text>Pickup Request</Text>,
       screen: ReceptionCollectionCallsStack,
       navigationOptions: {
         title: 'Pickup Request',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4479,11 +4381,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionDeliveryCalls: {
-      name: <Text>Delivery Calls</Text>,
       screen: ReceptionDeliveryCallsStack,
       navigationOptions: {
         title: 'Delivery Calls',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4511,11 +4412,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionComplaints: {
-      name: <Text>Complaints</Text>,
       screen: ReceptionComplaintsStack,
       navigationOptions: {
         title: 'Complaints',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4543,11 +4443,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionOrders: {
-      name: <Text>Orders</Text>,
       screen: ReceptionOrdersStack,
       navigationOptions: {
         title: 'Orders',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4575,11 +4474,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionCompletedOrders: {
-      name: <Text>Completed Orders</Text>,
       screen: ReceptionCompletedOrdersStack,
       navigationOptions: {
         title: 'Completed Orders',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4607,11 +4505,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionCompletedJobs: {
-      name: <Text>Completed Jobs</Text>,
       screen: ReceptionCompletedJobsStack,
       navigationOptions: {
         title: 'Completed Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4639,11 +4536,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     ReceptionRejectedJobs: {
-      name: <Text>Rejected Jobs</Text>,
       screen: ReceptionRejectedJobsStack,
       navigationOptions: {
         title: 'Rejected Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4671,11 +4567,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4703,11 +4598,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -4735,7 +4629,6 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -4772,11 +4665,10 @@ export const ReceptionUserRoutes = createDrawerNavigator(
       },
     },
     // EditProfile: {
-    //   name: 'EditProfile',
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -4817,18 +4709,12 @@ export const SalesHeadDashboardStack = createStackNavigator({
 export const SalesHeadSalesPersonDetailsStack = createStackNavigator({
   SalesHeadSalesPersonDetails: {
     screen: SalesHeadSalesPersonDetails,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
 export const SalesHeadSalesPersonTrackingHistoryStack = createStackNavigator({
   SalesHeadSalesPersonTrackingHistory: {
     screen: SalesHeadSalesPersonTrackingHistory,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
@@ -4838,7 +4724,7 @@ export const SalesHeadSalesPersonsTabStack = createMaterialBottomTabNavigator(
       screen: SalesHeadSalesPersonDetailsStack,
       navigationOptions: {
         tabBarLabel: 'Personal Details',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
           </View>
@@ -4849,7 +4735,7 @@ export const SalesHeadSalesPersonsTabStack = createMaterialBottomTabNavigator(
       screen: SalesHeadSalesPersonTrackingHistoryStack,
       navigationOptions: {
         tabBarLabel: 'Location Tracking',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="history" size={20} />
           </View>
@@ -4889,7 +4775,7 @@ export const SalesHeadSalesPersonsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4905,7 +4791,7 @@ export const SalesHeadSalesPersonsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4913,7 +4799,7 @@ export const SalesHeadSalesPersonsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -4971,7 +4857,7 @@ export const SalesCustomersStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4987,7 +4873,7 @@ export const SalesCustomersStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -4995,7 +4881,7 @@ export const SalesCustomersStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -5032,7 +4918,7 @@ export const CollectionCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5048,7 +4934,7 @@ export const CollectionCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5056,7 +4942,7 @@ export const CollectionCallsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -5093,7 +4979,7 @@ export const DeliveryCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5109,7 +4995,7 @@ export const DeliveryCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5117,7 +5003,7 @@ export const DeliveryCallsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -5154,7 +5040,7 @@ export const ComplaintsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5170,7 +5056,7 @@ export const ComplaintsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5178,7 +5064,7 @@ export const ComplaintsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -5194,27 +5080,18 @@ export const ComplaintsStack = createStackNavigator({
 export const SalesLeadDetailsStack = createStackNavigator({
   LeadDetails: {
     screen: LeadDetails,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
 export const SalesLeadInteractionsStack = createStackNavigator({
   LeadInteractions: {
     screen: LeadInteractions,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
 export const SalesLeadMessagesStack = createStackNavigator({
   LeadMessages: {
     screen: LeadMessages,
-    navigationOptions: {
-      header: null,
-    },
   },
 });
 
@@ -5224,7 +5101,7 @@ export const LeadDetailsTabStack = createMaterialBottomTabNavigator(
       screen: SalesLeadDetailsStack,
       navigationOptions: {
         tabBarLabel: 'Lead Details',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
           </View>
@@ -5235,7 +5112,7 @@ export const LeadDetailsTabStack = createMaterialBottomTabNavigator(
       screen: SalesLeadInteractionsStack,
       navigationOptions: {
         tabBarLabel: 'Interactions',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="id-badge" size={20} />
           </View>
@@ -5246,7 +5123,7 @@ export const LeadDetailsTabStack = createMaterialBottomTabNavigator(
       screen: SalesLeadMessagesStack,
       navigationOptions: {
         tabBarLabel: 'Messages',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({tintColor}: any) => (
           <View>
             <Icon style={[{color: tintColor}]} name="comments" size={20} />
           </View>
@@ -5302,7 +5179,7 @@ export const SalesLeadsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5310,7 +5187,7 @@ export const SalesLeadsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -5347,7 +5224,7 @@ export const SalesExpensesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5363,7 +5240,7 @@ export const SalesExpensesStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -5371,7 +5248,7 @@ export const SalesExpensesStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -5387,11 +5264,10 @@ export const SalesExpensesStack = createStackNavigator({
 export const SalesHeadUserRoutes = createDrawerNavigator(
   {
     SalesHeadDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: SalesHeadDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5419,11 +5295,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     SalesHeadSalesPersons: {
-      name: <Text>Sales Persons</Text>,
       screen: SalesHeadSalesPersonsStack,
       navigationOptions: {
         title: 'Sales Persons',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5451,11 +5326,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     SalesCustomers: {
-      name: <Text>Customers</Text>,
       screen: SalesCustomersStack,
       navigationOptions: {
         title: 'Customers',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5483,7 +5357,6 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     SalesBrands: {
-      name: <Text>Brands</Text>,
       screen: BrandsStack,
       navigationOptions: {
         title: 'Brands',
@@ -5514,11 +5387,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     SalesCategories: {
-      name: <Text>Products</Text>,
       screen: CategoriesStack,
       navigationOptions: {
         title: 'Products',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5546,11 +5418,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     CollectionCalls: {
-      name: <Text>Pickup Request</Text>,
       screen: CollectionCallsStack,
       navigationOptions: {
         title: 'Pickup Request',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5578,11 +5449,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     DeliveryCalls: {
-      name: <Text>Delivery Calls</Text>,
       screen: DeliveryCallsStack,
       navigationOptions: {
         title: 'Delivery Calls',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5610,11 +5480,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     Complaints: {
-      name: <Text>Complaints</Text>,
       screen: ComplaintsStack,
       navigationOptions: {
         title: 'Complaints',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5642,11 +5511,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     SalesLeads: {
-      name: <Text>Leads</Text>,
       screen: SalesLeadsStack,
       navigationOptions: {
         title: 'Leads',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5674,11 +5542,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     SalesExpenses: {
-      name: <Text>Expenses</Text>,
       screen: SalesExpensesStack,
       navigationOptions: {
         title: 'Expenses',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="money" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="money" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5706,11 +5573,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     EmployeeAttendances: {
-      name: 'Employees Attendances',
       screen: EmployeeAttendancesStack,
       navigationOptions: {
         title: 'Employees Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5738,11 +5604,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5770,11 +5635,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5802,11 +5666,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="bell-o" size={20}/>,
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="bell-o" size={20}/>,
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5840,19 +5703,17 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
       },
     },
     // LocationTrackingTest: {
-    //   name: 'Location Tracking',
     //   screen: LocationTrackingTestStack,
     //   navigationOptions:{
     //     title: "Location Tracking",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="map-marker" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="map-marker" size={20}/>
     //   }
     // },
     // EditProfile: {
-    //   name: 'EditProfile',
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -5865,11 +5726,10 @@ export const SalesHeadUserRoutes = createDrawerNavigator(
 export const SalesUserRoutes = createDrawerNavigator(
   {
     SalesDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: SalesDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5897,11 +5757,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     SalesCustomers: {
-      name: <Text>Customers</Text>,
       screen: SalesCustomersStack,
       navigationOptions: {
         title: 'Customers',
-        // drawerIcon:({tintColor})=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5929,7 +5788,6 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     SalesBrands: {
-      name: <Text>Brands</Text>,
       screen: BrandsStack,
       navigationOptions: {
         title: 'Brands',
@@ -5960,11 +5818,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     SalesCategories: {
-      name: <Text>Products</Text>,
       screen: CategoriesStack,
       navigationOptions: {
         title: 'Products',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -5992,11 +5849,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     CollectionCalls: {
-      name: <Text>Pickup Request</Text>,
       screen: CollectionCallsStack,
       navigationOptions: {
         title: 'Pickup Request',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6024,11 +5880,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     DeliveryCalls: {
-      name: <Text>Delivery Calls</Text>,
       screen: DeliveryCallsStack,
       navigationOptions: {
         title: 'Delivery Calls',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6056,11 +5911,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     Complaints: {
-      name: <Text>Complaints</Text>,
       screen: ComplaintsStack,
       navigationOptions: {
         title: 'Complaints',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6088,11 +5942,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     SalesLeads: {
-      name: <Text>Leads</Text>,
       screen: SalesLeadsStack,
       navigationOptions: {
         title: 'Leads',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6120,11 +5973,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     SalesExpenses: {
-      name: <Text>Expenses</Text>,
       screen: SalesExpensesStack,
       navigationOptions: {
         title: 'Expenses',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="money" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="money" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6152,11 +6004,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6184,11 +6035,10 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6216,7 +6066,6 @@ export const SalesUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -6257,7 +6106,7 @@ export const SalesUserRoutes = createDrawerNavigator(
     //   screen: LocationTrackingTestStack,
     //   navigationOptions:{
     //     title: "Location Tracking",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="map-marker" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="map-marker" size={20}/>
     //   }
     // },
     // EditProfile: {
@@ -6265,7 +6114,7 @@ export const SalesUserRoutes = createDrawerNavigator(
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -6309,7 +6158,7 @@ export const SupervisorViewOrderDetailsTabStack =
         screen: SupervisorViewOrder,
         navigationOptions: {
           tabBarLabel: 'Order',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
             </View>
@@ -6320,7 +6169,7 @@ export const SupervisorViewOrderDetailsTabStack =
         screen: SupervisorViewOrderDetails,
         navigationOptions: {
           tabBarLabel: 'Job Details',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="cubes" size={20} />
             </View>
@@ -6446,7 +6295,7 @@ export const SupervisorJobsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -6464,7 +6313,7 @@ export const SupervisorViewOngoingJobTabStack =
         screen: SupervisorViewOngoingJob,
         navigationOptions: {
           tabBarLabel: 'Job Details',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
             </View>
@@ -6475,7 +6324,7 @@ export const SupervisorViewOngoingJobTabStack =
         screen: SupervisorOngoingJobProgress,
         navigationOptions: {
           tabBarLabel: 'Production Progress',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="tasks" size={20} />
             </View>
@@ -6547,7 +6396,7 @@ export const SupervisorOngoingJobsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -6614,7 +6463,7 @@ export const SupervisorReworksStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -6681,7 +6530,7 @@ export const SupervisorReopensStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -6695,11 +6544,10 @@ export const SupervisorReopensStack = createStackNavigator({
 export const SupervisorUserRoutes = createDrawerNavigator(
   {
     SupervisorDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: SupervisorDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6727,11 +6575,10 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     SupervisorCategories: {
-      name: <Text>Products</Text>,
       screen: CategoriesStack,
       navigationOptions: {
         title: 'Products',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6759,7 +6606,6 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     SupervisorBrands: {
-      name: <Text>Brands</Text>,
       screen: BrandsStack,
       navigationOptions: {
         title: 'Brands',
@@ -6790,19 +6636,17 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     // SupervisorOrders: {
-    //   name: <Text>Orders</Text>,
     //   screen: SupervisorOrdersStack,
     //   navigationOptions:{
     //     title: "Orders",
-    //     drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
     //   }
     // },
     SupervisorScanQrCode: {
-      name: <Text>Scan Qr Code</Text>,
       screen: SupervisorScanQrCodeStack,
       navigationOptions: {
         title: 'Scan Qr Code',
-        // drawerIcon:({tintColor})=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6830,11 +6674,10 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     SupervisorJobs: {
-      name: <Text>Jobs</Text>,
       screen: SupervisorJobsStack,
       navigationOptions: {
         title: 'Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6862,11 +6705,10 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     SupervisorReworks: {
-      name: <Text>Reworks</Text>,
       screen: SupervisorReworksStack,
       navigationOptions: {
         title: 'Reworks',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6894,11 +6736,10 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     SupervisorReopens: {
-      name: <Text>Reopened Jobs</Text>,
       screen: SupervisorReopensStack,
       navigationOptions: {
         title: 'Reopened Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6926,11 +6767,10 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     SupervisorOngoingJobs: {
-      name: <Text>Ongoing Jobs</Text>,
       screen: SupervisorOngoingJobsStack,
       navigationOptions: {
         title: 'Ongoing Jobs',
-        // drawerIcon:({tintColor})=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+        // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6958,11 +6798,10 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     Attendances: {
-      name: 'Attendances',
       screen: AttendancesStack,
       navigationOptions: {
         title: 'Attendances',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -6990,11 +6829,10 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     MyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: MyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -7022,7 +6860,6 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -7059,11 +6896,10 @@ export const SupervisorUserRoutes = createDrawerNavigator(
       },
     },
     // EditProfile: {
-    //   name: 'EditProfile',
     //   screen: EditProfileStack,
     //   navigationOptions:{
     //     title: "Edit Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="pencil-square-o" size={20}/>
     //   }
     // }
   },
@@ -7124,7 +6960,7 @@ export const CustomerCollectionCallsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -7132,7 +6968,7 @@ export const CustomerCollectionCallsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -7169,7 +7005,7 @@ export const CustomerComplaintsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -7177,7 +7013,7 @@ export const CustomerComplaintsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -7197,7 +7033,7 @@ export const CustomerViewOrderDetailsTabStack =
         screen: CustomerViewOrder,
         navigationOptions: {
           tabBarLabel: 'Order',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="wpforms" size={20} />
             </View>
@@ -7208,7 +7044,7 @@ export const CustomerViewOrderDetailsTabStack =
         screen: CustomerOrderUploadImages,
         navigationOptions: {
           tabBarLabel: 'Upload Case Photos',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="picture-o" size={20} />
             </View>
@@ -7219,7 +7055,7 @@ export const CustomerViewOrderDetailsTabStack =
         screen: CustomerViewOrderDetails,
         navigationOptions: {
           tabBarLabel: 'Job Details',
-          tabBarIcon: ({tintColor}) => (
+          tabBarIcon: ({tintColor}: any) => (
             <View>
               <Icon style={[{color: tintColor}]} name="cubes" size={20} />
             </View>
@@ -7320,7 +7156,7 @@ export const CustomerChangePasswordStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -7357,7 +7193,7 @@ export const CustomerMyAccountsStack = createStackNavigator({
         headerTitle: () => (
           <NavigationDrawerStructure
             navigation={navigation}
-            title={navigation.state.params.pageHeading}
+            title={navigation?.state?.params?.pageHeading}
             isShowDrawerToggleButton={false}
             isShowLogoInsteadOfTitle={false}
           />
@@ -7381,7 +7217,7 @@ export const CustomerMyAccountsStack = createStackNavigator({
         headerRight: () => (
           <HeaderSaveButton
             buttonType="solid"
-            onPress={() => navigation.state.params.handleSave()}
+            onPress={() => navigation?.state?.params?.handleSave()}
             title="Save"
             buttonColor={primaryBlueHexColor}
             bgColor={primaryBlueHexColor}
@@ -7397,11 +7233,10 @@ export const CustomerMyAccountsStack = createStackNavigator({
 export const CustomerUserRoutes = createDrawerNavigator(
   {
     CustomerDashboard: {
-      name: <Text>Dashboard</Text>,
       screen: CustomerDashboardStack,
       navigationOptions: {
         title: 'Dashboard',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -7429,7 +7264,6 @@ export const CustomerUserRoutes = createDrawerNavigator(
       },
     },
     CustomerBrands: {
-      name: <Text>Brands</Text>,
       screen: BrandsStack,
       navigationOptions: {
         title: 'Brands',
@@ -7460,7 +7294,6 @@ export const CustomerUserRoutes = createDrawerNavigator(
       },
     },
     CustomerCategories: {
-      name: <Text>Products</Text>,
       screen: CategoriesStack,
       navigationOptions: {
         title: 'Products',
@@ -7491,11 +7324,10 @@ export const CustomerUserRoutes = createDrawerNavigator(
       },
     },
     CustomerCollectionCalls: {
-      name: <Text>Pickup Request</Text>,
       screen: CustomerCollectionCallsStack,
       navigationOptions: {
         title: 'Pickup Request',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -7523,11 +7355,10 @@ export const CustomerUserRoutes = createDrawerNavigator(
       },
     },
     CustomerOrders: {
-      name: <Text>My Orders</Text>,
       screen: CustomerOrdersStack,
       navigationOptions: {
         title: 'My Orders',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -7555,11 +7386,10 @@ export const CustomerUserRoutes = createDrawerNavigator(
       },
     },
     CustomerComplaints: {
-      name: <Text>My Complaints</Text>,
       screen: CustomerComplaintsStack,
       navigationOptions: {
         title: 'My Complaints',
-        // drawerIcon:({tintColor})=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -7587,11 +7417,10 @@ export const CustomerUserRoutes = createDrawerNavigator(
       },
     },
     CustomerMyAccounts: {
-      name: <Text>My Accounts</Text>,
       screen: CustomerMyAccountsStack,
       navigationOptions: {
         title: 'My Accounts',
-        // drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+        // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
         drawerIcon: ({focused, tintColor}) => (
           <Icon
             style={[
@@ -7619,15 +7448,13 @@ export const CustomerUserRoutes = createDrawerNavigator(
       },
     },
     // CustomerViewPassword: {
-    //   name: <Text>My Profile</Text>,
     //   screen: CustomerViewProfileStack,
     //   navigationOptions:{
     //     title: "My Profile",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="user-md" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user-md" size={20}/>
     //   }
     // },
     Notifications: {
-      name: 'Notifications',
       screen: NotificationsStack,
       navigationOptions: {
         title: 'Notifications',
@@ -7668,7 +7495,7 @@ export const CustomerUserRoutes = createDrawerNavigator(
     //   screen: CustomerChangePasswordStack,
     //   navigationOptions:{
     //     title: "Change Password",
-    //     drawerIcon:({tintColor})=> <Icon style={[{color: tintColor}]} name="key" size={20}/>
+    //     drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="key" size={20}/>
     //   }
     // },
   },
@@ -7774,45 +7601,19 @@ export const createRootNavigator = (
   return createAppContainer(
     createSwitchNavigator(
       {
-        SignedIn: {
-          screen: SignedIn,
-        },
-        AdminQCUserRoutes: {
-          screen: AdminQCUserRoutes,
-        },
-        AdminQCHeadUserRoutes: {
-          screen: AdminQCHeadUserRoutes,
-        },
-        PackagingUserRoutes: {
-          screen: PackagingUserRoutes,
-        },
-        PackagingHeadUserRoutes: {
-          screen: PackagingHeadUserRoutes,
-        },
-        ProductionUserRoutes: {
-          screen: ProductionUserRoutes,
-        },
-        ProductionHeadUserRoutes: {
-          screen: ProductionHeadUserRoutes,
-        },
-        ReceptionUserRoutes: {
-          screen: ReceptionUserRoutes,
-        },
-        SalesUserRoutes: {
-          screen: SalesUserRoutes,
-        },
-        SalesHeadUserRoutes: {
-          screen: SalesHeadUserRoutes,
-        },
-        SupervisorUserRoutes: {
-          screen: SupervisorUserRoutes,
-        },
-        CustomerUserRoutes: {
-          screen: CustomerUserRoutes,
-        },
-        SignedOut: {
-          screen: SignedOut,
-        },
+        SignedIn: SignedIn,
+        AdminQCUserRoutes: AdminQCUserRoutes,
+        AdminQCHeadUserRoutes: AdminQCHeadUserRoutes,
+        PackagingUserRoutes: PackagingUserRoutes,
+        PackagingHeadUserRoutes: PackagingHeadUserRoutes,
+        ProductionUserRoutes: ProductionUserRoutes,
+        ProductionHeadUserRoutes: ProductionHeadUserRoutes,
+        ReceptionUserRoutes: ReceptionUserRoutes,
+        SalesUserRoutes: SalesUserRoutes,
+        SalesHeadUserRoutes: SalesHeadUserRoutes,
+        SupervisorUserRoutes: SupervisorUserRoutes,
+        CustomerUserRoutes: CustomerUserRoutes,
+        SignedOut: SignedOut,
       },
       {
         initialRouteName: initialRouteName,
@@ -7892,7 +7693,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     user: state.loggedInUserDetailsReducer.user,
     count: state.DrawerNotificationBadgeCountReducer.count,
