@@ -1,3 +1,6 @@
+
+console.log('routes.tsx file rendering 1');
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
@@ -7509,6 +7512,10 @@ export const CustomerUserRoutes = createDrawerNavigator(
 =================================== CUSTOMER USER ROUTES ENDS =================================
 ============================================================================================*/
 
+export const hello = function () {
+  return 'World';
+};
+
 export const createRootNavigator = (
   signedIn = false,
   userType = null,
@@ -7597,7 +7604,6 @@ export const createRootNavigator = (
   } else {
     initialRouteName = 'SignedOut';
   }
-
   return createAppContainer(
     createSwitchNavigator(
       {
