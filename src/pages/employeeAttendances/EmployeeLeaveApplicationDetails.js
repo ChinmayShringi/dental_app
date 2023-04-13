@@ -43,8 +43,8 @@ import ModalSaveButton from '../../components/ModalSaveButton';
 import FlashMessage from 'react-native-flash-message';
 import Modal from 'react-native-modal';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../constants/defaultValues';
+import SkeletonContent from '../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

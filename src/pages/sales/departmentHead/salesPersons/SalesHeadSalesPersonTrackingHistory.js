@@ -18,13 +18,13 @@ import NoRecordsFound from '../../../../components/NoRecordsFound';
 
 import moment from 'moment';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {
   mapStyle,
   skeletonPlaceholderProps,
 } from '../../../../constants/defaultValues';
 
 import CalendarStrip from 'react-native-calendar-strip';
+import SkeletonContent from '../../../../components/SkeletonContent';
 
 let MapView, Polyline, Marker, PROVIDER_GOOGLE;
 

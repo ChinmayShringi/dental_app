@@ -22,7 +22,7 @@ import {Avatar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {skeletonPlaceholderProps} from '../constants/defaultValues';
-import SkeletonContent from 'react-native-skeleton-content';
+import SkeletonContent from '../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

@@ -22,13 +22,13 @@ import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
 import Loader from '../../provider/Loader';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 import moment from 'moment';
 
 // import * as TaskManager from 'expo-task-manager';
 import {locationTrackingProps} from '../../constants/defaultValues';
+import SkeletonContent from '../../components/SkeletonContent';
 const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
 
 const screenWidth = Dimensions.get('window').width;

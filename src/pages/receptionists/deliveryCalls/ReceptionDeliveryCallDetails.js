@@ -42,10 +42,10 @@ import {
   regionCoordinatesDeltas,
   mapStyle,
 } from '../../../constants/defaultValues';
-import SkeletonContent from 'react-native-skeleton-content';
 
 import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 let MapView, Marker, PROVIDER_GOOGLE;
 

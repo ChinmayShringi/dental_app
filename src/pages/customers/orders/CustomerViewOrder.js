@@ -32,12 +32,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Button} from 'native-base';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 import {NavigationEvents} from 'react-navigation';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');

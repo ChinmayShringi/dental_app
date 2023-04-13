@@ -1,47 +1,389 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
-import {createSwitchNavigator, createAppContainer} from 'react-navigation';
-import {
-  createDrawerNavigator,
-  DrawerNavigatorItems,
-} from 'react-navigation-drawer';
-import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import {createStackNavigator} from 'react-navigation-stack';
-import {primaryBlueHexColor, primaryHexColor} from './constants/themeColors';
+import React from 'react';
+import {Image, TouchableOpacity, View, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {headerStyles} from './assets/style';
 import Home from './pages/Home';
-import { Component } from 'react';
-import { headerStyles } from './assets/style';
-
 import Dashboard from './pages/sales/Dashboard';
 import Sales from './pages/sales/Sales';
-import Salesdetail from './pages/sales/Salesdetail';
-import HeaderSearchButton from './components/HeaderSearchButton';
-
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Categories from './pages/CategoriesAndProducts/Categories';
 import Products from './pages/CategoriesAndProducts/Products';
 import ProductDetails from './pages/CategoriesAndProducts/ProductDetails';
-
+import HeaderSearchButton from './components/HeaderSearchButton';
+import HeaderSaveButton from './components/HeaderSaveButton';
+import {primaryBlueHexColor} from './constants/themeColors';
 import EditProfile from './pages/EditProfile';
 
+const SignedInDrawerStack = createDrawerNavigator();
+const Stack = createStackNavigator();
 
+function NavigationDrawerStructure(props: any) {
+  const toggleDrawer = () => {
+    props.navigation.toggleDrawer();
+  };
 
-import HeaderSaveButton from './components/HeaderSaveButton';
-import DrawerUserDetails from './components/DrawerUserDetails';
-import DrawerLogoutButton from './components/DrawerLogoutButton';
+  const {isShowDrawerToggleButton, isShowLogoInsteadOfTitle, title} = props;
 
-export const createRootNavigator = (
+  return (
+    <View
+      style={
+        isShowLogoInsteadOfTitle
+          ? headerStyles.headerWithLogo
+          : headerStyles.header
+      }>
+      {isShowDrawerToggleButton && (
+        <View style={headerStyles.headerMenuicon}>
+          <TouchableOpacity onPress={toggleDrawer}>
+            <Image
+              style={{resizeMode: 'contain', width: 28, height: 28}}
+              source={require('./images/drawer-icon.png')}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
+      <View style={{flex: 1}}>
+        {isShowLogoInsteadOfTitle ? (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-end',
+              alignItems: 'flex-end',
+              paddingRight: 24,
+            }}>
+            <Image
+              style={{resizeMode: 'contain', width: 150, height: 50}}
+              source={require('./images/logo.png')}
+            />
+          </View>
+        ) : (
+          <Text
+            style={
+              isShowDrawerToggleButton
+                ? headerStyles.headertext
+                : headerStyles.headertextwithbackbutton
+            }>
+            {title}
+          </Text>
+        )}
+      </View>
+    </View>
+  );
+}
+
+// import Dashboard from './pages/Dashboard';
+// import Sales from './pages/Sales';
+
+const Tab = createMaterialBottomTabNavigator();
+// const Stack = createStackNavigator();
+
+function DashboardStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Dashboard" component={Dashboard} />
+    </Stack.Navigator>
+  );
+}
+
+function SalesStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Sales" component={Sales} />
+    </Stack.Navigator>
+  );
+}
+
+export const TabStack = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Dashboard"
+      activeColor="#ffffff"
+      inactiveColor="#bda1f7"
+      barStyle={{backgroundColor: '#6948f4'}}>
+      <Tab.Screen
+        name="Dashboard"
+        component={DashboardStack}
+        options={{
+          tabBarLabel: 'Dashboard',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="dashboard" color={color} size={24} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Sales"
+        component={SalesStack}
+        options={{
+          tabBarLabel: 'Sales',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="home" color={color} size={24} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="HomeScreen"
+        component={Home}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Home"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+const headerStyle = {
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 12,
+  },
+  shadowOpacity: 0.58,
+  shadowRadius: 16.0,
+  elevation: 24,
+};
+
+const EditProfileStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Edit Profile"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={() => navigation?.state?.params?.handleSave()}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
+// export const EditProfileStack = createStackNavigator({
+//   // EditProfile: {
+//   //   screen: EditProfile,
+//   //   navigationOptions: ({navigation}) => {
+//   //     return {
+//   //       headerTitle: () => (
+//   //         <NavigationDrawerStructure
+//   //           navigation={navigation}
+//   //           title="Edit Profile"
+//   //           isShowDrawerToggleButton={true}
+//   //           isShowLogoInsteadOfTitle={false}
+//   //         />
+//   //       ),
+//   //       headerRight: () => (
+//   //         <HeaderSaveButton
+//   //           buttonType="solid"
+//   //           onPress={() => navigation?.state?.params?.handleSave()}
+//   //           title="Save"
+//   //           buttonColor={primaryBlueHexColor}
+//   //           bgColor={primaryBlueHexColor}
+//   //           color="#ffffff"
+//   //         />
+//   //       ),
+//   //       headerStyle: headerStyle,
+//   //     };
+//   //   },
+//   // },
+// });
+
+const CategoriesStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Products}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Home"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+        })}
+      />
+    </Stack.Navigator>
+    // <Stack.Navigator>
+    //   {/* <Stack.Screen
+    //     name="Categories"
+    //     component={Categories}
+    //     // options={({navigation}) => ({
+    //     //   headerTitle: () => (
+    //     //     <NavigationDrawerStructure
+    //     //       navigation={navigation}
+    //     //       title="Products"
+    //     //       isShowDrawerToggleButton={true}
+    //     //       isShowLogoInsteadOfTitle={false}
+    //     //     />
+    //     //   ),
+    //     //   headerRight: () => (
+    //     //     <HeaderSearchButton
+    //     //       onPress={() => navigation?.state?.params?.toggleSearch()}
+    //     //     />
+    //     //   ),
+    //     //   headerStyle: headerStyle,
+    //     // })}
+    //   /> */}
+    //   {/* <Stack.Screen
+    //     name="SubCategories"
+    //     component={Categories}
+    //     // options={({navigation}) => ({
+    //     //   headerTitle: () => (
+    //     //     <NavigationDrawerStructure
+    //     //       navigation={navigation}
+    //     //       title={navigation?.state?.params?.pageHeading}
+    //     //       isShowDrawerToggleButton={false}
+    //     //       isShowLogoInsteadOfTitle={false}
+    //     //     />
+    //     //   ),
+    //     //   headerStyle: headerStyle,
+    //     // })}
+    //   />
+    //   <Stack.Screen
+    //     name="Products"
+    //     component={Products}
+    //     // options={({navigation}) => ({
+    //     //   headerTitle: () => (
+    //     //     <NavigationDrawerStructure
+    //     //       navigation={navigation}
+    //     //       title={navigation?.state?.params?.pageHeading}
+    //     //       isShowDrawerToggleButton={false}
+    //     //       isShowLogoInsteadOfTitle={false}
+    //     //     />
+    //     //   ),
+    //     //   headerStyle: headerStyle,
+    //     // })}
+    //   /> */}
+    //   {/* <Stack.Screen
+    //     name="ProductDetails"
+    //     component={ProductDetails}
+    //     // options={({navigation}) => ({
+    //     //   headerTitle: () => (
+    //     //     <NavigationDrawerStructure
+    //     //       navigation={navigation}
+    //     //       title={navigation?.state?.params?.pageHeading}
+    //     //       isShowDrawerToggleButton={false}
+    //     //       isShowLogoInsteadOfTitle={false}
+    //     //     />
+    //     //   ),
+    //     //   headerStyle: headerStyle,
+    //     // })}
+    //   /> */}
+    // </Stack.Navigator>
+  );
+};
+function SignedInDrawer({initialRouteName}: any) {
+  return (
+    <SignedInDrawerStack.Navigator initialRouteName={initialRouteName}>
+      <SignedInDrawerStack.Screen
+        name="Home"
+        component={HomeStack}
+        options={{
+          title: 'Home',
+          drawerIcon: ({color}) => (
+            <Icon style={[{color: color}]} name="layers" size={20} />
+          ),
+        }}
+      />
+      <SignedInDrawerStack.Screen
+        name="Dashboard"
+        component={TabStack}
+        options={{
+          title: 'Dashboard',
+          drawerIcon: ({color}) => (
+            <Icon style={[{color: color}]} name="layers" size={20} />
+          ),
+        }}
+      />
+      <SignedInDrawerStack.Screen
+        name="Categories"
+        component={CategoriesStack}
+        options={{
+          title: 'Categories',
+          drawerIcon: ({color}) => (
+            <Icon style={[{color: color}]} name="layers" size={20} />
+          ),
+        }}
+      />
+      <SignedInDrawerStack.Screen
+        name="EditProfile"
+        component={EditProfileStack}
+        options={{
+          title: 'EditProfile',
+          drawerIcon: ({color}) => (
+            <Icon style={[{color: color}]} name="layers" size={20} />
+          ),
+        }}
+      />
+      {/* Categories: {
+      screen: CategoriesStack,
+      navigationOptions: {
+        title: 'Products',
+        drawerIcon: ({tintColor}: any) => (
+          <></>
+          // <MaterialIcons style={[{color: tintColor}]} name="layers" size={20} />
+        ),
+      },
+    },
+    EditProfile: {
+      screen: EditProfileStack,
+      navigationOptions: {
+        title: 'Edit Profile',
+        drawerIcon: ({tintColor}: any) => (
+          <></>
+          // <MaterialIcons style={[{color: tintColor}]} name="edit" size={20} />
+        ),
+      },
+    },
+  }, */}
+    </SignedInDrawerStack.Navigator>
+  );
+}
+
+export function RootNavigator(
   signedIn = false,
   userType = null,
   appUserType = null,
   isDepartmentHead = false,
-) => {
+) {
   let initialRouteName = '';
   if (signedIn && userType !== null && appUserType !== null) {
     // Customer
@@ -124,453 +466,9 @@ export const createRootNavigator = (
   } else {
     initialRouteName = 'SignedOut';
   }
-  return createAppContainer(
-    createSwitchNavigator(
-      {
-        SignedIn: SignedIn,
-      },
-      {
-        initialRouteName: initialRouteName,
-      },
-    ),
+  return (
+    <NavigationContainer>
+      <SignedInDrawer initialRouteName={'initialRouteName'} />
+    </NavigationContainer>
   );
-};
-export const homeStack = createStackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Home"
-            isShowDrawerToggleButton={true}
-            isShowLogoInsteadOfTitle={true}
-          />
-        ),
-      };
-    },
-  },
-});
-const headerStyle = {
-  shadowColor: '#000',
-  shadowOffset: {
-    width: 0,
-    height: 12,
-  },
-  shadowOpacity: 0.58,
-  shadowRadius: 16.0,
-  elevation: 24,
-};
-
-export const CategoriesStack = createStackNavigator({
-  Categories: {
-    screen: Categories,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Products"
-            isShowDrawerToggleButton={true}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerRight: () => (
-          <HeaderSearchButton
-            onPress={() => navigation?.state?.params?.toggleSearch()}
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-  SubCategories: {
-    screen: Categories,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title={navigation?.state?.params?.pageHeading}
-            isShowDrawerToggleButton={false}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-  Products: {
-    screen: Products,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title={navigation?.state?.params?.pageHeading}
-            isShowDrawerToggleButton={false}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-  ProductDetails: {
-    screen: ProductDetails,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title={navigation?.state?.params?.pageHeading}
-            isShowDrawerToggleButton={false}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-});
-
-
-
-export const SalesStack = createStackNavigator({
-  Sales: {
-    screen: Sales,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Sales"
-            isShowDrawerToggleButton={true}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-      };
-    },
-  },
-  Salesdetail: {
-    screen: Salesdetail,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Sales Detail"
-            isShowDrawerToggleButton={false}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-      };
-    },
-  },
-});
-
-export const dashboardStack = createStackNavigator({
-  Dashboard: {
-    screen: Dashboard,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Dashboard"
-            isShowDrawerToggleButton={true}
-            isShowLogoInsteadOfTitle={true}
-          />
-        ),
-      };
-    },
-  },
-});
-
-
-export const tabStack = createMaterialBottomTabNavigator(
-  {
-    Dashboard: {
-      screen: dashboardStack,
-      navigationOptions: {
-        tabBarLabel: 'Dashboard',
-        tabBarIcon: ({tintColor}: any) => (
-          <View>
-            {/* <MaterialIcons
-                style={[{color: tintColor}]}
-                name="dashboard"
-                size={24}
-              /> */}
-          </View>
-        ),
-      },
-    },
-    Sales: {
-      screen: SalesStack,
-      navigationOptions: {
-        tabBarLabel: 'Sales',
-        tabBarIcon: ({tintColor}: any) => (
-          <View>
-            {/* <MaterialIcons style={[{color: tintColor}]} name="home" size={24} /> */}
-          </View>
-        ),
-      },
-    },
-  },
-  {
-    initialRouteName: 'Dashboard',
-    activeColor: '#ffffff',
-    inactiveColor: '#bda1f7',
-    barStyle: {backgroundColor: '#6948f4'},
-  },
-);
-
-const CustomDrawerContentComponent = (props: any) => (
-  <ScrollView>
-    <DrawerUserDetails {...props} />
-
-    <View style={customRootNavigatorStyles.container}>
-      <DrawerNavigatorItems {...props} />
-    </View>
-
-    <DrawerLogoutButton {...props} />
-  </ScrollView>
-);
-
-
-export const EditProfileStack = createStackNavigator({
-  EditProfile: {
-    screen: EditProfile,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Edit Profile"
-            isShowDrawerToggleButton={true}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerRight: () => (
-          <HeaderSaveButton
-            buttonType="solid"
-            onPress={() => navigation?.state?.params?.handleSave()}
-            title="Save"
-            buttonColor={primaryBlueHexColor}
-            bgColor={primaryBlueHexColor}
-            color="#ffffff"
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-});
-
-
-export const SignedIn = createDrawerNavigator(
-  {
-    Home: {
-      screen: homeStack,
-      navigationOptions: {
-        title: 'Home',
-        drawerIcon: ({tintColor}: any) => (
-          <></>
-          // <MaterialIcons style={[{color: tintColor}]} name="home" size={20} />
-        ),
-      },
-    },
-    Dashboard: {
-      screen: tabStack,
-      navigationOptions: {
-        title: 'Dashboard',
-        drawerIcon: ({tintColor}: any) => (
-          <></>
-          // <MaterialIcons
-          //   style={[{color: tintColor}]}
-          //   name="dashboard"
-          //   size={20}
-          // />
-        ),
-      },
-    },
-    Categories: {
-      screen: CategoriesStack,
-      navigationOptions: {
-        title: 'Products',
-        drawerIcon: ({tintColor}: any) => (
-          <></>
-          // <MaterialIcons style={[{color: tintColor}]} name="layers" size={20} />
-        ),
-      },
-    },
-    EditProfile: {
-      screen: EditProfileStack,
-      navigationOptions: {
-        title: 'Edit Profile',
-        drawerIcon: ({tintColor}: any) => (
-          <></>
-          // <MaterialIcons style={[{color: tintColor}]} name="edit" size={20} />
-        ),
-      },
-    },
-  },
-  {
-    contentComponent: CustomDrawerContentComponent,
-    contentOptions: {
-      activeTintColor: '#fff',
-      activeBackgroundColor: primaryHexColor,
-    },
-  },
-);
-
-
-class NavigationDrawerStructure extends Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {};
-  }
-
-  //Structure for the navigatin Drawer
-  toggleDrawer = () => {
-    //Props to open/close the drawer
-    this.props.navigation.toggleDrawer();
-  };
-
-  render() {
-    return (
-      <View
-        style={
-          this.props.isShowLogoInsteadOfTitle
-            ? headerStyles.headerWithLogo
-            : headerStyles.header
-        }>
-        {/* {this.props.isShowDrawerToggleButton ?
-          <MaterialIcons name="menu" size={28} style={headerStyles.headerMenuicon} onPress={this.toggleDrawer.bind(this)} />
-          : null
-        } */}
-        {this.props.isShowDrawerToggleButton ? (
-          <View style={headerStyles.headerMenuicon}>
-            <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-              <Image
-                style={{
-                  resizeMode: 'contain',
-                  width: 28,
-                  height: 28,
-                }}
-                source={require('./images/drawer-icon.png')}
-              />
-            </TouchableOpacity>
-          </View>
-        ) : null}
-        <View
-          style={{
-            flex: 1,
-          }}>
-          {this.props.isShowLogoInsteadOfTitle ? (
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'flex-end',
-                alignItems: 'flex-end',
-                paddingRight: 24,
-              }}>
-              <Image
-                style={{
-                  resizeMode: 'contain',
-                  width: 150,
-                  height: 50,
-                }}
-                source={require('./images/logo.png')}
-              />
-            </View>
-          ) : (
-            <Text
-              style={
-                this.props.isShowDrawerToggleButton
-                  ? headerStyles.headertext
-                  : headerStyles.headertextwithbackbutton
-              }>
-              {this.props.title}
-            </Text>
-          )}
-        </View>
-      </View>
-    );
-  }
 }
-
-const drawerWidth = Dimensions.get('window').width - 110;
-const drawerLabelWidth = drawerWidth - 78;
-
-const customRootNavigatorStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  profileImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    borderWidth: 3,
-    borderColor: '#fff',
-    margin: 'auto',
-  },
-  name: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: '800',
-    borderRadius: 40,
-    marginVertical: 8,
-    marginBottom: 0,
-    textAlign: 'center',
-  },
-  email: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '800',
-    borderRadius: 40,
-    marginTop: 4,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  UserBtnContainerBlock: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 6,
-  },
-  UserBtnContainer: {
-    flex: 1,
-    marginHorizontal: 5,
-  },
-  drawerLabelContainer: {
-    // marginHorizontal: 12,
-    // marginVertical: 12,
-    // paddingRight: 30,
-    paddingVertical: 8,
-    paddingRight: 8,
-    width: drawerLabelWidth,
-  },
-  drawerLabel: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-  },
-  drawerLabelBadgeContainer: {
-    position: 'absolute',
-    right: -10,
-    top: 8,
-  },
-  commonDrawerLabelContainer: {
-    flex: 1,
-    paddingVertical: 8,
-    paddingRight: 8,
-  },
-  commonDrawerLabel: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-  },
-});

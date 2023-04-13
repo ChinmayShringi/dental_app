@@ -29,10 +29,10 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
-import SkeletonContent from 'react-native-skeleton-content';
 
 import {loggedInUserDetails} from '../../../redux/actions/loggedInUserDetails';
 import {connect} from 'react-redux';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

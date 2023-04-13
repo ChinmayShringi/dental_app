@@ -44,10 +44,10 @@ import {Button} from 'native-base';
 import FlashMessage from 'react-native-flash-message';
 import Modal from 'react-native-modal';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import update from 'immutability-helper';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

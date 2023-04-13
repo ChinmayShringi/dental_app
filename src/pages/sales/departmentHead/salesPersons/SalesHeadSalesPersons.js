@@ -29,8 +29,8 @@ import Dataprovider from '../../../../provider/Dataprovider';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../../constants/defaultValues';
+import SkeletonContent from '../../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

@@ -28,8 +28,8 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../constants/defaultValues';
+import SkeletonContent from '../../components/SkeletonContent';
 
 const appScreenWidth = Dimensions.get('window');
 const cardWidth = appScreenWidth.width;

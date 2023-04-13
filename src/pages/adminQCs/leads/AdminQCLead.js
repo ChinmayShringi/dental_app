@@ -23,12 +23,12 @@ import {mainBgColor, primaryHexColor} from '../../../constants/themeColors';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
 import {connect} from 'react-redux';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 class AdminQCLead extends Component {
   api = new Api();

@@ -46,7 +46,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button} from 'native-base';
 
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
-import SkeletonContent from 'react-native-skeleton-content';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

@@ -26,12 +26,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Badge} from 'native-base';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 const screenWidth = Dimensions.get('window').width;
 
 import {connect} from 'react-redux';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 class LeadDetails extends Component {
   api = new Api();

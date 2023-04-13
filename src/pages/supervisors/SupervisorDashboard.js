@@ -37,9 +37,9 @@ import {
 import {Card, CardItem, Body, Left, Right} from 'native-base';
 
 import {skeletonPlaceholderProps} from '../../constants/defaultValues';
-import SkeletonContent from 'react-native-skeleton-content';
 
 import Carousel from 'react-native-snap-carousel';
+import SkeletonContent from '../../components/SkeletonContent';
 
 // BANER CAROUSEL
 const screenWidth = Dimensions.get('window').width;

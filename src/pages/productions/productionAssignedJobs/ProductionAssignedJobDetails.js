@@ -51,13 +51,13 @@ import Modal from 'react-native-modal';
 // import {MaterialIcons} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import {SwipeableFlatList} from 'react-native-swipeable-flat-list';
 
 import update from 'immutability-helper';
 import moment from 'moment';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

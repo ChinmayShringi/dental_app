@@ -30,8 +30,8 @@ import Dataprovider from '../../provider/Dataprovider';
 // import {MaterialIcons} from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../constants/defaultValues';
+import SkeletonContent from '../../components/SkeletonContent';
 
 const appScreenWidth = Dimensions.get('window');
 const cardWidth = (appScreenWidth.width - 38) / 2;

@@ -22,8 +22,8 @@ import TeethSkeleton from '../../../components/TeethSkeleton';
 
 import {backgroundGrey, mainBgColor} from '../../../constants/themeColors';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');

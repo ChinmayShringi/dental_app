@@ -20,8 +20,8 @@ import NoRecordsFound from '../../../components/NoRecordsFound';
 
 import Timeline from 'react-native-timeline-flatlist';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

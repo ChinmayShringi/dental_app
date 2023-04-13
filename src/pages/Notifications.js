@@ -25,7 +25,7 @@ import {DrawerNotificationBadgeCount} from '../redux/actions/DrawerNotificationB
 import {connect} from 'react-redux';
 
 import {skeletonPlaceholderProps} from '../constants/defaultValues';
-import SkeletonContent from 'react-native-skeleton-content';
+import SkeletonContent from '../components/SkeletonContent';
 
 import moment from 'moment';
 

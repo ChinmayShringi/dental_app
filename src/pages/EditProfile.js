@@ -80,7 +80,7 @@ class EditProfile extends Component {
   }
 
   componentDidMount() {
-    // this.getEditProfileData();
+    this.getEditProfileData();
     this.props.navigation.setParams({
       handleSave: this.handleSubmitFormForHeaderButton,
     });
@@ -135,7 +135,8 @@ class EditProfile extends Component {
         }
         this.api.showErrorMessage(data.response.message, errormessage);
       }
-    });
+    })
+    .catch((e)=>console.log)
   }
 
   handleChangeCountry = countryId => {
@@ -617,7 +618,7 @@ class EditProfile extends Component {
         keyboardVerticalOffset={100}>
         <View style={{flex: 1, backgroundColor: mainBgColor}}>
           <View style={common.formContainer}>
-            <NavigationEvents onDidFocus={() => this.getEditProfileData()} />
+            {/* <NavigationEvents onDidFocus={() => this.getEditProfileData()} /> */}
             <Loader loading={this.state.loading} />
             <ScrollView>
               <View style={common.formElementsContainer}>

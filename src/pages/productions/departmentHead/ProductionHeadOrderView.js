@@ -27,10 +27,10 @@ import {
   primaryHexColor,
 } from '../../../constants/themeColors';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');

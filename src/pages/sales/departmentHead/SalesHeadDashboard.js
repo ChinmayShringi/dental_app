@@ -42,10 +42,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Body, Card, CardItem, Left, Right} from 'native-base';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
 import Carousel from 'react-native-snap-carousel';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 // BANER CAROUSEL
 const screenWidth = Dimensions.get('window').width;

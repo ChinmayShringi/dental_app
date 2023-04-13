@@ -23,7 +23,7 @@ import Api from '../../../provider/Api';
 import Dataprovider from '../../../provider/Dataprovider';
 
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
-import SkeletonContent from 'react-native-skeleton-content';
+import SkeletonContent from '../../../components/SkeletonContent';
 
 const screenWidth = Dimensions.get('window').width;
 

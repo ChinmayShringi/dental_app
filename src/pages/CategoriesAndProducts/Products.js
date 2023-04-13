@@ -20,10 +20,10 @@ import NoRecordsFound from '../../components/NoRecordsFound';
 import Api from '../../provider/Api';
 import Dataprovider from '../../provider/Dataprovider';
 
-// import {LinearGradient} from 'expo-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 
-import SkeletonContent from 'react-native-skeleton-content';
 import {skeletonPlaceholderProps} from '../../constants/defaultValues';
+import SkeletonContent from '../../components/SkeletonContent';
 
 const appScreenWidth = Dimensions.get('window');
 const cardWidth = (appScreenWidth.width - 38) / 2;
@@ -39,16 +39,18 @@ export default class Products extends Component {
 
   constructor(props) {
     super(props);
+    console.log(typeof this?.props?.navigation?.state?.params !== 'undefined' &&
+    typeof this?.props?.navigation?.state?.params?.categoryId !== 'undefined')
     this.state = {
       categoryId:
-        typeof this.props.navigation.state.params !== 'undefined' &&
-        typeof this.props.navigation.state.params.categoryId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.categoryId)
+        typeof this?.props?.navigation?.state?.params !== 'undefined' &&
+        typeof this?.props?.navigation?.state?.params?.categoryId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.categoryId)
           : 0,
       subCategoryId:
-        typeof this.props.navigation.state.params !== 'undefined' &&
-        typeof this.props.navigation.state.params.subCategoryId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.subCategoryId)
+        typeof this?.props?.navigation?.state?.params !== 'undefined' &&
+        typeof this?.props?.navigation?.state?.params?.subCategoryId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.subCategoryId)
           : 0,
       data: [],
       currentPage: 1,
@@ -154,10 +156,10 @@ export default class Products extends Component {
                 }}
                 resizeMode="cover"
               />
-              {/* <LinearGradient
+              <LinearGradient
                 colors={['rgba(0, 0.1, 0.1, 0.2)', 'transparent']}
                 style={styles.imageGradient}
-              /> */}
+              />
             </CardItem>
           </TouchableOpacity>
         </Card>
