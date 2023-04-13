@@ -51,7 +51,7 @@ function NavigationDrawerStructure(props: any) {
               flex: 1,
               justifyContent: 'flex-end',
               alignItems: 'flex-end',
-              paddingRight: 24,
+              paddingRight: 25,
             }}>
             <Image
               style={{resizeMode: 'contain', width: 150, height: 50}}
@@ -106,7 +106,7 @@ export const TabStack = () => {
         name="Dashboard"
         component={DashboardStack}
         options={{
-          tabBarLabel: 'Dashboard',
+          // tabBarLabel: 'Dashboard',
           tabBarIcon: ({color}) => (
             <View>
               <Icon name="dashboard" color={color} size={24} />
@@ -233,7 +233,7 @@ const CategoriesStack = () => {
           headerTitle: () => (
             <NavigationDrawerStructure
               navigation={navigation}
-              title="Home"
+              // title="Home"
               isShowDrawerToggleButton={true}
               isShowLogoInsteadOfTitle={true}
             />
@@ -317,7 +317,8 @@ function SignedInDrawer({initialRouteName}: any) {
         name="Home"
         component={HomeStack}
         options={{
-          title: 'Home',
+          headerShown: false,
+          // title: 'Home',
           drawerIcon: ({color}) => (
             <Icon style={[{color: color}]} name="layers" size={20} />
           ),
@@ -327,7 +328,7 @@ function SignedInDrawer({initialRouteName}: any) {
         name="Dashboard"
         component={TabStack}
         options={{
-          title: 'Dashboard',
+          headerShown: false,
           drawerIcon: ({color}) => (
             <Icon style={[{color: color}]} name="layers" size={20} />
           ),
@@ -337,7 +338,7 @@ function SignedInDrawer({initialRouteName}: any) {
         name="Categories"
         component={CategoriesStack}
         options={{
-          title: 'Categories',
+          headerShown: false,
           drawerIcon: ({color}) => (
             <Icon style={[{color: color}]} name="layers" size={20} />
           ),
@@ -347,7 +348,7 @@ function SignedInDrawer({initialRouteName}: any) {
         name="EditProfile"
         component={EditProfileStack}
         options={{
-          title: 'EditProfile',
+          headerShown: false,
           drawerIcon: ({color}) => (
             <Icon style={[{color: color}]} name="layers" size={20} />
           ),

@@ -34,7 +34,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 import {DeviceEventEmitter} from 'react-native';
 import moment from 'moment';
-import { RootNavigator } from './hello';
+import {RootNavigator} from './hello';
 // import { createRootNavigator } from './routes';
 
 var api = new Api();
@@ -53,12 +53,8 @@ export default function App() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const [Layout, setLayout] = useState(<div style={{display:'flex',backgroundColor: '#333'}}>100</div>);
-  const Layout = ()=> RootNavigator(
-    signedIn,
-    userType,
-    appUserType,
-    isDepartmentHead,
-  );
+  const Layout = () =>
+    RootNavigator(signedIn, userType, appUserType, isDepartmentHead);
   const hideSplashScreen = (isSetTimeout: any) => {
     if (isSetTimeout) {
       setTimeout(() => {
@@ -414,7 +410,7 @@ export default function App() {
     <Provider store={store}>
       <View style={{flex: 1}}>
         <View style={styles.container}>
-          <Layout/>
+          <Layout />
           <Modal
             isVisible={!isAppHasNetwork}
             onBackButtonPress={toggleNetworkModal}
