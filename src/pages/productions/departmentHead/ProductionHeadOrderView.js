@@ -48,8 +48,8 @@ export default class ProductionHeadOrderView extends Component {
       loading: true,
       refreshing: false,
       orderId:
-        typeof this.props.navigation.state.params.orderId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.orderId)
+        typeof this?.props?.navigation?.state?.params?.orderId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.orderId)
           : 0,
       order: null,
       orderdetails: [],

@@ -105,17 +105,17 @@ export default class ProductionAssignedJobDetails extends Component {
       refreshing: false,
       transparentLoader: false,
       productionProcessId:
-        typeof this.props.navigation.state.params.productionProcessId !==
+        typeof this?.props?.navigation?.state?.params?.productionProcessId !==
         'undefined'
-          ? parseInt(this.props.navigation.state.params.productionProcessId)
+          ? parseInt(this?.props?.navigation?.state?.params?.productionProcessId)
           : 0,
       orderDetailId:
-        typeof this.props.navigation.state.params.orderDetailId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.orderDetailId)
+        typeof this?.props?.navigation?.state?.params?.orderDetailId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.orderDetailId)
           : 0,
       isFromQrCode:
-        typeof this.props.navigation.state.params.isFromQrCode !== 'undefined'
-          ? this.props.navigation.state.params.isFromQrCode
+        typeof this?.props?.navigation?.state?.params?.isFromQrCode !== 'undefined'
+          ? this?.props?.navigation?.state?.params?.isFromQrCode
           : false,
       productionProcess: null,
       toothnumberarr: [],

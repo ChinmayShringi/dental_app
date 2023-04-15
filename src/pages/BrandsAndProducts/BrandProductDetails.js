@@ -51,9 +51,9 @@ export default class BrandProductDetails extends Component {
       loading: true,
       refreshing: false,
       brandProductId:
-        typeof this.props.navigation.state.params !== 'undefined' &&
-        typeof this.props.navigation.state.params.brandProductId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.brandProductId)
+        typeof this?.props?.navigation?.state?.params !== 'undefined' &&
+        typeof this?.props?.navigation?.state?.params?.brandProductId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.brandProductId)
           : 0,
       brandProduct: null,
       benefits: [],

@@ -41,7 +41,7 @@ export default class SupervisorViewOngoingJob extends Component {
     this.state = {
       loading: true,
       refreshing: false,
-      // orderDetailId: (typeof this.props.navigation.state.params.orderDetailId !== 'undefined') ? parseInt(this.props.navigation.state.params.orderDetailId) : 0,
+      // orderDetailId: (typeof this?.props?.navigation?.state?.params?.orderDetailId !== 'undefined') ? parseInt(this?.props?.navigation?.state?.params?.orderDetailId) : 0,
       orderDetailId:
         typeof this.props.navigation
           .dangerouslyGetParent()

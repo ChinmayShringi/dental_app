@@ -69,8 +69,8 @@ class ComplaintDetails extends Component {
     this.state = {
       loading: true,
       callLogId:
-        typeof this.props.navigation.state.params.callLogId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.callLogId)
+        typeof this?.props?.navigation?.state?.params?.callLogId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.callLogId)
           : 0,
       calllog: null,
       region: regionCoordinates,

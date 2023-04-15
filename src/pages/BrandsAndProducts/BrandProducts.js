@@ -41,9 +41,9 @@ export default class BrandProducts extends Component {
     super(props);
     this.state = {
       brandId:
-        typeof this.props.navigation.state.params !== 'undefined' &&
-        typeof this.props.navigation.state.params.brandId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.brandId)
+        typeof this?.props?.navigation?.state?.params !== 'undefined' &&
+        typeof this?.props?.navigation?.state?.params?.brandId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.brandId)
           : 0,
       data: [],
       currentPage: 1,

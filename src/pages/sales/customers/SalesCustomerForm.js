@@ -55,8 +55,8 @@ export default class SalesCustomerForm extends Component {
     this.state = {
       loading: true,
       customerId:
-        typeof this.props.navigation.state.params.customerId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.customerId)
+        typeof this?.props?.navigation?.state?.params?.customerId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.customerId)
           : 0,
       customer: null,
       types: [],

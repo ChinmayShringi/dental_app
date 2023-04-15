@@ -83,8 +83,8 @@ class SalesExpenseDetails extends Component {
       transparentLoader: false,
 
       expenseId:
-        typeof this.props.navigation.state.params.expenseId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.expenseId)
+        typeof this?.props?.navigation?.state?.params?.expenseId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.expenseId)
           : 0,
       expense: null,
       expenseImages: [],

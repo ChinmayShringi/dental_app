@@ -39,9 +39,9 @@ export default class LeaveApplicationForm extends Component {
     this.state = {
       loading: true,
       leaveApplicationId:
-        typeof this.props.navigation.state.params.leaveApplicationId !==
+        typeof this?.props?.navigation?.state?.params?.leaveApplicationId !==
         'undefined'
-          ? parseInt(this.props.navigation.state.params.leaveApplicationId)
+          ? parseInt(this?.props?.navigation?.state?.params?.leaveApplicationId)
           : 0,
       leaveApplication: null,
       types: [],

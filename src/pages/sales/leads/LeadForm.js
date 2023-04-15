@@ -38,8 +38,8 @@ class LeadForm extends Component {
     this.state = {
       loading: true,
       salesLeadId:
-        typeof this.props.navigation.state.params.salesLeadId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.salesLeadId)
+        typeof this?.props?.navigation?.state?.params?.salesLeadId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.salesLeadId)
           : 0,
       saleslead: null,
       types: [],

@@ -73,19 +73,19 @@ class Login extends Component {
           text: 'Ask Permission',
           onPress: () => {
             (async () => {
-              // const {status, permissions} = await Permissions.askAsync(
-              //   Permissions.LOCATION,
-              // );
-              // if (status === 'granted') {
-              //   // Start tracking user location
-              //   this.startTracking();
-              // } else {
-              //   // Restrict Login
-              //   this.makeUserLogout(
-              //     'Location Permission Required!',
-              //     'Please enable location permission to login in to the app.',
-              //   );
-              // }
+              const {status, permissions} = await Permissions.askAsync(
+                Permissions.LOCATION,
+              );
+              if (status === 'granted') {
+                // Start tracking user location
+                this.startTracking();
+              } else {
+                // Restrict Login
+                this.makeUserLogout(
+                  'Location Permission Required!',
+                  'Please enable location permission to login in to the app.',
+                );
+              }
             })();
           },
         },
@@ -95,96 +95,83 @@ class Login extends Component {
   };
 
   startTracking = async () => {
-    (async () => {
-      // const {status, permissions} = await Permissions.askAsync(
-      //   Permissions.LOCATION,
-      // );
-      // // Location permission granted
-      // if (status === 'granted') {
-      //   let checkGPSEnabled = {
-      //     alreadyEnabled: true,
-      //     enabled: true,
-      //     status: 'enabled',
-      //   };
-      //   if (Platform.OS === 'android') {
-      //     checkGPSEnabled =
-      //       await LocationServicesDialogBox.checkLocationServicesIsEnabled({
-      //         message:
-      //           '<h2>Use Location?</h2> \
-      //                                       This app wants to change your device settings:<br/><br/>\
-      //                                       Use GPS, Wi-Fi, and cell network for location<br/>',
-      //         ok: 'YES',
-      //         cancel: 'NO',
-      //         style: {},
-      //         enableHighAccuracy: true, // true => GPS AND NETWORK PROVIDER, false => GPS OR NETWORK PROVIDER
-      //         showDialog: true, // false => Opens the Location access page directly
-      //         openLocationServices: true, // false => Directly catch method is called if location services are turned off
-      //         preventOutSideTouch: true, // true => To prevent the location services window from closing when it is clicked outside
-      //         preventBackClick: true, // true => To prevent the location services popup from closing when it is clicked back button
-      //         providerListener: true, // true ==> Trigger locationProviderStatusChange listener when the location state changes
-      //       }).catch(error => error);
-      //   }
-      //   // GPS IS ENABLED
-      //   if (typeof checkGPSEnabled === 'object' && checkGPSEnabled.enabled) {
-      //     let timeInterval = 5000;
-      //     let distanceInterval = 10;
-      //     let deferredUpdatesInterval = 5000;
-      //     let deferredUpdatesDistance = 10;
-      //     if (this.state.locationTrackingOptions !== null) {
-      //       timeInterval = parseInt(
-      //         this.state.locationTrackingOptions.timeInterval,
-      //       );
-      //       distanceInterval = parseInt(
-      //         this.state.locationTrackingOptions.distanceInterval,
-      //       );
-      //       deferredUpdatesInterval = parseInt(
-      //         this.state.locationTrackingOptions.deferredUpdatesInterval,
-      //       );
-      //       deferredUpdatesDistance = parseInt(
-      //         this.state.locationTrackingOptions.deferredUpdatesDistance,
-      //       );
-      //     }
-      //     await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
-      //       accuracy: Location.Accuracy.BestForNavigation,
-      //       timeInterval: timeInterval,
-      //       // distanceInterval: distanceInterval,
-      //       // deferredUpdatesInterval: deferredUpdatesInterval,
-      //       // deferredUpdatesDistance: deferredUpdatesDistance,
-      //       showsBackgroundLocationIndicator: true,
-      //       foregroundService: {
-      //         notificationTitle: 'Location Tracker',
-      //         notificationBody:
-      //           'Your location is used to track your daily activities for the places you visit.',
-      //         // notificationColor: '#c62179'
-      //       },
-      //       // pausesUpdatesAutomatically: true,
-      //       // activityType: Location.ActivityType.AutomotiveNavigation
-      //     });
-      //     let isRegistered = await TaskManager.isTaskRegisteredAsync(
-      //       LOCATION_TASK_NAME,
-      //     );
-      //     if (isRegistered) {
-      //       this.props.navigation.navigate('SalesDashboard');
-      //     } else {
-      //       this.makeUserLogout(
-      //         'Some error occured!',
-      //         'Something went wrong with location tracking feature, Make sure all the setting are correct and try again.',
-      //       );
-      //     }
-      //   } else {
-      //     this.makeUserLogout(
-      //       'Please enable Location Services',
-      //       'You currently have all Location Services for this device or application disabled. Please enable them in Settings.',
-      //     );
-      //   }
-      // }
-      // // Location permission denied
-      // else {
-      //   this.showLocationPermissionDeniedModal();
-      // }
-    })();
-  };
+    try {
+      const {status} = await Permissions.askAsync(Permissions.LOCATION);
 
+      if (status !== 'granted') {
+        this.showLocationPermissionDeniedModal();
+        return;
+      }
+
+      let checkGPSEnabled = {
+        alreadyEnabled: true,
+        enabled: true,
+        status: 'enabled',
+      };
+
+      if (Platform.OS === 'android') {
+        checkGPSEnabled =
+          await LocationServicesDialogBox.checkLocationServicesIsEnabled({
+            message:
+              '<h2>Use Location?</h2> \
+            This app wants to change your device settings:<br/><br/>\
+            Use GPS, Wi-Fi, and cell network for location<br/>',
+            ok: 'YES',
+            cancel: 'NO',
+            style: {},
+            enableHighAccuracy: true,
+            showDialog: true,
+            openLocationServices: true,
+            preventOutSideTouch: true,
+            preventBackClick: true,
+            providerListener: true,
+          }).catch(error => error);
+      }
+
+      if (typeof checkGPSEnabled === 'object' && checkGPSEnabled.enabled) {
+        const {
+          timeInterval,
+          distanceInterval,
+          deferredUpdatesInterval,
+          deferredUpdatesDistance,
+        } = this.state.locationTrackingOptions || {};
+
+        await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
+          accuracy: Location.Accuracy.BestForNavigation,
+          timeInterval: timeInterval || 5000,
+          distanceInterval: distanceInterval || 10,
+          deferredUpdatesInterval: deferredUpdatesInterval || 5000,
+          deferredUpdatesDistance: deferredUpdatesDistance || 10,
+          showsBackgroundLocationIndicator: true,
+          foregroundService: {
+            notificationTitle: 'Location Tracker',
+            notificationBody:
+              'Your location is used to track your daily activities for the places you visit.',
+          },
+        });
+
+        const isRegistered = await TaskManager.isTaskRegisteredAsync(
+          LOCATION_TASK_NAME,
+        );
+
+        if (isRegistered) {
+          this.props.navigation.navigate('SalesDashboard');
+        } else {
+          this.makeUserLogout(
+            'Some error occurred!',
+            'Something went wrong with location tracking feature. Make sure all the settings are correct and try again.',
+          );
+        }
+      } else {
+        this.makeUserLogout(
+          'Please enable Location Services',
+          'You currently have all Location Services for this device or application disabled. Please enable them in Settings.',
+        );
+      }
+    } catch (error) {
+      console.error('Error starting location tracking:', error);
+    }
+  };
   makeUserLogout = (title, description) => {
     dataProvider.deleteData('user').then(() => {
       this.props.onUserUpdate(null);
@@ -248,97 +235,92 @@ class Login extends Component {
 
             this.setState({locationTrackingOptions: locationTrackingOptions});
 
-            // dataProvider.saveData('user', loggedInUser).then(()=>{
-            //     dataProvider.saveData('token', access_token).then(()=>{
-            //         this.props.onUserUpdate(loggedInUser);
-            //         this.props.onNotificationUpdateCount(parseInt(notificationcount));
-
-            //         // Customer
-            //         if(loggedInUser.usertype === 4 || loggedInUser.usertype === "4") {
-
-            //             this.props.navigation.navigate('CustomerDashboard');
-            //         }
-            //         // Users
-            //         else {
-
-            //             // Admin QC User
-            //             if(loggedInUser.appusertype == 1) {
-
-            //                 // Head of the Department
-            //                 if(loggedInUser.isdepartmenthead) {
-            //                     this.props.navigation.navigate('AdminQCHeadDashboard');
-            //                 }
-            //                 // Common Admin QC User
-            //                 else {
-            //                     this.props.navigation.navigate('AdminQCDashboard');
-            //                 }
-            //             }
-            //             // Packaging User
-            //             else if(loggedInUser.appusertype == 2) {
-
-            //                 // Head of the Department
-            //                 if(loggedInUser.isdepartmenthead) {
-            //                     this.props.navigation.navigate('PackagingHeadDashboard');
-            //                 }
-            //                 // Common Packaging User
-            //                 else {
-            //                     this.props.navigation.navigate('PackagingDashboard');
-            //                 }
-            //             }
-            //             // Reception User
-            //             else if(loggedInUser.appusertype == 3) {
-
-            //                 // Head of the Department
-            //                 if(loggedInUser.isdepartmenthead) {
-            //                     this.props.navigation.navigate('ProductionHeadDashboard');
-            //                 }
-            //                 // Common Production User
-            //                 else {
-            //                     this.props.navigation.navigate('ProductionDashboard');
-            //                 }
-            //             }
-            //             // Reception User
-            //             else if(loggedInUser.appusertype == 4) {
-
-            //                 // Head of the Department
-            //                 if(loggedInUser.isdepartmenthead) {
-            //                     this.props.navigation.navigate('ReceptionDashboard');
-            //                 }
-            //                 // Common Receptionists
-            //                 else {
-            //                     this.props.navigation.navigate('ReceptionDashboard');
-            //                 }
-            //             }
-            //             // Sales User
-            //             else if(loggedInUser.appusertype === 5) {
-
-            //                 // Head of the Department
-            //                 if(loggedInUser.isdepartmenthead) {
-            //                     this.props.navigation.navigate('SalesHeadDashboard');
-            //                 }
-            //                 // Common Sales Person
-            //                 else {
-            //                     this.startTracking();
-            //                 }
-            //             }
-            //             // Supervisor User
-            //             else if(loggedInUser.appusertype == 6) {
-
-            //                 // Head of the Department
-            //                 if(loggedInUser.isdepartmenthead) {
-            //                     this.props.navigation.navigate('SupervisorDashboard');
-            //                 }
-            //                 // Common Supervisor
-            //                 else {
-            //                     this.props.navigation.navigate('SupervisorDashboard');
-            //                 }
-            //             }
-            //             else {
-            //                 this.props.navigation.navigate('Home');
-            //             }
-            //         }
-            //     });
-            // });
+            dataProvider.saveData('user', loggedInUser).then(() => {
+              dataProvider.saveData('token', access_token).then(() => {
+                this.props.onUserUpdate(loggedInUser);
+                this.props.onNotificationUpdateCount(
+                  parseInt(notificationcount),
+                );
+                // Customer
+                if (
+                  loggedInUser.usertype === 4 ||
+                  loggedInUser.usertype === '4'
+                ) {
+                  this.props.navigation.navigate('CustomerDashboard');
+                }
+                // Users
+                else {
+                  // Admin QC User
+                  if (loggedInUser.appusertype == 1) {
+                    // Head of the Department
+                    if (loggedInUser.isdepartmenthead) {
+                      this.props.navigation.navigate('AdminQCHeadDashboard');
+                    }
+                    // Common Admin QC User
+                    else {
+                      this.props.navigation.navigate('AdminQCDashboard');
+                    }
+                  }
+                  // Packaging User
+                  else if (loggedInUser.appusertype == 2) {
+                    // Head of the Department
+                    if (loggedInUser.isdepartmenthead) {
+                      this.props.navigation.navigate('PackagingHeadDashboard');
+                    }
+                    // Common Packaging User
+                    else {
+                      this.props.navigation.navigate('PackagingDashboard');
+                    }
+                  }
+                  // Reception User
+                  else if (loggedInUser.appusertype == 3) {
+                    // Head of the Department
+                    if (loggedInUser.isdepartmenthead) {
+                      this.props.navigation.navigate('ProductionHeadDashboard');
+                    }
+                    // Common Production User
+                    else {
+                      this.props.navigation.navigate('ProductionDashboard');
+                    }
+                  }
+                  // Reception User
+                  else if (loggedInUser.appusertype == 4) {
+                    // Head of the Department
+                    if (loggedInUser.isdepartmenthead) {
+                      this.props.navigation.navigate('ReceptionDashboard');
+                    }
+                    // Common Receptionists
+                    else {
+                      this.props.navigation.navigate('ReceptionDashboard');
+                    }
+                  }
+                  // Sales User
+                  else if (loggedInUser.appusertype === 5) {
+                    // Head of the Department
+                    if (loggedInUser.isdepartmenthead) {
+                      this.props.navigation.navigate('SalesHeadDashboard');
+                    }
+                    // Common Sales Person
+                    else {
+                      this.startTracking();
+                    }
+                  }
+                  // Supervisor User
+                  else if (loggedInUser.appusertype == 6) {
+                    // Head of the Department
+                    if (loggedInUser.isdepartmenthead) {
+                      this.props.navigation.navigate('SupervisorDashboard');
+                    }
+                    // Common Supervisor
+                    else {
+                      this.props.navigation.navigate('SupervisorDashboard');
+                    }
+                  } else {
+                    this.props.navigation.navigate('Home');
+                  }
+                }
+              });
+            });
 
             dataProvider.saveData('user', loggedInUser).then(() => {
               dataProvider.saveData('token', access_token).then(() => {
@@ -358,138 +340,100 @@ class Login extends Component {
                 // Users
                 else {
                   (async () => {
-                    // this.setState({loading: false});
-                    // let {status} = await Location.requestPermissionsAsync();
-                    // if (status === 'granted') {
-                    //   this.setState({loading: true});
-                    //   let location = await Location.getCurrentPositionAsync({});
-                    //   let latitude = location.coords.latitude;
-                    //   let longitude = location.coords.longitude;
-                    //   let accuracy = location.coords.accuracy;
-                    //   const formData = new FormData();
-                    //   formData.append('latitude', latitude);
-                    //   formData.append('longitude', longitude);
-                    //   formData.append('accuracy', accuracy);
-                    //   let options = {
-                    //     api: 'v_1/attendances/checkin',
-                    //     method: 'POST',
-                    //     headers: {
-                    //       Accept: 'application/json',
-                    //       'Content-Type': 'multipart/form-data',
-                    //     },
-                    //     data: formData,
-                    //     refreshOn401: true,
-                    //   };
-                    //   api.callPostApi(options).then(data => {
-                    //     this.setState({loading: false});
-                    //     if (data.status_code === 200) {
-                    //       // Admin QC User
-                    //       if (loggedInUser.appusertype === 1) {
-                    //         // Head of the Department
-                    //         if (loggedInUser.isdepartmenthead) {
-                    //           this.props.navigation.navigate(
-                    //             'AdminQCHeadDashboard',
-                    //           );
-                    //         }
-                    //         // Common Admin QC User
-                    //         else {
-                    //           this.props.navigation.navigate(
-                    //             'AdminQCDashboard',
-                    //           );
-                    //         }
-                    //       }
-                    //       // Packaging User
-                    //       else if (loggedInUser.appusertype === 2) {
-                    //         // Head of the Department
-                    //         if (loggedInUser.isdepartmenthead) {
-                    //           this.props.navigation.navigate(
-                    //             'PackagingHeadDashboard',
-                    //           );
-                    //         }
-                    //         // Common Packaging User
-                    //         else {
-                    //           this.props.navigation.navigate(
-                    //             'PackagingDashboard',
-                    //           );
-                    //         }
-                    //       }
-                    //       // Reception User
-                    //       else if (loggedInUser.appusertype === 3) {
-                    //         // Head of the Department
-                    //         if (loggedInUser.isdepartmenthead) {
-                    //           this.props.navigation.navigate(
-                    //             'ProductionHeadDashboard',
-                    //           );
-                    //         }
-                    //         // Common Production User
-                    //         else {
-                    //           this.props.navigation.navigate(
-                    //             'ProductionDashboard',
-                    //           );
-                    //         }
-                    //       }
-                    //       // Reception User
-                    //       else if (loggedInUser.appusertype === 4) {
-                    //         // Head of the Department
-                    //         if (loggedInUser.isdepartmenthead) {
-                    //           this.props.navigation.navigate(
-                    //             'ReceptionDashboard',
-                    //           );
-                    //         }
-                    //         // Common Receptionists
-                    //         else {
-                    //           this.props.navigation.navigate(
-                    //             'ReceptionDashboard',
-                    //           );
-                    //         }
-                    //       }
-                    //       // Sales User
-                    //       else if (loggedInUser.appusertype === 5) {
-                    //         // Head of the Department
-                    //         if (loggedInUser.isdepartmenthead) {
-                    //           this.props.navigation.navigate(
-                    //             'SalesHeadDashboard',
-                    //           );
-                    //         }
-                    //         // Common Sales Person
-                    //         else {
-                    //           this.startTracking();
-                    //         }
-                    //       }
-                    //       // Supervisor User
-                    //       else if (loggedInUser.appusertype === 6) {
-                    //         // Head of the Department
-                    //         if (loggedInUser.isdepartmenthead) {
-                    //           this.props.navigation.navigate(
-                    //             'SupervisorDashboard',
-                    //           );
-                    //         }
-                    //         // Common Supervisor
-                    //         else {
-                    //           this.props.navigation.navigate(
-                    //             'SupervisorDashboard',
-                    //           );
-                    //         }
-                    //       } else {
-                    //         this.props.navigation.navigate('Home');
-                    //       }
-                    //     } else {
-                    //       let errormessage = null;
-                    //       if (
-                    //         typeof data.status_code !== 'undefined' &&
-                    //         data.status_code === 422
-                    //       ) {
-                    //         errormessage = data.response.data.message;
-                    //       }
-                    //       api.showErrorMessage(
-                    //         data.response.message,
-                    //         errormessage,
-                    //       );
-                    //     }
-                    //   });
-                    // } else {
-                    //   this.showLocationPermissionDeniedModal();
-                    // }
+                    this.setState({loading: true});
+                    try {
+                      const {status} = await Location.requestPermissionsAsync();
+
+                      if (status !== 'granted') {
+                        this.showLocationPermissionDeniedModal();
+                        return;
+                      }
+
+                      const {coords} = await Location.getCurrentPositionAsync();
+                      const {latitude, longitude, accuracy} = coords;
+
+                      const formData = new FormData();
+                      formData.append('latitude', latitude);
+                      formData.append('longitude', longitude);
+                      formData.append('accuracy', accuracy);
+
+                      const options = {
+                        api: 'v_1/attendances/checkin',
+                        method: 'POST',
+                        headers: {
+                          Accept: 'application/json',
+                          'Content-Type': 'multipart/form-data',
+                        },
+                        data: formData,
+                        refreshOn401: true,
+                      };
+
+                      const {data} = await api.callPostApi(options);
+
+                      if (data.status_code === 200) {
+                        let screenName = 'Home';
+
+                        switch (loggedInUser.appusertype) {
+                          case 1: // Admin QC User
+                            screenName = loggedInUser.isdepartmenthead
+                              ? 'AdminQCHeadDashboard'
+                              : 'AdminQCDashboard';
+                            break;
+                          case 2: // Packaging User
+                            screenName = loggedInUser.isdepartmenthead
+                              ? 'PackagingHeadDashboard'
+                              : 'PackagingDashboard';
+                            break;
+                          case 3: // Production User
+                            screenName = loggedInUser.isdepartmenthead
+                              ? 'ProductionHeadDashboard'
+                              : 'ProductionDashboard';
+                            break;
+                          case 4: // Reception User
+                            screenName = loggedInUser.isdepartmenthead
+                              ? 'ReceptionDashboard'
+                              : 'ReceptionDashboard';
+                            break;
+                          case 5: // Sales User
+                            screenName = loggedInUser.isdepartmenthead
+                              ? 'SalesHeadDashboard'
+                              : 'SalesDashboard';
+                            break;
+                          case 6: // Supervisor User
+                            screenName = loggedInUser.isdepartmenthead
+                              ? 'SupervisorDashboard'
+                              : 'SupervisorDashboard';
+                            break;
+                        }
+
+                        if (
+                          loggedInUser.appusertype === 5 &&
+                          !loggedInUser.isdepartmenthead
+                        ) {
+                          this.startTracking();
+                        } else {
+                          this.props.navigation.navigate(screenName);
+                        }
+                      } else {
+                        const errorMessage =
+                          data.status_code === 422
+                            ? data.response.data.message
+                            : null;
+
+                        api.showErrorMessage(
+                          data.response.message,
+                          errorMessage,
+                        );
+                      }
+                    } catch (error) {
+                      console.error('Error during checkin:', error);
+                      api.showErrorMessage(
+                        'Error during checkin',
+                        error.message,
+                      );
+                    } finally {
+                      this.setState({loading: false});
+                    }
                   })();
                 }
               });
@@ -529,18 +473,18 @@ class Login extends Component {
           text: 'Ask Permission',
           onPress: () => {
             (async () => {
-              // const {status, permissions} = await Permissions.askAsync(
-              //   Permissions.LOCATION,
-              // );
-              // dataProvider.deleteData('user').then(() => {
-              //   this.props.onUserUpdate(null);
-              //   dataProvider.deleteData('token').then(() => {});
-              // });
-              // if (status === 'granted') {
-              // } else {
-              //   // Restrict to put attendance
-              //   this.showUnableToAccessLocationErrorMessage();
-              // }
+              const {status, permissions} = await Permissions.askAsync(
+                Permissions.LOCATION,
+              );
+              dataProvider.deleteData('user').then(() => {
+                this.props.onUserUpdate(null);
+                dataProvider.deleteData('token').then(() => {});
+              });
+              if (status === 'granted') {
+              } else {
+                // Restrict to put attendance
+                this.showUnableToAccessLocationErrorMessage();
+              }
             })();
           },
         },
@@ -679,16 +623,15 @@ class Login extends Component {
                     onPress={() => {
                       this.props.navigation.navigate('ForgotPassword');
                     }}>
-                    <Text
-                      style={[
-                        {
+                    <Text style={[{
                           fontSize: 12,
                           textAlign: 'center',
                           marginTop: 8,
                           marginBottom: 8,
-                          color: 'textMutedColor',
-                        },
-                      ]}>
+                          // color: 'textMutedColor',
+                        }
+                      ]}
+                      >
                       Forgot your password?
                       <Text style={[common.linkText]}>&nbsp;Reset Now</Text>
                     </Text>

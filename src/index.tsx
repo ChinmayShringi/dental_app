@@ -18,9 +18,9 @@ import NoNetwork from './components/NoNetwork';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import allReducers from './redux/stores/stores';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const store = createStore(allReducers);
-import {NavigationContainer} from '@react-navigation/native';
 import NetInfo from '@react-native-community/netinfo';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -419,12 +419,12 @@ export default function App() {
             animationInTiming={500}
             animationOutTiming={500}>
             <View style={styles.modalBody}>
-              {/* <MaterialIcons
+              <Icon
                   name="close"
                   size={28}
                   style={styles.closeButton}
-                  onPress={this.toggleNetworkModal}
-                /> */}
+                  onPress={toggleNetworkModal}
+                />
               <View style={styles.bodyContent}>
                 <NoNetwork />
               </View>

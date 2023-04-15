@@ -73,8 +73,8 @@ export default class SupervisorRework extends Component {
       refreshing: false,
       transparentLoader: false,
       orderDetailId:
-        typeof this.props.navigation.state.params.orderDetailId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.orderDetailId)
+        typeof this?.props?.navigation?.state?.params?.orderDetailId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.orderDetailId)
           : 0,
       orderdetail: null,
       toothnumberarr: [],

@@ -44,13 +44,13 @@ export default class ProductionEmployeeAssignedJob extends Component {
       refreshing: false,
       transparentLoader: false,
       productionProcessId:
-        typeof this.props.navigation.state.params.productionProcessId !==
+        typeof this?.props?.navigation?.state?.params?.productionProcessId !==
         'undefined'
-          ? parseInt(this.props.navigation.state.params.productionProcessId)
+          ? parseInt(this?.props?.navigation?.state?.params?.productionProcessId)
           : 0,
       userId:
-        typeof this.props.navigation.state.params.userId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.userId)
+        typeof this?.props?.navigation?.state?.params?.userId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.userId)
           : 0,
       productionProcess: null,
       toothnumberarr: [],

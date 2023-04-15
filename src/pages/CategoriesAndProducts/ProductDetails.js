@@ -46,9 +46,9 @@ export default class ProductDetails extends Component {
       loading: true,
       refreshing: false,
       productId:
-        typeof this.props.navigation.state.params !== 'undefined' &&
-        typeof this.props.navigation.state.params.productId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.productId)
+        typeof this?.props?.navigation?.state?.params !== 'undefined' &&
+        typeof this?.props?.navigation?.state?.params?.productId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.productId)
           : 0,
       product: null,
       productImages: [],

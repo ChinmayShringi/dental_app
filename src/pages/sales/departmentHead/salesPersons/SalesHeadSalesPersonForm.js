@@ -64,8 +64,8 @@ class SalesHeadSalesPersonForm extends Component {
     super(props);
     this.state = {
       userId:
-        typeof this.props.navigation.state.params.userId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.userId)
+        typeof this?.props?.navigation?.state?.params?.userId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.userId)
           : 0,
       user: null,
       countries: [],

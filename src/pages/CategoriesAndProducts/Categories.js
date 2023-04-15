@@ -58,9 +58,9 @@ export default class Categories extends Component {
     super(props);
     this.state = {
       parentId:
-        typeof this.props.navigation.state.params !== 'undefined' &&
-        typeof this.props.navigation.state.params.parentId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.parentId)
+        typeof this?.props?.navigation?.state?.params !== 'undefined' &&
+        typeof this?.props?.navigation?.state?.params?.parentId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.parentId)
           : 0,
       data: [],
       isDataRefreshing: false,

@@ -71,9 +71,9 @@ export default class EmployeeLeaveApplicationDetails extends Component {
       refreshing: false,
       transparentLoader: false,
       leaveApplicationId:
-        typeof this.props.navigation.state.params.leaveApplicationId !==
+        typeof this?.props?.navigation?.state?.params?.leaveApplicationId !==
         'undefined'
-          ? parseInt(this.props.navigation.state.params.leaveApplicationId)
+          ? parseInt(this?.props?.navigation?.state?.params?.leaveApplicationId)
           : 0,
       leaveApplication: null,
 

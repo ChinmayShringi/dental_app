@@ -105,8 +105,8 @@ export default class ReceptionOrderForm extends Component {
       loading: true,
       activeCarouselIndex: 0,
       orderId:
-        typeof this.props.navigation.state.params.orderId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.orderId)
+        typeof this?.props?.navigation?.state?.params?.orderId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.orderId)
           : 0,
       order: null,
       orderimages: [],

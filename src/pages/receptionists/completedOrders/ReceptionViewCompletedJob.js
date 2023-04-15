@@ -41,8 +41,8 @@ export default class ReceptionViewCompletedJob extends Component {
       loading: true,
       refreshing: false,
       orderDetailId:
-        typeof this.props.navigation.state.params.orderDetailId !== 'undefined'
-          ? parseInt(this.props.navigation.state.params.orderDetailId)
+        typeof this?.props?.navigation?.state?.params?.orderDetailId !== 'undefined'
+          ? parseInt(this?.props?.navigation?.state?.params?.orderDetailId)
           : 0,
       orderdetail: null,
       toothnumberarr: [],
