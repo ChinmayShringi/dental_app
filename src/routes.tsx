@@ -1770,7 +1770,6 @@ export const AdminQCLeadsStack = createStackNavigator({
 
 export const AdminQCHeadUserRoutes = createDrawerNavigator(
   {
-    
     MyAccounts: {
       screen: MyAccountsStack,
       navigationOptions: {
