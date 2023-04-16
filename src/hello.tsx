@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useTheme} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
@@ -86,7 +86,90 @@ import ProductionEmployees from './pages/productions/departmentHead/productionEm
 import ProductionEmployeeAssignedJob from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeAssignedJob';
 import ProductionEmployeeDetails from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeDetails';
 import ProductionEmployeeAssignedJobs from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeAssignedJobs';
-
+import ProductionDashboard from './pages/productions/ProductionDashboard';
+import ReceptionDashboard from './pages/receptionists/ReceptionDashboard';
+import QrCodeScannerDemo from './pages/QrCodeScannerDemo';
+import Brands from './pages/BrandsAndProducts/Brands';
+import BrandProducts from './pages/BrandsAndProducts/BrandProducts';
+import BrandProductDetails from './pages/BrandsAndProducts/BrandProductDetails';
+import ReceptionCustomers from './pages/receptionists/customers/ReceptionCustomers';
+import ReceptionCustomerDetails from './pages/receptionists/customers/ReceptionCustomerDetails';
+import ReceptionCustomerForm from './pages/receptionists/customers/ReceptionCustomerForm';
+import ReceptionCollectionCalls from './pages/receptionists/collectionCalls/ReceptionCollectionCalls';
+import ReceptionCollectionCallDetails from './pages/receptionists/collectionCalls/ReceptionCollectionCallDetails';
+import ReceptionCollectionCallForm from './pages/receptionists/collectionCalls/ReceptionCollectionCallForm';
+import ReceptionDeliveryCalls from './pages/receptionists/deliveryCalls/ReceptionDeliveryCalls';
+import ReceptionDeliveryCallDetails from './pages/receptionists/deliveryCalls/ReceptionDeliveryCallDetails';
+import ReceptionDeliveryCallForm from './pages/receptionists/deliveryCalls/ReceptionDeliveryCallForm';
+import ReceptionComplaints from './pages/receptionists/complaints/ReceptionComplaints';
+import ReceptionComplaintDetails from './pages/receptionists/complaints/ReceptionComplaintDetails';
+import ReceptionComplaintForm from './pages/receptionists/complaints/ReceptionComplaintForm';
+import ReceptionOrders from './pages/receptionists/orders/ReceptionOrders';
+import ReceptionOrderForm from './pages/receptionists/orders/ReceptionOrderForm';
+import ReceptionViewJob from './pages/receptionists/orders/ReceptionViewJob';
+import ReceptionViewOrder from './pages/receptionists/orders/ReceptionViewOrder';
+import ReceptionViewOrderDetails from './pages/receptionists/orders/ReceptionViewOrderDetails';
+import ReceptionCompletedOrders from './pages/receptionists/completedOrders/ReceptionCompletedOrders';
+import ReceptionViewCompletedJob from './pages/receptionists/completedOrders/ReceptionViewCompletedJob';
+import ReceptionViewCompletedOrder from './pages/receptionists/completedOrders/ReceptionViewCompletedOrder';
+import ReceptionViewCompletedOrderDetails from './pages/receptionists/completedOrders/ReceptionViewCompletedOrderDetails';
+import ReceptionCompletedJobs from './pages/receptionists/completedJobs/ReceptionCompletedJobs';
+import ReceptionCompletedJob from './pages/receptionists/completedJobs/ReceptionCompletedJob';
+import ReceptionRejectedJobs from './pages/receptionists/rejectedJobs/ReceptionRejectedJobs';
+import ReceptionRejectedJob from './pages/receptionists/rejectedJobs/ReceptionRejectedJob';
+import SalesDashboard from './pages/sales/SalesDashboard';
+import SalesCustomers from './pages/sales/customers/SalesCustomers';
+import SalesCustomerDetails from './pages/sales/customers/SalesCustomerDetails';
+import SalesCustomerForm from './pages/sales/customers/SalesCustomerForm';
+import CollectionCalls from './pages/sales/calllogs/CollectionCalls';
+import CollectionCallDetails from './pages/sales/calllogs/CollectionCallDetails';
+import CollectionCallForm from './pages/sales/calllogs/CollectionCallForm';
+import DeliveryCalls from './pages/sales/calllogs/DeliveryCalls';
+import DeliveryCallDetails from './pages/sales/calllogs/DeliveryCallDetails';
+import DeliveryCallForm from './pages/sales/calllogs/DeliveryCallForm';
+import Complaints from './pages/sales/calllogs/Complaints';
+import ComplaintDetails from './pages/sales/calllogs/ComplaintDetails';
+import ComplaintForm from './pages/sales/calllogs/ComplaintForm';
+import Leads from './pages/sales/leads/Leads';
+import LeadForm from './pages/sales/leads/LeadForm';
+import LeadDetails from './pages/sales/leads/LeadDetails';
+import LeadInteractions from './pages/sales/leads/LeadInteractions';
+import LeadMessages from './pages/sales/leads/LeadMessages';
+import SalesExpenses from './pages/sales/expenses/SalesExpenses';
+import SalesExpenseDetails from './pages/sales/expenses/SalesExpenseDetails';
+import SalesExpenseForm from './pages/sales/expenses/SalesExpenseForm';
+import SalesHeadDashboard from './pages/sales/departmentHead/SalesHeadDashboard';
+import SalesHeadSalesPersons from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersons';
+import SalesHeadSalesPersonForm from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersonForm';
+import SalesHeadSalesPersonDetails from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersonDetails';
+import SupervisorDashboard from './pages/supervisors/SupervisorDashboard';
+import SupervisorScanQrCodeOrSearchUsingJobId from './pages/supervisors/jobs/SupervisorScanQrCodeOrSearchUsingJobId';
+import SupervisorJobs from './pages/supervisors/jobs/SupervisorJobs';
+import SupervisorViewJob from './pages/supervisors/jobs/SupervisorViewJob';
+import SupervisorCustomerDetails from './pages/supervisors/customers/SupervisorCustomerDetails';
+import SupervisorViewOrder from './pages/supervisors/orders/SupervisorViewOrder';
+import SupervisorViewOrderDetails from './pages/supervisors/orders/SupervisorViewOrderDetails';
+import SupervisorReworks from './pages/supervisors/reworks/SupervisorReworks';
+import SupervisorRework from './pages/supervisors/reworks/SupervisorRework';
+import SupervisorReopens from './pages/supervisors/reopens/SupervisorReopens';
+import SupervisorReopen from './pages/supervisors/reopens/SupervisorReopen';
+import SupervisorOngoingJobs from './pages/supervisors/ongoingjobs/SupervisorOngoingJobs';
+import SupervisorViewOngoingJob from './pages/supervisors/ongoingjobs/SupervisorViewOngoingJob';
+import SupervisorOngoingJobProgress from './pages/supervisors/ongoingjobs/SupervisorOngoingJobProgress';
+import CustomerDashboard from './pages/customers/CustomerDashboard';
+import CustomerCollectionCalls from './pages/customers/collectionCalls/CustomerCollectionCalls';
+import CustomerCollectionCallForm from './pages/customers/collectionCalls/CustomerCollectionCallForm';
+import CustomerOrders from './pages/customers/orders/CustomerOrders';
+import CustomerViewJob from './pages/customers/orders/CustomerViewJob';
+import CustomerViewOrder from './pages/customers/orders/CustomerViewOrder';
+import CustomerOrderUploadImages from './pages/customers/orders/CustomerOrderUploadImages';
+import CustomerViewOrderDetails from './pages/customers/orders/CustomerViewOrderDetails';
+import CustomerComplaints from './pages/customers/complaints/CustomerComplaints';
+import CustomerComplaintForm from './pages/customers/complaints/CustomerComplaintForm';
+import CustomerMyAccounts from './pages/customers/profile/CustomerMyAccounts';
+import CustomerViewProfile from './pages/customers/profile/CustomerViewProfile';
+import CustomerChangePassword from './pages/customers/profile/CustomerChangePassword';
+import PackagingDashboard from './pages/packagings/PackagingDashboard';
 /*==========================================================================================
 ==================================== ADMIN QC PAGES END =======================================
 ============================================================================================*/
@@ -264,6 +347,7 @@ export const TabStack = () => {
         component={DashboardStack}
         options={{
           // tabBarLabel: 'Dashboard',
+
           tabBarIcon: ({color}) => (
             <View>
               <Icon name="dashboard" color={color} size={24} />
@@ -739,6 +823,28 @@ function ProductionScanQrCodeForAssignedJobStack() {
     </Stack.Navigator>
   );
 }
+function ProductionDashboardStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ProductionDashboard"
+        component={ProductionDashboard}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Dashboard"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function ProductionAssignedJobsStack() {
   return (
     <Stack.Navigator>
@@ -1361,6 +1467,2019 @@ export const ProductionEmployeesStack = () => {
   );
 };
 
+function ReceptionDashboardStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ReceptionDashboard"
+        component={ReceptionDashboard}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Dashboard"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="QrCodeScannerDemo"
+        component={QrCodeScannerDemo}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Qr Code Scanner"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export const BrandsStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Brands"
+        component={Brands}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Brands"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSearchButton
+              onPress={() => navigation?.state?.params?.toggleSearch()}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="BrandProducts"
+        component={BrandProducts}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="BrandProductDetails"
+        component={BrandProductDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
+function ReceptionCustomersStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ReceptionCustomers"
+        component={ReceptionCustomers}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Customers"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCustomerDetails"
+        component={ReceptionCustomerDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCustomerForm"
+        component={ReceptionCustomerForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={navigation?.route?.params?.handleSave}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ReceptionCollectionCallsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ReceptionCollectionCalls"
+        component={ReceptionCollectionCalls}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Pickup Request"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCollectionCallDetails"
+        component={ReceptionCollectionCallDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCollectionCallForm"
+        component={ReceptionCollectionCallForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={() => navigation?.route?.params?.handleSave()}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export const ReceptionDeliveryCallsStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ReceptionDeliveryCalls"
+        component={ReceptionDeliveryCalls}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Delivery Calls"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionDeliveryCallDetails"
+        component={ReceptionDeliveryCallDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionDeliveryCallForm"
+        component={ReceptionDeliveryCallForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={navigation?.route?.params?.handleSave}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
+function ReceptionComplaintsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ReceptionComplaints"
+        component={ReceptionComplaints}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Complaints"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionComplaintDetails"
+        component={ReceptionComplaintDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionComplaintForm"
+        component={ReceptionComplaintForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={() => navigation?.route.params?.handleSave()}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+export const ReceptionViewOrderDetailsTabStack = () => {
+  const {colors} = useTheme();
+
+  return (
+    <Tab.Navigator
+      initialRouteName="ReceptionViewOrder"
+      // activeColor={colors.tabActiveColor}
+      // inactiveColor={colors.tabInactiveColor}
+      // barStyle={{ backgroundColor: colors.tabBarBgColor }}
+    >
+      <Tab.Screen
+        name="ReceptionViewOrder"
+        component={ReceptionViewOrder}
+        options={{
+          tabBarLabel: 'Order',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon style={{color}} name="wpforms" size={20} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ReceptionViewOrderDetails"
+        component={ReceptionViewOrderDetails}
+        options={{
+          tabBarLabel: 'Job Details',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon style={{color}} name="cubes" size={20} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+function ReceptionOrdersStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ReceptionOrders"
+        component={ReceptionOrders}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Orders"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionOrderForm"
+        component={ReceptionOrderForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={() => navigation?.route?.params?.handleSave()}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCustomerDetails"
+        component={ReceptionCustomerDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionViewOrder"
+        component={ReceptionViewOrderDetailsTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Order"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionViewJob"
+        component={ReceptionViewJob}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Job Details"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ReceptionViewCompletedOrderDetailsTabStack() {
+  return (
+    <Tab.Navigator
+      initialRouteName="ReceptionViewCompletedOrder"
+      // activeColor={tabColors.activeColor}
+      // inactiveColor={tabColors.inactiveColor}
+      // barStyle={{ backgroundColor: tabColors.barBgColor }}
+    >
+      <Tab.Screen
+        name="ReceptionViewCompletedOrder"
+        component={ReceptionViewCompletedOrder}
+        options={{
+          tabBarLabel: 'Order',
+          tabBarIcon: ({color}: any) => (
+            <View>
+              <Icon name="wpforms" size={20} color={color} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ReceptionViewCompletedOrderDetails"
+        component={ReceptionViewCompletedOrderDetails}
+        options={{
+          tabBarLabel: 'Job Details',
+          tabBarIcon: ({color}: any) => (
+            <View>
+              <Icon name="cubes" size={20} color={color} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function ReceptionCompletedOrdersStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ReceptionCompletedOrders"
+        component={ReceptionCompletedOrders}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Completed Orders"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCustomerDetails"
+        component={ReceptionCustomerDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionViewCompletedOrder"
+        component={ReceptionViewCompletedOrderDetailsTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Order"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionViewCompletedJob"
+        component={ReceptionViewCompletedJob}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Job Details"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+function ReceptionCompletedJobsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ReceptionCompletedJobs"
+        component={ReceptionCompletedJobs}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Completed Jobs"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCompletedJob"
+        component={ReceptionCompletedJob}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Job Details"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionViewOrderForCompletedJob"
+        component={ReceptionViewCompletedOrderDetailsTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Order"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCustomerDetails"
+        component={ReceptionCustomerDetails}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.state?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ReceptionRejectedJobsStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'blue', // set your desired header background color
+        },
+        headerTintColor: '#fff', // set your desired text color
+      }}>
+      <Stack.Screen
+        name="ReceptionRejectedJobs"
+        component={ReceptionRejectedJobs}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Rejected Jobs"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionRejectedJob"
+        component={ReceptionRejectedJob}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Job Details"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionViewOrderForRejectedJob"
+        component={ReceptionViewCompletedOrderDetailsTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Order"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="ReceptionCustomerDetails"
+        component={ReceptionCustomerDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+function SalesDashboardStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SalesDashboard"
+        component={SalesDashboard}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Dashboard"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SalesCustomersStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SalesCustomers"
+        component={SalesCustomers}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Customers"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SalesCustomerDetails"
+        component={SalesCustomerDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SalesCustomerForm"
+        component={SalesCustomerForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={navigation?.route?.params?.handleSave}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CollectionCallsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="CollectionCalls"
+        component={CollectionCalls}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Pickup Request"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="CollectionCallDetails"
+        component={CollectionCallDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="CollectionCallForm"
+        component={CollectionCallForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={navigation?.route?.params?.handleSave}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function DeliveryCallsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="DeliveryCalls"
+        component={DeliveryCalls}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Delivery Calls"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="DeliveryCallDetails"
+        component={DeliveryCallDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="DeliveryCallForm"
+        component={DeliveryCallForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={navigation?.route?.params?.handleSave}
+              title="Save"
+              buttonColor="#007bff"
+              bgColor="#007bff"
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ComplaintsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Complaints"
+        component={Complaints}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Complaints"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ComplaintDetails"
+        component={ComplaintDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="ComplaintForm"
+        component={ComplaintForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={() => navigation?.route?.params?.handleSave()}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+function SalesLeadDetailsStack() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="LeadDetails" component={LeadDetails} />
+    </Tab.Navigator>
+  );
+}
+
+function SalesLeadInteractionsStack() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="LeadInteractions" component={LeadInteractions} />
+    </Tab.Navigator>
+  );
+}
+
+function SalesLeadMessagesStack() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="LeadMessages" component={LeadMessages} />
+    </Tab.Navigator>
+  );
+}
+function LeadDetailsTabStack() {
+  return (
+    <Tab.Navigator
+      initialRouteName="LeadDetails"
+      shifting={true}
+      // activeColor={tabColors.activeColor}
+      // inactiveColor={tabColors.inactiveColor}
+      // barStyle={{ backgroundColor: tabColors.barBgColor }}
+    >
+      <Tab.Screen
+        name="LeadDetails"
+        component={SalesLeadDetailsStack}
+        options={{
+          tabBarLabel: 'Lead Details',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="wpforms" color={color} size={20} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="LeadInteractions"
+        component={SalesLeadInteractionsStack}
+        options={{
+          tabBarLabel: 'Interactions',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="id-badge" color={color} size={20} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="LeadMessages"
+        component={SalesLeadMessagesStack}
+        options={{
+          tabBarLabel: 'Messages',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="comments" color={color} size={20} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function SalesLeadsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Leads"
+        component={Leads}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Leads"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="LeadDetails"
+        component={LeadDetailsTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Lead Details"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="LeadForm"
+        component={LeadForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={() => navigation?.route?.params?.handleSave()}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SalesExpensesStack() {
+  return (
+    <Stack.Navigator initialRouteName="SalesExpenses">
+      <Stack.Screen
+        name="SalesExpenses"
+        component={SalesExpenses}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Expenses"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SalesExpenseDetails"
+        component={SalesExpenseDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SalesExpenseForm"
+        component={SalesExpenseForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={() => navigation?.route?.params?.handleSave()}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SalesHeadDashboardStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SalesHeadDashboard"
+        component={SalesHeadDashboard}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Dashboard"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+export const SalesHeadSalesPersonDetailsStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SalesHeadSalesPersonDetails"
+        component={SalesHeadSalesPersonDetails}
+      />
+    </Stack.Navigator>
+  );
+};
+
+export const SalesHeadSalesPersonTrackingHistoryStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SalesHeadSalesPersonTrackingHistory"
+        component={SalesHeadSalesPersonTrackingHistory}
+      />
+    </Stack.Navigator>
+  );
+};
+function SalesHeadSalesPersonsTabStack() {
+  return (
+    <Tab.Navigator
+      initialRouteName="SalesHeadSalesPersonDetails"
+      // activeColor={tabColors.activeColor}
+      // inactiveColor={tabColors.inactiveColor}
+      // barStyle={{backgroundColor: tabColors.barBgColor}}
+    >
+      <Tab.Screen
+        name="SalesHeadSalesPersonDetails"
+        component={SalesHeadSalesPersonDetailsStack}
+        options={{
+          tabBarLabel: 'Personal Details',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="wpforms" size={20} color={color} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="SalesHeadSalesPersonTrackingHistory"
+        component={SalesHeadSalesPersonTrackingHistoryStack}
+        options={{
+          tabBarLabel: 'Location Tracking',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="history" size={20} color={color} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+const SalesHeadSalesPersonsStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SalesHeadSalesPersons"
+        component={SalesHeadSalesPersons}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Sales Persons"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SalesHeadSalesPersonDetails"
+        component={SalesHeadSalesPersonsTabStack}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SalesHeadSalesPersonForm"
+        component={SalesHeadSalesPersonForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={() => navigation?.route?.params?.handleSave?.()}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
+function SupervisorDashboardStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SupervisorDashboard"
+        component={SupervisorDashboard}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Dashboard"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SupervisorScanQrCodeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SupervisorScanQrCode"
+        component={SupervisorScanQrCodeOrSearchUsingJobId}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Scan Qr Code"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export const SupervisorViewOrderDetailsTabStack = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="SupervisorViewOrder"
+      // activeColor={tabColors.activeColor}
+      // inactiveColor={tabColors.inactiveColor}
+      // barStyle={{ backgroundColor: tabColors.barBgColor }}
+    >
+      <Tab.Screen
+        name="SupervisorViewOrder"
+        component={SupervisorViewOrder}
+        options={{
+          tabBarLabel: 'Order',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon style={{color}} name="wpforms" size={20} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="SupervisorViewOrderDetails"
+        component={SupervisorViewOrderDetails}
+        options={{
+          tabBarLabel: 'Job Details',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon style={{color}} name="cubes" size={20} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+function SupervisorJobsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SupervisorJobs"
+        component={SupervisorJobs}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Jobs"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorViewJob"
+        component={SupervisorViewJob}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Job Details"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorViewOrderForJob"
+        component={SupervisorViewOrderDetailsTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Order"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorCustomerDetailsForJob"
+        component={SupervisorCustomerDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SupervisorReworksStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SupervisorReworks"
+        component={SupervisorReworks}
+        options={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title="Reworks"
+                isShowDrawerToggleButton={true}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+      <Stack.Screen
+        name="SupervisorViewJobForRework"
+        component={SupervisorRework}
+        options={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title="Job Details"
+                isShowDrawerToggleButton={false}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+      <Stack.Screen
+        name="SupervisorViewOrderForRework"
+        component={SupervisorViewOrderDetailsTabStack}
+        options={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title="Order"
+                isShowDrawerToggleButton={false}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+      <Stack.Screen
+        name="SupervisorCustomerDetailsForRework"
+        component={SupervisorCustomerDetails}
+        options={({navigation, route}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title={navigation?.route?.params?.pageHeading}
+                isShowDrawerToggleButton={false}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SupervisorReopensStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SupervisorReopens"
+        component={SupervisorReopens}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Reopened Jobs"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorViewJobForReopen"
+        component={SupervisorReopen}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Job Details"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorViewOrderForReopen"
+        component={SupervisorViewOrderDetailsTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Order"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorCustomerDetailsForReopen"
+        component={SupervisorCustomerDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export const SupervisorViewOngoingJobTabStack = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="SupervisorViewOngoingJob"
+      // activeColor={tabColors.activeColor}
+      // inactiveColor={tabColors.inactiveColor}
+      // barStyle={{backgroundColor: tabColors.barBgColor}}
+    >
+      <Tab.Screen
+        name="SupervisorViewOngoingJob"
+        component={SupervisorViewOngoingJob}
+        options={{
+          tabBarLabel: 'Job Details',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="wpforms" size={20} color={color} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="SupervisorOngoingJobProgress"
+        component={SupervisorOngoingJobProgress}
+        options={{
+          tabBarLabel: 'Production Progress',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon name="tasks" size={20} color={color} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+function SupervisorOngoingJobsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SupervisorOngoingJobs"
+        component={SupervisorOngoingJobs}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Ongoing Jobs"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorViewOngoingJob"
+        component={SupervisorViewOngoingJobTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Job Details"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorViewOrderForOngoingJob"
+        component={SupervisorViewOrderDetailsTabStack}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Order"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="SupervisorCustomerDetailsForOngoingJob"
+        component={SupervisorCustomerDetails}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CustomerDashboardStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="CustomerDashboard"
+        component={CustomerDashboard}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Dashboard"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CustomerCollectionCallsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="CustomerCollectionCalls"
+        component={CustomerCollectionCalls}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Pickup Request"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="CustomerCollectionCallForm"
+        component={CustomerCollectionCallForm}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={navigation?.route?.params?.handleSave}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CustomerViewOrderDetailsTabStack() {
+  return (
+    <Tab.Navigator
+      initialRouteName="CustomerViewOrder"
+      // activeColor={tabColors.activeColor}
+      // inactiveColor={tabColors.inactiveColor}
+      // barStyle={{ backgroundColor: tabColors.barBgColor }}
+    >
+      <Tab.Screen
+        name="CustomerViewOrder"
+        component={CustomerViewOrder}
+        options={{
+          tabBarLabel: 'Order',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon style={[{color}]} name="wpforms" size={20} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="CustomerOrderUploadImages"
+        component={CustomerOrderUploadImages}
+        options={{
+          tabBarLabel: 'Upload Case Photos',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon style={[{color}]} name="picture-o" size={20} />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="CustomerViewOrderDetails"
+        component={CustomerViewOrderDetails}
+        options={{
+          tabBarLabel: 'Job Details',
+          tabBarIcon: ({color}) => (
+            <View>
+              <Icon style={[{color}]} name="cubes" size={20} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+function CustomerOrdersStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="CustomerOrders"
+        component={CustomerOrders}
+        options={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title="My Orders"
+                isShowDrawerToggleButton={true}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+      <Stack.Screen
+        name="CustomerViewOrder"
+        component={CustomerViewOrderDetailsTabStack}
+        options={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title="My Order"
+                isShowDrawerToggleButton={false}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+      <Stack.Screen
+        name="CustomerViewJob"
+        component={CustomerViewJob}
+        options={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title="Job Details"
+                isShowDrawerToggleButton={false}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CustomerComplaintsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="CustomerComplaints"
+        component={CustomerComplaints}
+        options={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title="My Complaints"
+                isShowDrawerToggleButton={true}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+      <Stack.Screen
+        name="CustomerComplaintForm"
+        component={CustomerComplaintForm}
+        options={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <NavigationDrawerStructure
+                navigation={navigation}
+                title={navigation?.state?.params?.pageHeading}
+                isShowDrawerToggleButton={false}
+                isShowLogoInsteadOfTitle={false}
+              />
+            ),
+            headerRight: () => (
+              <HeaderSaveButton
+                buttonType="solid"
+                onPress={() => navigation?.state?.params?.handleSave()}
+                title="Save"
+                buttonColor={primaryBlueHexColor}
+                bgColor={primaryBlueHexColor}
+                color="#ffffff"
+              />
+            ),
+            headerStyle: headerStyle,
+          };
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CustomerMyAccountsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="CustomerMyAccounts"
+        component={CustomerMyAccounts}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="My Accounts"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="CustomerViewProfile"
+        component={CustomerViewProfile}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title={navigation?.route?.params?.pageHeading}
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerStyle,
+        })}
+      />
+      <Stack.Screen
+        name="CustomerChangePassword"
+        component={CustomerChangePassword}
+        options={({navigation, route}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Change Password"
+              isShowDrawerToggleButton={false}
+              isShowLogoInsteadOfTitle={false}
+            />
+          ),
+          headerRight: () => (
+            <HeaderSaveButton
+              buttonType="solid"
+              onPress={navigation?.route?.params?.handleSave}
+              title="Save"
+              buttonColor={primaryBlueHexColor}
+              bgColor={primaryBlueHexColor}
+              color="#ffffff"
+            />
+          ),
+          headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function PackagingDashboardStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="PackagingDashboard"
+        component={PackagingDashboard}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <NavigationDrawerStructure
+              navigation={navigation}
+              title="Dashboard"
+              isShowDrawerToggleButton={true}
+              isShowLogoInsteadOfTitle={true}
+            />
+          ),
+          headerStyle: headerStyle,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function AdminQCUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
@@ -1694,6 +3813,250 @@ function AdminQCHeadUserRoutes({initialRouteName}: any) {
     </Drawer.Navigator>
   );
 }
+
+function PackagingUserRoutes({initialRouteName}: any) {
+  return (
+    <Drawer.Navigator
+    // initialRouteName="MyAccounts"
+    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+    // drawerContentOptions={{
+    //   activeTintColor: activeDrawerIconColor,
+    //   inactiveTintColor: inactiveDrawerIconColor,
+    //   labelStyle: styles.drawerLabel,
+    // }}
+    >
+      <Drawer.Screen
+        name="Dashboard"
+        component={PackagingDashboardStack}
+        options={{
+          title: 'Dashboard',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Scan Qr Code"
+        component={ProductionScanQrCodeForUnAssignedJobStack}
+        options={{
+          title: 'Scan Qr Code',
+          // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Scan Qr Code
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Assigned Jobs"
+        component={ProductionAssignedJobsStack}
+        options={{
+          title: 'Assigned Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Assigned Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Unassigned Jobs"
+        component={ProductionUnAssignedJobsStack}
+        options={{
+          title: 'Unassigned Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Unassigned Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Attendances"
+        component={AttendancesStack}
+        options={{
+          title: 'Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Accounts"
+        component={MyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
 function PackagingHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
@@ -1832,9 +4195,2679 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
           ),
         }}
       />
+      <Drawer.Screen
+        name="Employees"
+        component={ProductionEmployeesStack}
+        options={{
+          title: 'Employees',
+          // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Employees
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Employees"
+        component={EmployeeAttendancesStack}
+        options={{
+          title: 'Employees Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Employees Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Attendances"
+        component={AttendancesStack}
+        options={{
+          title: 'Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Accounts"
+        component={MyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 }
+
+function ProductionUserRoutes({initialRouteName}: any) {
+  return (
+    <Drawer.Navigator
+    // initialRouteName="MyAccounts"
+    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+    // drawerContentOptions={{
+    //   activeTintColor: activeDrawerIconColor,
+    //   inactiveTintColor: inactiveDrawerIconColor,
+    //   labelStyle: styles.drawerLabel,
+    // }}
+    >
+      <Drawer.Screen
+        name="Dashboard"
+        component={ProductionDashboardStack}
+        options={{
+          title: 'Dashboard',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Scan Qr Code"
+        component={ProductionScanQrCodeForAssignedJobStack}
+        options={{
+          title: 'Scan Qr Code',
+          // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Scan Qr Code
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Assigned Jobs"
+        component={ProductionAssignedJobsStack}
+        options={{
+          title: 'Assigned Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Assigned Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Attendances"
+        component={AttendancesStack}
+        options={{
+          title: 'Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Attendances"
+        component={MyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
+function ProductionHeadUserRoutes({initialRouteName}: any) {
+  return (
+    <Drawer.Navigator
+    // initialRouteName="MyAccounts"
+    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+    // drawerContentOptions={{
+    //   activeTintColor: activeDrawerIconColor,
+    //   inactiveTintColor: inactiveDrawerIconColor,
+    //   labelStyle: styles.drawerLabel,
+    // }}
+    >
+      <Drawer.Screen
+        name="Dashboard"
+        component={ProductionHeadDashboardStack}
+        options={{
+          title: 'Dashboard',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Scan Qr Code"
+        component={ProductionScanQrCodeForUnAssignedJobStack}
+        options={{
+          title: 'Scan Qr Code',
+          // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Scan Qr Code
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Unassigned Jobs"
+        component={ProductionUnAssignedJobsStack}
+        options={{
+          title: 'Unassigned Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Unassigned Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Ongoing Jobs"
+        component={ProductionOngoingJobsStack}
+        options={{
+          title: 'Ongoing Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Ongoing Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Employees"
+        component={ProductionEmployeesStack}
+        options={{
+          title: 'Employees',
+          // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Employees
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Employees Attendances"
+        component={EmployeeAttendancesStack}
+        options={{
+          title: 'Employees Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Employees Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Attendances"
+        component={AttendancesStack}
+        options={{
+          title: 'Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Accounts"
+        component={MyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
+
+function ReceptionUserRoutes({initialRouteName}: any) {
+  return (
+    <Drawer.Navigator
+    // initialRouteName="MyAccounts"
+    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+    // drawerContentOptions={{
+    //   activeTintColor: activeDrawerIconColor,
+    //   inactiveTintColor: inactiveDrawerIconColor,
+    //   labelStyle: styles.drawerLabel,
+    // }}
+    >
+      <Drawer.Screen
+        name="Dashboard"
+        component={ReceptionDashboardStack}
+        options={{
+          title: 'Dashboard',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Products"
+        component={CategoriesStack}
+        options={{
+          title: 'Products',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Products
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Brands"
+        component={BrandsStack}
+        options={{
+          title: 'Brands',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Brands
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Customers"
+        component={ReceptionCustomersStack}
+        options={{
+          title: 'Customers',
+          // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Customers
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Pickup Request"
+        component={ReceptionCollectionCallsStack}
+        options={{
+          title: 'Pickup Request',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Pickup Request
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Delivery Calls"
+        component={ReceptionDeliveryCallsStack}
+        options={{
+          title: 'Delivery Calls',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Delivery Calls
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Complaints"
+        component={ReceptionComplaintsStack}
+        options={{
+          title: 'Complaints',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Complaints
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Orders"
+        component={ReceptionOrdersStack}
+        options={{
+          title: 'Orders',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Orders
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Completed Orders"
+        component={ReceptionCompletedOrdersStack}
+        options={{
+          title: 'Completed Orders',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Completed Orders
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Completed Jobs"
+        component={ReceptionCompletedJobsStack}
+        options={{
+          title: 'Completed Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Completed Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Rejected Jobs"
+        component={ReceptionRejectedJobsStack}
+        options={{
+          title: 'Rejected Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Rejected Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Attendances"
+        component={AttendancesStack}
+        options={{
+          title: 'Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Accounts"
+        component={MyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
+
+function SalesUserRoutes({initialRouteName}: any) {
+  return (
+    <Drawer.Navigator
+    // initialRouteName="MyAccounts"
+    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+    // drawerContentOptions={{
+    //   activeTintColor: activeDrawerIconColor,
+    //   inactiveTintColor: inactiveDrawerIconColor,
+    //   labelStyle: styles.drawerLabel,
+    // }}
+    >
+      <Drawer.Screen
+        name="Dashboard"
+        component={SalesDashboardStack}
+        options={{
+          title: 'Dashboard',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Customers"
+        component={SalesCustomersStack}
+        options={{
+          title: 'Customers',
+          // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Customers
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Brands"
+        component={BrandsStack}
+        options={{
+          title: 'Brands',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Brands
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Products"
+        component={CategoriesStack}
+        options={{
+          title: 'Products',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Products
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Pickup Request"
+        component={CollectionCallsStack}
+        options={{
+          title: 'Pickup Request',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Pickup Request
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Delivery Calls"
+        component={DeliveryCallsStack}
+        options={{
+          title: 'Delivery Calls',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Delivery Calls
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Complaints"
+        component={ComplaintsStack}
+        options={{
+          title: 'Complaints',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Complaints
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Leads"
+        component={SalesLeadsStack}
+        options={{
+          title: 'Leads',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Leads
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Expenses"
+        component={SalesExpensesStack}
+        options={{
+          title: 'Expenses',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="money" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Expenses
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Attendances"
+        component={AttendancesStack}
+        options={{
+          title: 'Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Accounts"
+        component={MyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
+
+function SalesHeadUserRoutes({initialRouteName}: any) {
+  return (
+    <Drawer.Navigator
+    // initialRouteName="MyAccounts"
+    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+    // drawerContentOptions={{
+    //   activeTintColor: activeDrawerIconColor,
+    //   inactiveTintColor: inactiveDrawerIconColor,
+    //   labelStyle: styles.drawerLabel,
+    // }}
+    >
+      <Drawer.Screen
+        name="Dashboard"
+        component={SalesHeadDashboardStack}
+        options={{
+          title: 'Dashboard',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Sales Persons"
+        component={SalesHeadSalesPersonsStack}
+        options={{
+          title: 'Sales Persons',
+          // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Sales Persons
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Customers"
+        component={SalesCustomersStack}
+        options={{
+          title: 'Customers',
+          // drawerIcon:({tintColor}: any)=> <Icon name="users" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Customers
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Brands"
+        component={BrandsStack}
+        options={{
+          title: 'Brands',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Brands
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Products"
+        component={CategoriesStack}
+        options={{
+          title: 'Products',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Products
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Pickup Request"
+        component={CollectionCallsStack}
+        options={{
+          title: 'Pickup Request',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Pickup Request
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Delivery Calls"
+        component={DeliveryCallsStack}
+        options={{
+          title: 'Delivery Calls',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Delivery Calls
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Complaints"
+        component={ComplaintsStack}
+        options={{
+          title: 'Complaints',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Complaints
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Leads"
+        component={SalesLeadsStack}
+        options={{
+          title: 'Leads',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="bullhorn" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Leads
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Expenses"
+        component={SalesExpensesStack}
+        options={{
+          title: 'Expenses',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="money" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Expenses
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Employees Attendances"
+        component={EmployeeAttendancesStack}
+        options={{
+          title: 'Employees Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Employees Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Attendances"
+        component={AttendancesStack}
+        options={{
+          title: 'Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Accounts"
+        component={MyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
+
+function SupervisorUserRoutes({initialRouteName}: any) {
+  return (
+    <Drawer.Navigator
+    // initialRouteName="MyAccounts"
+    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+    // drawerContentOptions={{
+    //   activeTintColor: activeDrawerIconColor,
+    //   inactiveTintColor: inactiveDrawerIconColor,
+    //   labelStyle: styles.drawerLabel,
+    // }}
+    >
+      <Drawer.Screen
+        name="Dashboard"
+        component={SupervisorDashboardStack}
+        options={{
+          title: 'Dashboard',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Products"
+        component={CategoriesStack}
+        options={{
+          title: 'Products',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Products
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Brands"
+        component={BrandsStack}
+        options={{
+          title: 'Brands',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Brands
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Scan Qr Code"
+        component={SupervisorScanQrCodeStack}
+        options={{
+          title: 'Scan Qr Code',
+          // drawerIcon:({tintColor}: any)=> <MaterialCommunityIcons name="qrcode-scan" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Scan Qr Code
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Jobs"
+        component={SupervisorJobsStack}
+        options={{
+          title: 'Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Reworks"
+        component={SupervisorReworksStack}
+        options={{
+          title: 'Reworks',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Reworks
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Reopened Jobs"
+        component={SupervisorReopensStack}
+        options={{
+          title: 'Reopened Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Reopened Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Ongoing Jobs"
+        component={SupervisorOngoingJobsStack}
+        options={{
+          title: 'Ongoing Jobs',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Ongoing Jobs
+              </Text>
+            </View>
+          ),
+        }}
+      />{' '}
+      <Drawer.Screen
+        name="Attendances"
+        component={AttendancesStack}
+        options={{
+          title: 'Attendances',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="calendar" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Attendances
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Accounts"
+        component={MyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
+
+function CustomerUserRoutes({initialRouteName}: any) {
+  return (
+    <Drawer.Navigator
+    // initialRouteName="MyAccounts"
+    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+    // drawerContentOptions={{
+    //   activeTintColor: activeDrawerIconColor,
+    //   inactiveTintColor: inactiveDrawerIconColor,
+    //   labelStyle: styles.drawerLabel,
+    // }}
+    >
+      <Drawer.Screen
+        name="Dashboard"
+        component={CustomerDashboardStack}
+        options={{
+          title: 'Dashboard',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Home
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Brands"
+        component={BrandsStack}
+        options={{
+          title: 'Brands',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Brands
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Products"
+        component={CategoriesStack}
+        options={{
+          title: 'Products',
+          // drawerIcon:({tintColor}: any)=> <Icon name="cubes" size={20} style={[{color: tintColor}]} />
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Products
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Pickup Request"
+        component={CustomerCollectionCallsStack}
+        options={{
+          title: 'Pickup Request',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="add-shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Pickup Request
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Orders"
+        component={CustomerOrdersStack}
+        options={{
+          title: 'My Orders',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Orders
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Complaints"
+        component={CustomerComplaintsStack}
+        options={{
+          title: 'My Complaints',
+          // drawerIcon:({tintColor}: any)=> <MaterialIcons style={[{color: tintColor}]} name="remove-shopping-cart" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Complaints
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Accounts"
+        component={CustomerMyAccountsStack}
+        options={{
+          title: 'My Accounts',
+          // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="user" size={20}/>
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.commonDrawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.commonDrawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                My Accounts
+              </Text>
+            </View>
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          drawerIcon: ({focused, tintColor}: any) => (
+            <Icon
+              style={[
+                {
+                  color: focused
+                    ? activeDrawerIconColor
+                    : inactiveDrawerIconColor,
+                },
+              ]}
+              name="circle"
+              size={drawerIconSize}
+            />
+          ),
+          drawerLabel: drawerLabelOptions => (
+            <View style={[styles.drawerLabelContainer]}>
+              <Text
+                style={[
+                  styles.drawerLabel,
+                  // {color: drawerLabelOptions.tintColor},
+                ]}>
+                Notifications
+              </Text>
+              <View style={[styles.drawerLabelBadgeContainer]}>
+                <DrawerNotificationBadge
+                  isMenuFocused={drawerLabelOptions.focused}
+                  // menuFontColor={drawerLabelOptions.tintColor}
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
+
 export function RootNavigator(
   signedIn = false,
   userType = null,
@@ -1953,63 +6986,63 @@ export function RootNavigator(
       //  PackagingUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <PackagingUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'PackagingHeadUserRoutes':
       //  PackagingHeadUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <PackagingHeadUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'ProductionUserRoutes':
       //  ProductionUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <ProductionUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'ProductionHeadUserRoutes':
       //  ProductionHeadUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <ProductionHeadUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'ReceptionUserRoutes':
       //  ReceptionUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <ReceptionUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'SalesUserRoutes':
       //  SalesUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <SalesUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'SalesHeadUserRoutes':
       //  SalesHeadUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <SalesHeadUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'SupervisorUserRoutes':
       //  SupervisorUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <SupervisorUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'CustomerUserRoutes':
       //  CustomerUserRoutes
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <CustomerUserRoutes initialRouteName={'initialRouteName'} />
         </NavigationContainer>
       );
     case 'SignedOut':

@@ -6097,72 +6097,7 @@ export const SupervisorOngoingJobsStack = createStackNavigator({
   },
 });
 
-export const SupervisorReworksStack = createStackNavigator({
-  SupervisorReworks: {
-    screen: SupervisorReworks,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Reworks"
-            isShowDrawerToggleButton={true}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-  SupervisorViewJobForRework: {
-    screen: SupervisorRework,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Job Details"
-            isShowDrawerToggleButton={false}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-  SupervisorViewOrderForRework: {
-    screen: SupervisorViewOrderDetailsTabStack,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title="Order"
-            isShowDrawerToggleButton={false}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-  SupervisorCustomerDetailsForRework: {
-    screen: SupervisorCustomerDetails,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerTitle: () => (
-          <NavigationDrawerStructure
-            navigation={navigation}
-            title={navigation?.state?.params?.pageHeading}
-            isShowDrawerToggleButton={false}
-            isShowLogoInsteadOfTitle={false}
-          />
-        ),
-        headerStyle: headerStyle,
-      };
-    },
-  },
-});
+c
 
 export const SupervisorReopensStack = createStackNavigator({
   SupervisorReopens: {
