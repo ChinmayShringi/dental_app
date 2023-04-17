@@ -3767,13 +3767,13 @@ function AdminQCUserRoutes({initialRouteName}: any) {
 function AdminQCHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="MyAccounts"
@@ -3817,13 +3817,13 @@ function AdminQCHeadUserRoutes({initialRouteName}: any) {
 function PackagingUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -4060,13 +4060,13 @@ function PackagingUserRoutes({initialRouteName}: any) {
 function PackagingHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -4367,13 +4367,13 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
 function ProductionUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -4578,13 +4578,13 @@ function ProductionUserRoutes({initialRouteName}: any) {
 function ProductionHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -4887,13 +4887,13 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
 function ReceptionUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -5354,13 +5354,13 @@ function ReceptionUserRoutes({initialRouteName}: any) {
 function SalesUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -5757,13 +5757,13 @@ function SalesUserRoutes({initialRouteName}: any) {
 function SalesHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -6224,13 +6224,13 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
 function SupervisorUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -6595,13 +6595,13 @@ function SupervisorUserRoutes({initialRouteName}: any) {
 function CustomerUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    initialRouteName={initialRouteName}
-    // drawerContent={props => <CustomDrawerContentComponent {...props} />}
-    // drawerContentOptions={{
-    //   activeTintColor: activeDrawerIconColor,
-    //   inactiveTintColor: inactiveDrawerIconColor,
-    //   labelStyle: styles.drawerLabel,
-    // }}
+      initialRouteName={initialRouteName}
+      // drawerContent={props => <CustomDrawerContentComponent {...props} />}
+      // drawerContentOptions={{
+      //   activeTintColor: activeDrawerIconColor,
+      //   inactiveTintColor: inactiveDrawerIconColor,
+      //   labelStyle: styles.drawerLabel,
+      // }}
     >
       <Drawer.Screen
         name="Dashboard"
@@ -6958,7 +6958,7 @@ export function RootNavigator(
   }
 
   // BELOW FOR TESTING
-  initialRouteName = 'SignedOut';
+  initialRouteName = 'CustomerUserRoutes';
   console.log(initialRouteName);
   switch (initialRouteName) {
     case 'SignedIn':
@@ -6969,7 +6969,7 @@ export function RootNavigator(
         </NavigationContainer>
       );
     case 'AdminQCUserRoutes':
-      //  AdminQCUserRoutes
+      //  AdminQCUserRoutesFMC
       return (
         <NavigationContainer>
           <AdminQCUserRoutes initialRouteName={initialRouteName} />
