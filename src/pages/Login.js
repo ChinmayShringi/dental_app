@@ -27,7 +27,7 @@ import {DrawerNotificationBadgeCount} from '../redux/actions/DrawerNotificationB
 import {connect} from 'react-redux';
 
 // import * as Permissions from 'expo-permissions';
-// import * as TaskManager from 'expo-task-manager';
+//  
 // import * as Location from 'expo-location';
 // import { EventEmitter } from 'fbemitter';
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,19 +6,16 @@ import {
   TouchableOpacity,
   Button,
   ScrollView,
+  PermissionsAndroid,
 } from 'react-native';
-
-import {Geolocation, PermissionsAndroid} from 'react-native';
-import {EventEmitter} from 'fbemitter';
-// import {TaskManager} from 'react-native-background-task';
+import Geolocation from 'react-native-geolocation-service';
 import Api from '../provider/Api';
-
-const LOCATION_TASK_NAME = 'background-location-tracking';
+import {EventEmitter} from 'fbemitter';
+import { locationTrackingProps } from '../constants/defaultValues';
+const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
 
 const taskEventName = 'new-location-detected';
 const eventEmitter = new EventEmitter();
-
-import {login} from '../assets/style';
 
 export default class LocationTracker extends Component {
   api = new Api();

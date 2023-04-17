@@ -3767,7 +3767,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
 function AdminQCHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -3817,7 +3817,7 @@ function AdminQCHeadUserRoutes({initialRouteName}: any) {
 function PackagingUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -4060,7 +4060,7 @@ function PackagingUserRoutes({initialRouteName}: any) {
 function PackagingHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -4228,7 +4228,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
         }}
       />
       <Drawer.Screen
-        name="Employees"
+        name="Employees Attendance"
         component={EmployeeAttendancesStack}
         options={{
           title: 'Employees Attendances',
@@ -4367,7 +4367,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
 function ProductionUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -4504,7 +4504,7 @@ function ProductionUserRoutes({initialRouteName}: any) {
         }}
       />
       <Drawer.Screen
-        name="Attendances"
+        name="My Accounts"
         component={MyAccountsStack}
         options={{
           title: 'My Accounts',
@@ -4578,7 +4578,7 @@ function ProductionUserRoutes({initialRouteName}: any) {
 function ProductionHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -4887,7 +4887,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
 function ReceptionUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -5117,7 +5117,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Orders"
         component={ReceptionOrdersStack}
@@ -5149,7 +5149,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Completed Orders"
         component={ReceptionCompletedOrdersStack}
@@ -5181,7 +5181,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Completed Jobs"
         component={ReceptionCompletedJobsStack}
@@ -5213,7 +5213,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Rejected Jobs"
         component={ReceptionRejectedJobsStack}
@@ -5354,7 +5354,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
 function SalesUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -5616,7 +5616,7 @@ function SalesUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Expenses"
         component={SalesExpensesStack}
@@ -5648,7 +5648,7 @@ function SalesUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Attendances"
         component={AttendancesStack}
@@ -5757,7 +5757,7 @@ function SalesUserRoutes({initialRouteName}: any) {
 function SalesHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -6051,7 +6051,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Expenses"
         component={SalesExpensesStack}
@@ -6083,7 +6083,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Employees Attendances"
         component={EmployeeAttendancesStack}
@@ -6224,7 +6224,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
 function SupervisorUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -6486,7 +6486,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
             </View>
           ),
         }}
-      />{' '}
+      />
       <Drawer.Screen
         name="Attendances"
         component={AttendancesStack}
@@ -6595,7 +6595,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
 function CustomerUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-    // initialRouteName="MyAccounts"
+    initialRouteName={initialRouteName}
     // drawerContent={props => <CustomDrawerContentComponent {...props} />}
     // drawerContentOptions={{
     //   activeTintColor: activeDrawerIconColor,
@@ -6958,104 +6958,104 @@ export function RootNavigator(
   }
 
   // BELOW FOR TESTING
-  initialRouteName = 'AdminQCUserRoutes';
+  initialRouteName = 'SignedOut';
   console.log(initialRouteName);
   switch (initialRouteName) {
     case 'SignedIn':
       //  SignedIn
       return (
         <NavigationContainer>
-          <SignedInDrawer initialRouteName={'initialRouteName'} />
+          <SignedInDrawer initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'AdminQCUserRoutes':
       //  AdminQCUserRoutes
       return (
         <NavigationContainer>
-          <AdminQCUserRoutes initialRouteName={'initialRouteName'} />
+          <AdminQCUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'AdminQCHeadUserRoutes':
       //  AdminQCHeadUserRoutes
       return (
         <NavigationContainer>
-          <AdminQCHeadUserRoutes initialRouteName={'initialRouteName'} />
+          <AdminQCHeadUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'PackagingUserRoutes':
       //  PackagingUserRoutes
       return (
         <NavigationContainer>
-          <PackagingUserRoutes initialRouteName={'initialRouteName'} />
+          <PackagingUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'PackagingHeadUserRoutes':
       //  PackagingHeadUserRoutes
       return (
         <NavigationContainer>
-          <PackagingHeadUserRoutes initialRouteName={'initialRouteName'} />
+          <PackagingHeadUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'ProductionUserRoutes':
       //  ProductionUserRoutes
       return (
         <NavigationContainer>
-          <ProductionUserRoutes initialRouteName={'initialRouteName'} />
+          <ProductionUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'ProductionHeadUserRoutes':
       //  ProductionHeadUserRoutes
       return (
         <NavigationContainer>
-          <ProductionHeadUserRoutes initialRouteName={'initialRouteName'} />
+          <ProductionHeadUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'ReceptionUserRoutes':
       //  ReceptionUserRoutes
       return (
         <NavigationContainer>
-          <ReceptionUserRoutes initialRouteName={'initialRouteName'} />
+          <ReceptionUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'SalesUserRoutes':
       //  SalesUserRoutes
       return (
         <NavigationContainer>
-          <SalesUserRoutes initialRouteName={'initialRouteName'} />
+          <SalesUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'SalesHeadUserRoutes':
       //  SalesHeadUserRoutes
       return (
         <NavigationContainer>
-          <SalesHeadUserRoutes initialRouteName={'initialRouteName'} />
+          <SalesHeadUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'SupervisorUserRoutes':
       //  SupervisorUserRoutes
       return (
         <NavigationContainer>
-          <SupervisorUserRoutes initialRouteName={'initialRouteName'} />
+          <SupervisorUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'CustomerUserRoutes':
       //  CustomerUserRoutes
       return (
         <NavigationContainer>
-          <CustomerUserRoutes initialRouteName={'initialRouteName'} />
+          <CustomerUserRoutes initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     case 'SignedOut':
       //  SignedOut,
       return (
         <NavigationContainer>
-          <SignedOut initialRouteName={'initialRouteName'} />
+          <SignedOut initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
     default:
       return (
         <NavigationContainer>
-          <SignedOut initialRouteName={'initialRouteName'} />
+          <SignedOut initialRouteName={initialRouteName} />
         </NavigationContainer>
       );
   }

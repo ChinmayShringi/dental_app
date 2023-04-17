@@ -26,6 +26,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 // import {fcmService} from './provider/FCMService';
 // import Geolocation from 'react-native-geolocation-service';
+import Geolocation from 'react-native-geolocation-service';
 
 // import * as TaskManager from 'expo-task-manager';
 // import {locationTrackingProps} from './constants/defaultValues';
