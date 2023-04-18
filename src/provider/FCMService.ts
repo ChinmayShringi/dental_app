@@ -184,10 +184,14 @@
 // export const fcmService = new FCMService();
 import firebase from '@react-native-firebase/app';
 import notifications from '@react-native-firebase/app';
-import messaging from '@react-native-firebase/messaging';
-import Notification from '@react-native-firebase/app';
-import Android from '@react-native-firebase/app';
+import messaging, {
+  FirebaseMessagingTypes,
+} from '@react-native-firebase/messaging';
+// import Notification from '@react-native-firebase/app';
+import Notification from '@react-native-firebase/messaging';
+// import Android from '@react-native-firebase/app';
 import {Platform} from 'react-native';
+const {Android} = messaging;
 
 // Initialize Firebase App
 firebase.initializeApp({
@@ -276,8 +280,12 @@ const createNotificationListeners = async () => {
 
 // Unregister Notification Listeners
 const unRegister = async () => {
-  messaging().onMessage(() => {});
-  messaging().setBackgroundMessageHandler(() => {});
+  try {
+    await messaging().deleteToken();
+    console.log('Device unregistered from FCM');
+  } catch (error) {
+    console.log('Error while unregistering device from FCM', error);
+  }
 };
 
 // Build Notification Channel
@@ -288,7 +296,7 @@ const buildChannel = () => {
       'Default Channel',
       Android.Importance.High,
     ).setDescription('Default Notification Channel');
-    notifications().android.createChannel(channel);
+    (messaging() as any).android.createChannel(channel);
   }
 };
 
@@ -306,14 +314,21 @@ const buildChannel = () => {
 //   return notification;
 // };
 const buildNotification = (remoteMessage: any) => {
-  const notification = new Notification()
-    .setNotificationId(remoteMessage.messageId)
-    .setTitle(remoteMessage.notification.title)
-    .setBody(remoteMessage.notification.body)
-    .setData(remoteMessage.data)
-    .android.setChannelId('default')
-    .android.setSmallIcon('@drawable/ic_notification')
-    .android.setPriority(Notification.Android.Priority.High);
+  const notification: any = {
+    notificationId: remoteMessage.messageId,
+    title: remoteMessage.notification.title,
+    body: remoteMessage.notification.body,
+    data: remoteMessage.data,
+    android: {
+      channelId: 'default',
+      smallIcon: '@drawable/ic_notification',
+      priority: 'high',
+    },
+  };
+
+  if (Platform.OS === 'android') {
+    notification['android']['autoCancel'] = true;
+  }
 
   return notification;
 };
@@ -325,9 +340,23 @@ const scheduleNotification = async (remoteMessage: any) => {
   const now = Date.now();
   const schedule = new Date(now + 60000);
 
-  await firebase.notifications().scheduleNotification(notification, {
-    fireDate: schedule.getTime(),
-  });
+  const message = {
+    notification: {
+      title: remoteMessage.notification.title,
+      body: remoteMessage.notification.body,
+    },
+    data: remoteMessage.data,
+    android: {
+      notification: {
+        channelId: 'default',
+        smallIcon: '@drawable/ic_notification',
+        priority: 'high',
+      },
+    },
+    sendTime: schedule.getTime(),
+  };
+
+  await messaging().scheduleMessage(message);
 };
 // Display Notification
 const displayNotification = async (remoteMessage: any) => {
