@@ -35,7 +35,7 @@ import Geolocation from 'react-native-geolocation-service';
 
 import {DeviceEventEmitter} from 'react-native';
 import moment from 'moment';
-import {RootNavigator} from './hello';
+import {RootNavigator} from './routes';
 // import { createRootNavigator } from './routes';
 
 var api = new Api();
