@@ -682,7 +682,6 @@ function SignedInDrawer({initialRouteName}: any) {
         name="Home"
         component={HomeStack}
         options={{
-          headerShown: false,
           // title: 'Home',
           drawerIcon: ({color}) => (
             <Icon style={[{color: color}]} name="layers" size={20} />
@@ -693,7 +692,6 @@ function SignedInDrawer({initialRouteName}: any) {
         name="Dashboard"
         component={TabStack}
         options={{
-          headerShown: false,
           drawerIcon: ({color}) => (
             <Icon style={[{color: color}]} name="layers" size={20} />
           ),
@@ -703,7 +701,6 @@ function SignedInDrawer({initialRouteName}: any) {
         name="Categories"
         component={CategoriesStack}
         options={{
-          headerShown: false,
           drawerIcon: ({color}) => (
             <Icon style={[{color: color}]} name="layers" size={20} />
           ),
@@ -713,7 +710,6 @@ function SignedInDrawer({initialRouteName}: any) {
         name="EditProfile"
         component={EditProfileStack}
         options={{
-          headerShown: false,
           drawerIcon: ({color}) => (
             <Icon style={[{color: color}]} name="layers" size={20} />
           ),
@@ -725,9 +721,7 @@ function SignedInDrawer({initialRouteName}: any) {
 
 function SignedOut({initialRouteName}: any) {
   return (
-    <Stack.Navigator
-      initialRouteName={initialRouteName}
-      screenOptions={{headerShown: false}}>
+    <Stack.Navigator initialRouteName={initialRouteName}>
       <Stack.Screen
         name="Login"
         component={Login}
@@ -2667,6 +2661,7 @@ export const SalesHeadSalesPersonDetailsStack = () => {
       <Stack.Screen
         name="SalesHeadSalesPersonDetails"
         component={SalesHeadSalesPersonDetails}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
@@ -2678,6 +2673,7 @@ export const SalesHeadSalesPersonTrackingHistoryStack = () => {
       <Stack.Screen
         name="SalesHeadSalesPersonTrackingHistory"
         component={SalesHeadSalesPersonTrackingHistory}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
@@ -3508,6 +3504,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
             </View>
           ),
           ...contentOptions,
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3533,6 +3530,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3558,6 +3556,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3583,6 +3582,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3637,6 +3637,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3661,11 +3662,13 @@ function AdminQCUserRoutes({initialRouteName}: any) {
                       ? activeDrawerIconColor
                       : inactiveDrawerIconColor,
                   },
+                  
                 ]}>
                 Employee Attendances
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3695,6 +3698,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3724,6 +3728,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3759,6 +3764,7 @@ function AdminQCUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -3780,6 +3786,7 @@ function AdminQCHeadUserRoutes({initialRouteName}: any) {
         component={MyAccountsStack}
         options={{
           title: 'My Accounts',
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3808,6 +3815,7 @@ function AdminQCHeadUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -3854,6 +3862,7 @@ function PackagingUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3886,6 +3895,7 @@ function PackagingUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3918,6 +3928,7 @@ function PackagingUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -3950,6 +3961,7 @@ function PackagingUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
 
@@ -3983,6 +3995,7 @@ function PackagingUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4015,6 +4028,7 @@ function PackagingUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4052,6 +4066,7 @@ function PackagingUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -4097,6 +4112,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4129,6 +4145,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4161,6 +4178,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4193,6 +4211,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4225,6 +4244,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4257,6 +4277,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4289,6 +4310,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4321,6 +4343,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4358,6 +4381,7 @@ function PackagingHeadUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -4405,6 +4429,7 @@ function ProductionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4437,6 +4462,7 @@ function ProductionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4469,6 +4495,7 @@ function ProductionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4501,6 +4528,7 @@ function ProductionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4533,6 +4561,7 @@ function ProductionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4570,6 +4599,7 @@ function ProductionUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -4616,6 +4646,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4648,6 +4679,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4680,6 +4712,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4712,6 +4745,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4744,6 +4778,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4776,6 +4811,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
 
@@ -4809,6 +4845,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4841,6 +4878,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4878,6 +4916,7 @@ function ProductionHeadUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -4925,6 +4964,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4957,6 +4997,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -4988,6 +5029,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5020,6 +5062,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5052,6 +5095,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5084,6 +5128,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5116,6 +5161,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5148,6 +5194,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5180,6 +5227,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5212,6 +5260,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5244,6 +5293,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5276,6 +5326,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5308,6 +5359,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5345,6 +5397,7 @@ function ReceptionUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -5392,6 +5445,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5424,6 +5478,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5455,6 +5510,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5487,6 +5543,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5519,6 +5576,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5551,6 +5609,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5583,6 +5642,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5615,6 +5675,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5647,6 +5708,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5679,6 +5741,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5711,6 +5774,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5748,6 +5812,7 @@ function SalesUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -5795,6 +5860,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5827,6 +5893,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5859,6 +5926,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5890,6 +5958,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5922,6 +5991,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5954,6 +6024,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -5986,6 +6057,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6018,6 +6090,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6050,6 +6123,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6082,6 +6156,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6114,6 +6189,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6146,6 +6222,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6178,6 +6255,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6215,6 +6293,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -6262,6 +6341,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6294,6 +6374,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6325,6 +6406,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6357,6 +6439,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6389,6 +6472,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6421,6 +6505,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6453,6 +6538,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6485,6 +6571,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6517,6 +6604,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6549,6 +6637,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6586,6 +6675,7 @@ function SupervisorUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -6633,6 +6723,7 @@ function CustomerUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6664,6 +6755,7 @@ function CustomerUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6696,6 +6788,7 @@ function CustomerUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6728,6 +6821,7 @@ function CustomerUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6760,6 +6854,7 @@ function CustomerUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6792,6 +6887,7 @@ function CustomerUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -6824,6 +6920,7 @@ function CustomerUserRoutes({initialRouteName}: any) {
               </Text>
             </View>
           ),
+          headerShown: false,
         }}
       />
 
@@ -6862,6 +6959,7 @@ function CustomerUserRoutes({initialRouteName}: any) {
               </View>
             </View>
           ),
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
@@ -6874,7 +6972,7 @@ export function RootNavigator(
   appUserType = null,
   isDepartmentHead = false,
 ) {
-  let initialRouteName = '';
+  let initialRouteName = 'Home';
   if (signedIn && userType !== null && appUserType !== null) {
     // Customer
     if (userType === 4 || userType === '4') {
@@ -6958,6 +7056,7 @@ export function RootNavigator(
   }
 
   // BELOW FOR TESTING
+  initialRouteName = 'AdminQCUserRoutes';
   switch (initialRouteName) {
     case 'SignedIn':
       //  SignedIn

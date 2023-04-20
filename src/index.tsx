@@ -54,27 +54,27 @@ export default function App() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   /**Shubham FCM Starts */
-  useEffect(() => {
-    FCMService.register(
-      // Callback function to handle token registration
-      (token: any) => {
-        console.log('FCM Token:', token);
-      },
-      // Callback function to handle incoming notifications
-      (notification: any) => {
-        console.log('Notification Received:', notification);
-      },
-      // Callback function to handle opening notifications
-      (notification: any) => {
-        console.log('Notification Opened:', notification);
-      },
-    );
+  // useEffect(() => {
+  //   FCMService.register(
+  //     // Callback function to handle token registration
+  //     (token: any) => {
+  //       console.log('FCM Token:', token);
+  //     },
+  //     // Callback function to handle incoming notifications
+  //     (notification: any) => {
+  //       console.log('Notification Received:', notification);
+  //     },
+  //     // Callback function to handle opening notifications
+  //     (notification: any) => {
+  //       console.log('Notification Opened:', notification);
+  //     },
+  //   );
 
-    // Unregister the device from receiving notifications on component unmount
-    return () => {
-      FCMService.unregister();
-    };
-  }, []);
+  //   // Unregister the device from receiving notifications on component unmount
+  //   return () => {
+  //     FCMService.unregister();
+  //   };
+  // }, []);
   /**Shubham FCM Ends */
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

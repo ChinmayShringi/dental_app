@@ -12,7 +12,6 @@ import {
 
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
-
 import {createStackNavigator} from 'react-navigation-stack';
 import {
   createDrawerNavigator,
@@ -6096,7 +6095,7 @@ export const SupervisorOngoingJobsStack = createStackNavigator({
   },
 });
 
-c
+c;
 
 export const SupervisorReopensStack = createStackNavigator({
   SupervisorReopens: {
@@ -7143,7 +7142,7 @@ export const createRootNavigator = (
   appUserType = null,
   isDepartmentHead = false,
 ) => {
-  let initialRouteName = '';
+  let initialRouteName = 'Dashboard';
   if (signedIn && userType !== null && appUserType !== null) {
     // Customer
     if (userType === 4 || userType === '4') {
