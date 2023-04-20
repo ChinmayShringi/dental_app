@@ -8,7 +8,7 @@ import {
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
-
+import { PermissionsAndroid } from 'react-native';
 import Logo from '../components/Logo';
 import Api from '../provider/Api';
 import Dataprovider from '../provider/Dataprovider';
@@ -21,13 +21,14 @@ import FormIconInput from '../components/FormIconInput';
 import FormButton from '../components/FormButton';
 
 import {primaryPurpleHexColor} from '../constants/themeColors';
+import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 import {loggedInUserDetails} from '../redux/actions/loggedInUserDetails';
 import {DrawerNotificationBadgeCount} from '../redux/actions/DrawerNotificationBadgeCount';
 import {connect} from 'react-redux';
 
 // import * as Permissions from 'expo-permissions';
-//  
+//
 // import * as Location from 'expo-location';
 // import { EventEmitter } from 'fbemitter';
 
@@ -37,13 +38,13 @@ const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
 // const taskEventName = locationTrackingProps.TASK_EVENT_NAME;
 // const eventEmitter = new EventEmitter();
 
-import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
+// import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
 
 var api = new Api();
 var dataProvider = new Dataprovider();
 
-class Login extends Component {
-  constructor(props) {
+class Login extends Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       loading: false,
@@ -96,12 +97,38 @@ class Login extends Component {
 
   startTracking = async () => {
     try {
-      const {status} = await Permissions.askAsync(Permissions.LOCATION);
-
-      if (status !== 'granted') {
-        this.showLocationPermissionDeniedModal();
-        return;
-      }
+      check(PERMISSIONS.IOS.LOCATION_ALWAYS)
+        .then(result => {
+          switch (result) {
+            case RESULTS.UNAVAILABLE:
+              console.log(
+                'This feature is not available (on this device / in this context)',
+              );
+              break;
+            case RESULTS.DENIED:
+              console.log(
+                'The permission has not been requested / is denied but requestable',
+              );
+              break;
+            case RESULTS.LIMITED:
+              console.log(
+                'The permission is limited: some actions are possible',
+              );
+              break;
+            case RESULTS.GRANTED:
+              this.showLocationPermissionDeniedModal();
+              console.log('The permission is granted');
+              return;
+            case RESULTS.BLOCKED:
+              console.log(
+                'The permission is denied and not requestable anymore',
+              );
+              break;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
       let checkGPSEnabled = {
         alreadyEnabled: true,
@@ -110,22 +137,22 @@ class Login extends Component {
       };
 
       if (Platform.OS === 'android') {
-        checkGPSEnabled =
-          await LocationServicesDialogBox.checkLocationServicesIsEnabled({
-            message:
-              '<h2>Use Location?</h2> \
-            This app wants to change your device settings:<br/><br/>\
-            Use GPS, Wi-Fi, and cell network for location<br/>',
-            ok: 'YES',
-            cancel: 'NO',
-            style: {},
-            enableHighAccuracy: true,
-            showDialog: true,
-            openLocationServices: true,
-            preventOutSideTouch: true,
-            preventBackClick: true,
-            providerListener: true,
-          }).catch(error => error);
+        // checkGPSEnabled =
+        //   await LocationServicesDialogBox.checkLocationServicesIsEnabled({
+        //     message:
+        //       '<h2>Use Location?</h2> \
+        //     This app wants to change your device settings:<br/><br/>\
+        //     Use GPS, Wi-Fi, and cell network for location<br/>',
+        //     ok: 'YES',
+        //     cancel: 'NO',
+        //     style: {},
+        //     enableHighAccuracy: true,
+        //     showDialog: true,
+        //     openLocationServices: true,
+        //     preventOutSideTouch: true,
+        //     preventBackClick: true,
+        //     providerListener: true,
+        //   }).catch(error => error);
       }
 
       if (typeof checkGPSEnabled === 'object' && checkGPSEnabled.enabled) {
@@ -136,32 +163,32 @@ class Login extends Component {
           deferredUpdatesDistance,
         } = this.state.locationTrackingOptions || {};
 
-        await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
-          accuracy: Location.Accuracy.BestForNavigation,
-          timeInterval: timeInterval || 5000,
-          distanceInterval: distanceInterval || 10,
-          deferredUpdatesInterval: deferredUpdatesInterval || 5000,
-          deferredUpdatesDistance: deferredUpdatesDistance || 10,
-          showsBackgroundLocationIndicator: true,
-          foregroundService: {
-            notificationTitle: 'Location Tracker',
-            notificationBody:
-              'Your location is used to track your daily activities for the places you visit.',
-          },
-        });
+        // await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
+        //   accuracy: Location.Accuracy.BestForNavigation,
+        //   timeInterval: timeInterval || 5000,
+        //   distanceInterval: distanceInterval || 10,
+        //   deferredUpdatesInterval: deferredUpdatesInterval || 5000,
+        //   deferredUpdatesDistance: deferredUpdatesDistance || 10,
+        //   showsBackgroundLocationIndicator: true,
+        //   foregroundService: {
+        //     notificationTitle: 'Location Tracker',
+        //     notificationBody:
+        //       'Your location is used to track your daily activities for the places you visit.',
+        //   },
+        // });
 
-        const isRegistered = await TaskManager.isTaskRegisteredAsync(
-          LOCATION_TASK_NAME,
-        );
+        // const isRegistered = await TaskManager.isTaskRegisteredAsync(
+        //   LOCATION_TASK_NAME,
+        // );
 
-        if (isRegistered) {
-          this.props.navigation.navigate('SalesDashboard');
-        } else {
-          this.makeUserLogout(
-            'Some error occurred!',
-            'Something went wrong with location tracking feature. Make sure all the settings are correct and try again.',
-          );
-        }
+        // if (isRegistered) {
+        //   this.props.navigation.navigate('SalesDashboard');
+        // } else {
+        //   this.makeUserLogout(
+        //     'Some error occurred!',
+        //     'Something went wrong with location tracking feature. Make sure all the settings are correct and try again.',
+        //   );
+        // }
       } else {
         this.makeUserLogout(
           'Please enable Location Services',
@@ -172,7 +199,7 @@ class Login extends Component {
       console.error('Error starting location tracking:', error);
     }
   };
-  makeUserLogout = (title, description) => {
+  makeUserLogout = (title:any, description:any) => {
     dataProvider.deleteData('user').then(() => {
       this.props.onUserUpdate(null);
       dataProvider.deleteData('token').then(() => {
@@ -200,7 +227,7 @@ class Login extends Component {
     });
   };
 
-  handleSubmit = values => {
+  handleSubmit = (values:any) => {
     setTimeout(() => {
       this.setState({loading: true});
 
@@ -623,15 +650,16 @@ class Login extends Component {
                     onPress={() => {
                       this.props.navigation.navigate('ForgotPassword');
                     }}>
-                    <Text style={[{
+                    <Text
+                      style={[
+                        {
                           fontSize: 12,
                           textAlign: 'center',
                           marginTop: 8,
                           marginBottom: 8,
                           // color: 'textMutedColor',
-                        }
-                      ]}
-                      >
+                        },
+                      ]}>
                       Forgot your password?
                       <Text style={[common.linkText]}>&nbsp;Reset Now</Text>
                     </Text>
@@ -646,17 +674,17 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     user: state.loggedInUserDetailsReducer.user,
     notificationCount: state.DrawerNotificationBadgeCountReducer.count,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    onUserUpdate: user => dispatch(loggedInUserDetails(user)),
-    onNotificationUpdateCount: count =>
+    onUserUpdate: (user: any) => dispatch(loggedInUserDetails(user)),
+    onNotificationUpdateCount: (count: any) =>
       dispatch(DrawerNotificationBadgeCount(count)),
   };
 };
