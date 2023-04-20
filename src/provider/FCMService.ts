@@ -382,6 +382,8 @@
 import firebase from './firebaseConfig';
 
 class FCMService {
+  notificationListener: any;
+  notificationOpenedListener: any;
   async register(
     onRegister: any,
     onNotification: any,
@@ -400,7 +402,7 @@ class FCMService {
     });
 
     // Handle incoming notifications
-    this.notificationListene = firebase
+    this.notificationListener = firebase
       .notifications()
       .onNotification((notification: any) => {
         console.log('Notification Received:', notification);
@@ -451,24 +453,4 @@ class FCMService {
 
 export default new FCMService();
 
-useEffect(() => {
-  FCMService.register(
-    // Callback function to handle token registration
-    (token: any) => {
-      console.log('FCM Token:', token);
-    },
-    // Callback function to handle incoming notifications
-    (notification: any) => {
-      console.log('Notification Received:', notification);
-    },
-    // Callback function to handle opening notifications
-    (notificationL: any) => {
-      console.log('Notification Opened:', notification);
-    },
-  );
 
-  // Unregister the device from receiving notifications on component unmount
-  return () => {
-    FCMService.unregister();
-  };
-}, []);

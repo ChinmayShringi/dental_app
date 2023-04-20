@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Platform, StatusBar, Alert} from 'react-native';
 import {isSignedIn} from './auth';
 
@@ -36,6 +36,7 @@ import Geolocation from 'react-native-geolocation-service';
 import {DeviceEventEmitter} from 'react-native';
 import moment from 'moment';
 import {RootNavigator} from './routes';
+import FCMService from './provider/FCMService';
 // import { createRootNavigator } from './routes';
 
 var api = new Api();
@@ -51,6 +52,30 @@ export default function App() {
   const [isUpdatingCoordinatesOnServer, setIsUpdatingCoordinatesOnServer] =
     useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  /**Shubham FCM Starts */
+  useEffect(() => {
+    FCMService.register(
+      // Callback function to handle token registration
+      (token: any) => {
+        console.log('FCM Token:', token);
+      },
+      // Callback function to handle incoming notifications
+      (notification: any) => {
+        console.log('Notification Received:', notification);
+      },
+      // Callback function to handle opening notifications
+      (notification: any) => {
+        console.log('Notification Opened:', notification);
+      },
+    );
+
+    // Unregister the device from receiving notifications on component unmount
+    return () => {
+      FCMService.unregister();
+    };
+  }, []);
+  /**Shubham FCM Ends */
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const [Layout, setLayout] = useState(<div style={{display:'flex',backgroundColor: '#333'}}>100</div>);
@@ -421,11 +446,11 @@ export default function App() {
             animationOutTiming={500}>
             <View style={styles.modalBody}>
               <Icon
-                  name="close"
-                  size={28}
-                  style={styles.closeButton}
-                  onPress={toggleNetworkModal}
-                />
+                name="close"
+                size={28}
+                style={styles.closeButton}
+                onPress={toggleNetworkModal}
+              />
               <View style={styles.bodyContent}>
                 <NoNetwork />
               </View>
