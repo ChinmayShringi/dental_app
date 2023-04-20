@@ -378,3 +378,97 @@
 //   scheduleNotification,
 //   displayNotification,
 // };
+
+import firebase from './firebaseConfig';
+
+class FCMService {
+  async register(
+    onRegister: any,
+    onNotification: any,
+    onOpenNotification: any,
+  ) {
+    // Request for permission to receive notifications
+    firebase.messaging().requestPermission();
+
+    // Get the device token from Firebase
+    const fcmToken = await firebase.messaging().getToken();
+    console.log('FCM Token:', fcmToken);
+
+    // Listen for token refresh
+    firebase.messaging().onTokenRefresh((fcmToken: any) => {
+      console.log('Token Refreshed:', fcmToken);
+    });
+
+    // Handle incoming notifications
+    this.notificationListene = firebase
+      .notifications()
+      .onNotification((notification: any) => {
+        console.log('Notification Received:', notification);
+
+        if (notification.android) {
+          // Display the notification in the system tray
+          notification.android
+            .setChannelId('default')
+            .android.setSmallIcon('@drawable/ic_launcher')
+            .android.setPriority(firebase.notifications.Android.Priority.High);
+        }
+
+        // Call the onNotification callback function
+        onNotification(notification);
+      });
+
+    // Handle notification when app is in background
+    this.notificationOpenedListener = firebase
+      .notifications()
+      .onNotificationOpened((notificationOpen: any) => {
+        console.log('Notification Opened:', notificationOpen);
+
+        // Call the onOpenNotification callback function
+        onOpenNotification(notificationOpen.notification);
+      });
+
+    // Handle notification when app is closed
+    const notificationOpen = await firebase
+      .notifications()
+      .getInitialNotification();
+    if (notificationOpen) {
+      console.log('Notification Opened:', notificationOpen);
+
+      // Call the onOpenNotification callback function
+      onOpenNotification(notificationOpen.notification);
+    }
+
+    // Call the onRegister callback function
+    onRegister(fcmToken);
+  }
+
+  // Unregister the device from receiving notifications
+  unregister() {
+    this.notificationListener();
+    this.notificationOpenedListener();
+  }
+}
+
+export default new FCMService();
+
+useEffect(() => {
+  FCMService.register(
+    // Callback function to handle token registration
+    (token: any) => {
+      console.log('FCM Token:', token);
+    },
+    // Callback function to handle incoming notifications
+    (notification: any) => {
+      console.log('Notification Received:', notification);
+    },
+    // Callback function to handle opening notifications
+    (notificationL: any) => {
+      console.log('Notification Opened:', notification);
+    },
+  );
+
+  // Unregister the device from receiving notifications on component unmount
+  return () => {
+    FCMService.unregister();
+  };
+}, []);
