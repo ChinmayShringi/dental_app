@@ -36,7 +36,7 @@ import Geolocation from 'react-native-geolocation-service';
 import {DeviceEventEmitter} from 'react-native';
 import moment from 'moment';
 import {RootNavigator} from './routes';
-import FCMService from './provider/FCMService';
+// import FCMService from './provider/FCMService';
 // import { createRootNavigator } from './routes';
 
 var api = new Api();
@@ -53,7 +53,7 @@ export default function App() {
     useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  /**Shubham FCM Starts */
+  // /**Shubham FCM Starts */
   // useEffect(() => {
   //   FCMService.register(
   //     // Callback function to handle token registration
@@ -75,7 +75,7 @@ export default function App() {
   //     FCMService.unregister();
   //   };
   // }, []);
-  /**Shubham FCM Ends */
+  // /**Shubham FCM Ends */
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const [Layout, setLayout] = useState(<div style={{display:'flex',backgroundColor: '#333'}}>100</div>);
