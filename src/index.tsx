@@ -13,7 +13,6 @@ import {backgroundGrey} from './constants/themeColors';
 
 import Modal from 'react-native-modal';
 import NoNetwork from './components/NoNetwork';
-// import {MaterialIcons} from '@expo/vector-icons';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -24,13 +23,11 @@ const store = createStore(allReducers);
 import NetInfo from '@react-native-community/netinfo';
 import SplashScreen from 'react-native-splash-screen';
 
-// import {fcmService} from './provider/FCMService';
-// import Geolocation from 'react-native-geolocation-service';
-import Geolocation from 'react-native-geolocation-service';
+import Geolocation from 'expo-location';
 
-// import * as TaskManager from 'expo-task-manager';
-// import {locationTrackingProps} from './constants/defaultValues';
-// const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
+import * as TaskManager from 'expo-task-manager';
+import {locationTrackingProps} from './constants/defaultValues';
+const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
 // import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
 
 import {DeviceEventEmitter} from 'react-native';
@@ -290,7 +287,7 @@ export default function App() {
           if (loggedInUser.appusertype === 5) {
             if (!loggedInUser.isdepartmenthead) {
               (async () => {
-                // await Geolocation.stopObserving(LOCATION_TASK_NAME);
+                await Geolocation.stopObserving(LOCATION_TASK_NAME);
                 if (Platform.OS === 'android') {
                   // LocationServicesDialogBox.stopListener();
                 }
@@ -299,9 +296,6 @@ export default function App() {
           }
         }
 
-        if (responseData.status_code === 200) {
-        } else {
-        }
 
         dataProvider.deleteData('user').then(() => {
           dataProvider.deleteData('token').then(() => {
@@ -504,141 +498,142 @@ const styles = StyleSheet.create({
   },
 });
 
-// TaskManager.defineTask(LOCATION_TASK_NAME, ({data, error}) => {
-//   if (error) {
-//     // console.log(error);
-//     return;
-//   }
-//   if (data) {
-//     const {locations} = data;
+TaskManager.defineTask(LOCATION_TASK_NAME, ({data, error}:any) => {
+  if (error) {
+    // console.log(error);
+    return;
+  }
+  if (data) {
+    const {locations} = data;
 
-//     let latitude = locations[0].coords.latitude;
-//     let longitude = locations[0].coords.longitude;
-//     let accuracy = locations[0].coords.accuracy;
-//     let coordinates = {
-//       latitude: latitude,
-//       longitude: longitude,
-//       accuracy: accuracy,
-//     };
+    let latitude = locations[0].coords.latitude;
+    let longitude = locations[0].coords.longitude;
+    let accuracy = locations[0].coords.accuracy;
+    let coordinates = {
+      latitude: latitude,
+      longitude: longitude,
+      accuracy: accuracy,
+    };
 
-//     let coordinatesTest = {
-//       latitude: latitude,
-//       longitude: longitude,
-//       accuracy: accuracy,
-//       time: new Date(),
-//     };
+    let coordinatesTest = {
+      latitude: latitude,
+      longitude: longitude,
+      accuracy: accuracy,
+      time: new Date(),
+      message:''
+    };
 
-//     (async () => {
-//       await NetInfo.fetch().then(state => {
-//         // Connected with internet
-//         if (state.isConnected) {
-//           dataProvider
-//             .getLocationCoordinates()
-//             .then(coordinatesStoredInLocalStorage => {
-//               var coordinatesobject =
-//                 coordinatesStoredInLocalStorage === null ||
-//                 coordinatesStoredInLocalStorage === 'null'
-//                   ? []
-//                   : coordinatesStoredInLocalStorage;
+    (async () => {
+      await NetInfo.fetch().then(state => {
+        // Connected with internet
+        if (state.isConnected) {
+          dataProvider
+            .getLocationCoordinates()
+            .then(coordinatesStoredInLocalStorage => {
+              var coordinatesobject =
+                coordinatesStoredInLocalStorage === null ||
+                coordinatesStoredInLocalStorage === 'null'
+                  ? []
+                  : coordinatesStoredInLocalStorage;
 
-//               const formData = new FormData();
-//               formData.append('latitude', latitude);
-//               formData.append('longitude', longitude);
-//               formData.append('accuracy', accuracy);
-//               formData.append(
-//                 'coordinatesobject',
-//                 JSON.stringify(coordinatesobject),
-//               );
+              const formData = new FormData();
+              formData.append('latitude', latitude);
+              formData.append('longitude', longitude);
+              formData.append('accuracy', accuracy);
+              formData.append(
+                'coordinatesobject',
+                JSON.stringify(coordinatesobject),
+              );
 
-//               let options = {
-//                 api: 'v_1/location-tracking/add-location',
-//                 method: 'POST',
-//                 headers: {
-//                   Accept: 'application/json',
-//                   'Content-Type': 'multipart/form-data',
-//                 },
-//                 data: formData,
-//                 refreshOn401: true,
-//               };
+              let options = {
+                api: 'v_1/location-tracking/add-location',
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'multipart/form-data',
+                },
+                data: formData,
+                refreshOn401: true,
+              };
 
-//               api.callPostApi(options).then(responseData => {
-//                 if (responseData.status_code === 200) {
-//                   // api.showSuccessMessage(responseData.response.message, null);
-//                   console.log(responseData.response.message);
+              api.callPostApi(options).then((responseData:any) => {
+                if (responseData?.status_code === 200) {
+                  // api.showSuccessMessage(responseData.response.message, null);
+                  console.log(responseData?.response.message);
 
-//                   dataProvider.deleteLocationCoordinates().then(() => {
-//                     console.log('Coordinates deleted from local storage');
-//                   });
+                  dataProvider.deleteLocationCoordinates().then(() => {
+                    console.log('Coordinates deleted from local storage');
+                  });
 
-//                   coordinatesTest.message = 'updated on server';
-//                   dataProvider.getLocationCoordinatesTest().then(dataTest => {
-//                     let objTest = dataTest !== null ? dataTest : [];
-//                     // console.log(objTest);
-//                     objTest.push(coordinatesTest);
-//                     dataProvider
-//                       .saveLocationCoordinatesTest(objTest)
-//                       .then(() => {
-//                         console.log('Coordinates Test store in local storage');
-//                       });
-//                   });
-//                 } else {
-//                   dataProvider
-//                     .getLocationCoordinates()
-//                     .then(locationCordinate => {
-//                       let obj =
-//                         locationCordinate !== null ? locationCordinate : [];
-//                       obj.push(coordinates);
-//                       dataProvider.saveLocationCoordinates(obj).then(() => {
-//                         console.log('Coordinates store in local storage');
-//                       });
-//                     });
+                  coordinatesTest.message = 'updated on server';
+                  dataProvider.getLocationCoordinatesTest().then(dataTest => {
+                    let objTest = dataTest !== null ? dataTest : [];
+                    // console.log(objTest);
+                    objTest.push(coordinatesTest);
+                    dataProvider
+                      .saveLocationCoordinatesTest(objTest)
+                      .then(() => {
+                        console.log('Coordinates Test store in local storage');
+                      });
+                  });
+                } else {
+                  dataProvider
+                    .getLocationCoordinates()
+                    .then(locationCordinate => {
+                      let obj =
+                        locationCordinate !== null ? locationCordinate : [];
+                      obj.push(coordinates);
+                      dataProvider.saveLocationCoordinates(obj).then(() => {
+                        console.log('Coordinates store in local storage');
+                      });
+                    });
 
-//                   coordinatesTest.message = 'failed to update on server';
-//                   dataProvider.getLocationCoordinatesTest().then(dataTest => {
-//                     let objTest = dataTest !== null ? dataTest : [];
-//                     objTest.push(coordinatesTest);
-//                     dataProvider
-//                       .saveLocationCoordinatesTest(objTest)
-//                       .then(() => {
-//                         console.log('Coordinates Test store in local storage');
-//                       });
-//                   });
+                  coordinatesTest.message = 'failed to update on server';
+                  dataProvider.getLocationCoordinatesTest().then(dataTest => {
+                    let objTest = dataTest !== null ? dataTest : [];
+                    objTest.push(coordinatesTest);
+                    dataProvider
+                      .saveLocationCoordinatesTest(objTest)
+                      .then(() => {
+                        console.log('Coordinates Test store in local storage');
+                      });
+                  });
 
-//                   let errormessage = null;
-//                   if (
-//                     typeof responseData.status_code !== 'undefined' &&
-//                     responseData.status_code === 422
-//                   ) {
-//                     errormessage = responseData.response.data.message;
-//                   }
-//                   api.showErrorMessage(
-//                     responseData.response.message,
-//                     errormessage,
-//                   );
-//                 }
-//               });
-//             });
-//         }
-//         // Not connected with internet
-//         else {
-//           dataProvider.getLocationCoordinates().then(locationCordinate => {
-//             let obj = locationCordinate !== null ? locationCordinate : [];
-//             obj.push(coordinates);
-//             dataProvider.saveLocationCoordinates(obj).then(() => {
-//               console.log('Coordinates store in local storage');
-//             });
-//           });
+                  let errormessage = null;
+                  if (
+                    typeof responseData?.status_code !== 'undefined' &&
+                    responseData?.status_code === 422
+                  ) {
+                    errormessage = responseData.response.data.message;
+                  }
+                  api.showErrorMessage(
+                    responseData.response.message,
+                    errormessage,
+                  );
+                }
+              });
+            });
+        }
+        // Not connected with internet
+        else {
+          dataProvider.getLocationCoordinates().then(locationCordinate => {
+            let obj = locationCordinate !== null ? locationCordinate : [];
+            obj.push(coordinates);
+            dataProvider.saveLocationCoordinates(obj).then(() => {
+              console.log('Coordinates store in local storage');
+            });
+          });
 
-//           coordinatesTest.message = 'updated on local storage';
-//           dataProvider.getLocationCoordinatesTest().then(dataTest => {
-//             let objTest = dataTest !== null ? dataTest : [];
-//             objTest.push(coordinatesTest);
-//             dataProvider.saveLocationCoordinatesTest(objTest).then(() => {
-//               console.log('Coordinates Test store in local storage');
-//             });
-//           });
-//         }
-//       });
-//     })();
-//   }
-// });
+          coordinatesTest.message = 'updated on local storage';
+          dataProvider.getLocationCoordinatesTest().then(dataTest => {
+            let objTest = dataTest !== null ? dataTest : [];
+            objTest.push(coordinatesTest);
+            dataProvider.saveLocationCoordinatesTest(objTest).then(() => {
+              console.log('Coordinates Test store in local storage');
+            });
+          });
+        }
+      });
+    })();
+  }
+});

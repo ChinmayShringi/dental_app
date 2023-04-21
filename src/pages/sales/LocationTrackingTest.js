@@ -26,10 +26,7 @@ import {skeletonPlaceholderProps} from '../../constants/defaultValues';
 
 import moment from 'moment';
 
-// import * as TaskManager from 'expo-task-manager';
-import {locationTrackingProps} from '../../constants/defaultValues';
 import SkeletonContent from '../../components/SkeletonContent';
-const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -73,13 +70,6 @@ export default class LocationTrackingTest extends Component {
         loading: false,
       });
     });
-
-    (async () => {
-      // let isRegistered = await TaskManager.isTaskRegisteredAsync(
-      //   LOCATION_TASK_NAME,
-      // );
-      // console.log(isRegistered);
-    })();
   }
 
   handleRefreshData = () => {

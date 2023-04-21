@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native';
 
-import {Badge} from 'native-base';
+import {Badge,NativeBaseProvider } from 'native-base';
 
 import {primaryHexColor} from '../constants/themeColors';
 
@@ -19,6 +19,7 @@ class DrawerNotificationBadge extends Component {
       return null;
     }
     return (
+      <NativeBaseProvider>
       <Badge
         style={{
           height: 20,
@@ -35,6 +36,7 @@ class DrawerNotificationBadge extends Component {
           {this.props.count}
         </Text>
       </Badge>
+      </NativeBaseProvider>
     );
   }
 }

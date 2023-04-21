@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Dimensions,
   Image,
@@ -34,9 +34,9 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Body, Card, CardItem, Left, Right} from 'native-base';
+import { Body, Card, CardItem, VStack, HStack } from 'native-base';
 
-import {skeletonPlaceholderProps} from '../../constants/defaultValues';
+import { skeletonPlaceholderProps } from '../../constants/defaultValues';
 
 import Carousel from 'react-native-snap-carousel';
 import SkeletonContent from '../../components/SkeletonContent';
@@ -46,7 +46,7 @@ const screenWidth = Dimensions.get('window').width;
 const appScreenWidth = Dimensions.get('window');
 const carouselWidth = appScreenWidth.width;
 // BRAND CAROUSEL
-const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 const SLIDE_WIDTH = Math.round(viewportWidth / 2.6);
 const ITEM_HORIZONTAL_MARGIN = 0;
 const ITEM_WIDTH = SLIDE_WIDTH + ITEM_HORIZONTAL_MARGIN * 2;
@@ -95,14 +95,14 @@ export default class CustomerDashboard extends Component {
   }
 
   reloadPageData = () => {
-    this.setState({loading: true}, this.getData);
+    this.setState({ loading: true }, this.getData);
   };
 
   onRefreshPageData = () => {
-    this.setState({refreshing: true}, this.getData);
+    this.setState({ refreshing: true }, this.getData);
   };
 
-  getData() {
+  async getData() {
     let options = {
       api: 'v_1/sales/salesman/dashboard',
       method: 'POST',
@@ -113,47 +113,49 @@ export default class CustomerDashboard extends Component {
       data: {},
       refreshOn401: true,
     };
-
-    this.api.callPostApi(options).then(data => {
+    try {
+      const data = await this.api.callPostApi(options)
       this.setState({
         loading: false,
         refreshing: false,
       });
-
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      console.log(!!data)
+      if (data && data?.status_code === 200) {
+        let responseData = data?.response?.data;
 
         this.setState({
-          products: responseData.products,
-          customers: responseData.customers,
-          bands: responseData.brands,
-          salesRepresentative: responseData.salesrepresentative,
+          products: responseData?.products,
+          customers: responseData?.customers,
+          bands: responseData?.brands,
+          salesRepresentative: responseData?.salesrepresentative,
         });
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response?.data?.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        // this.api.showErrorMessage(data?.response?.message || '', errormessage || '');
       }
-    });
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  renderSalesRepresentative = ({item, index}) => {
+  renderSalesRepresentative = ({ item, index }) => {
     return (
-      <View style={{width: '100%'}}>
+      <View style={{ width: '100%' }}>
         <View
           style={[
             dashBoardStyle.attendanceCircle,
-            {backgroundColor: item.backgroundcolor},
+            { backgroundColor: item.backgroundcolor },
           ]}>
           <Text
             style={[
               dashBoardStyle.attendanceShowNo,
-              {color: primarywhiteHexColor},
+              { color: primarywhiteHexColor },
             ]}>
             {item.value}
           </Text>
@@ -161,7 +163,7 @@ export default class CustomerDashboard extends Component {
         <Text
           style={[
             dashBoardStyle.attendanceShowText,
-            {color: fontColor, width: 80},
+            { color: fontColor, width: 80 },
           ]}>
           {item.label}
         </Text>
@@ -169,15 +171,15 @@ export default class CustomerDashboard extends Component {
     );
   };
 
-  renderCustomers = ({item, index}) => {
+  renderCustomers = ({ item, index }) => {
     return (
-      <View style={{width: '100%'}}>
+      <View style={{ width: '100%' }}>
         <Card
           style={[
             callLogCardLayout.cardContainer,
             {
               shadowColor: '#000',
-              shadowOffset: {width: 0, height: 1},
+              shadowOffset: { width: 0, height: 1 },
               shadowOpacity: 0.8,
               shadowRadius: 2,
               elevation: 4,
@@ -197,7 +199,7 @@ export default class CustomerDashboard extends Component {
                 <Text
                   style={[
                     callLogCardLayout.bodyTitle,
-                    {color: primaryHexColor},
+                    { color: primaryHexColor },
                   ]}>
                   {item.name}
                 </Text>
@@ -211,10 +213,10 @@ export default class CustomerDashboard extends Component {
                     <Text
                       style={[
                         callLogCardLayout.textWithIconContainerText,
-                        {fontWeight: 'bold'},
+                        { fontWeight: 'bold' },
                       ]}>
                       {item.salutationtext}&nbsp;{item.doctorname}{' '}
-                      <Text style={{color: textMutedColor}}>({item.code})</Text>
+                      <Text style={{ color: textMutedColor }}>({item.code})</Text>
                     </Text>
                   </View>
                 </View>
@@ -265,7 +267,7 @@ export default class CustomerDashboard extends Component {
     );
   };
 
-  renderCarouselProduct = ({item, index}) => {
+  renderCarouselProduct = ({ item, index }) => {
     return (
       <TouchableOpacity
         activeOpacity={0.5}
@@ -275,21 +277,21 @@ export default class CustomerDashboard extends Component {
             brandProductId: item.brandproductid,
           });
         }}>
-        <View style={{width: '100%'}}>
+        <View style={{ width: '100%' }}>
           <Image
-            source={{uri: item.firstimagefilepath}}
-            style={{width: 100, height: 100, borderRadius: 8}}
+            source={{ uri: item.firstimagefilepath }}
+            style={{ width: 100, height: 100, borderRadius: 8 }}
           />
         </View>
       </TouchableOpacity>
     );
   };
 
-  renderCarouselItem = ({item, index}) => {
+  renderCarouselItem = ({ item, index }) => {
     return (
-      <View style={{width: '100%'}}>
+      <View style={{ width: '100%' }}>
         <TouchableOpacity
-          style={{marginRight: 5}}
+          style={{ marginRight: 5 }}
           onPress={() => {
             this.props.navigation.navigate(item.pageUrl, {
               pageHeading: item.pageHeading,
@@ -304,7 +306,7 @@ export default class CustomerDashboard extends Component {
     );
   };
 
-  renderCarouselBrand = ({item}) => {
+  renderCarouselBrand = ({ item }) => {
     return (
       <TouchableOpacity
         activeOpacity={0.5}
@@ -314,9 +316,9 @@ export default class CustomerDashboard extends Component {
             brandId: item.brandid,
           });
         }}>
-        <View style={[commonCard.imageContainer, {width: '100%'}]}>
+        <View style={[commonCard.imageContainer, { width: '100%' }]}>
           <Image
-            source={{uri: item.imagefilepath}}
+            source={{ uri: item.imagefilepath }}
             style={{
               height: 60,
               width: 60,
@@ -385,9 +387,9 @@ export default class CustomerDashboard extends Component {
     ];
 
     return (
-      <View style={{flex: 1, backgroundColor: backgroundGrey}}>
+      <View style={{ flex: 1, backgroundColor: backgroundGrey }}>
         <SkeletonContent
-          containerStyle={{flex: 1, width: screenWidth.width}}
+          containerStyle={{ flex: 1, width: screenWidth.width }}
           layout={skeletonLayout}
           isLoading={this.state.loading}
           duration={skeletonPlaceholderProps.duration}
@@ -396,13 +398,14 @@ export default class CustomerDashboard extends Component {
           boneColor={skeletonPlaceholderProps.boneColor}
           highlightColor={skeletonPlaceholderProps.highlightColor}>
           <ScrollView
-            contentContainerStyle={{flexGrow: 1}}
+            contentContainerStyle={{ flexGrow: 1 }}
             refreshControl={
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this.onRefreshPageData}
               />
-            }>
+            }
+          >
             {!this.state.loading ? (
               <View>
                 <View>
@@ -411,23 +414,18 @@ export default class CustomerDashboard extends Component {
                       dashBoardStyle.carouselHeader,
                       {marginTop: 0, marginBottom: 0},
                     ]}>
-                    <Left>
                       <Text
                         style={dashBoardStyle.carouselWithoutCardDataHeading}>
                         Customers
                       </Text>
-                    </Left>
-                    <Right>
                       <Text
                         style={dashBoardStyle.carouselWithoutCardData}
                         onPress={() => {
-                          this.props.navigation.navigate('SalesCustomers', {
-                            pageHeading: 'Customers',
-                          });
+                          this.props.navigation.navigate('SalesUserRoutes');
+                          
                         }}>
                         View All
                       </Text>
-                    </Right>
                   </View>
                   <View
                     style={[dashBoardStyle.carouselBody, {marginBottom: 4}]}>
@@ -465,7 +463,7 @@ export default class CustomerDashboard extends Component {
                       backgroundColor: primarywhiteHexColor,
                       marginBottom: 8,
                       shadowColor: '#000',
-                      shadowOffset: {width: 0, height: 1},
+                      shadowOffset: { width: 0, height: 1 },
                       shadowOpacity: 0.8,
                       shadowRadius: 2,
                       elevation: 2,
@@ -482,38 +480,37 @@ export default class CustomerDashboard extends Component {
                         marginHorizontal: 20,
                       },
                     ]}>
-                    <Left>
-                      <Text
-                        style={[
-                          dashBoardStyle.carouselHeading,
-                          {color: fontColor, marginBottom: 5},
-                        ]}>
-                        PRODUCTS
-                      </Text>
-                    </Left>
-                    <Right>
-                      <Text
-                        style={[
-                          dashBoardStyle.carouselHeadingLink,
-                          {color: fontColor, marginBottom: 5},
-                        ]}
-                        onPress={() => {
-                          this.props.navigation.navigate('SalesBrands', {});
-                        }}>
-                        View All
-                      </Text>
-                    </Right>
+                        <Text
+                          style={[
+                            dashBoardStyle.carouselHeading,
+                            { color: fontColor, marginBottom: 5 },
+                          ]}>
+                          PRODUCTS
+                        </Text>
+                        <Text
+                          style={[
+                            dashBoardStyle.carouselHeadingLink,
+                            { color: fontColor, marginBottom: 5 },
+                          ]}
+                          onPress={() => {
+                            this.props.navigation.navigate('SalesBrands', {});
+                          }}>
+                          View All
+                        </Text>
                   </View>
+
+
+
                   <View
                     style={[
                       dashBoardStyle.carouselBody,
-                      {paddingBottom: 20, paddingHorizontal: 20},
+                      { paddingBottom: 20, paddingHorizontal: 20 },
                     ]}>
                     {this.state.products.length === 0 ? (
                       <Text
                         style={[
                           common.mutedTextInItalic,
-                          {textAlign: 'center'},
+                          { textAlign: 'center' },
                         ]}>
                         No products added!
                       </Text>
@@ -537,7 +534,12 @@ export default class CustomerDashboard extends Component {
                     )}
                   </View>
                 </View>
-                <View
+
+
+
+
+                {/* BELOW FOR PROPS  */}
+                {/* <View
                   style={[dashBoardStyle.carouselWithoutCard, {marginTop: 0}]}>
                   <Carousel
                     data={this.state.showBoxName}
@@ -548,8 +550,9 @@ export default class CustomerDashboard extends Component {
                     inactiveSlideScale={1}
                     inactiveSlideOpacity={1}
                   />
-                </View>
-                <View
+                </View> */}
+                {/* BELOW FOR PROPS  */}
+                {/* <View
                   style={[
                     dashBoardStyle.attendanceCard,
                     {backgroundColor: primarywhiteHexColor},
@@ -586,17 +589,17 @@ export default class CustomerDashboard extends Component {
                       />
                     </View>
                   </View>
-                </View>
+                </View> */}
                 <View
                   style={[
                     dashBoardStyle.attendanceCard,
-                    {backgroundColor: primarywhiteHexColor, paddingBottom: 12},
+                    { backgroundColor: primarywhiteHexColor, paddingBottom: 12 },
                   ]}>
                   <View style={[dashBoardStyle.carouselHeader, {}]}>
                     <Text
                       style={[
                         dashBoardStyle.carouselHeading,
-                        {color: fontColor},
+                        { color: fontColor },
                       ]}>
                       Our Brands
                     </Text>
@@ -604,13 +607,13 @@ export default class CustomerDashboard extends Component {
                   <View
                     style={[
                       dashBoardStyle.carouselBody,
-                      {paddingHorizontal: 10},
+                      { paddingHorizontal: 10 },
                     ]}>
                     {this.state.bands.length === 0 ? (
                       <Text
                         style={[
                           common.mutedTextInItalic,
-                          {textAlign: 'center'},
+                          { textAlign: 'center' },
                         ]}>
                         No brands added!
                       </Text>
@@ -622,11 +625,11 @@ export default class CustomerDashboard extends Component {
                             this.state.bands.length > 0
                               ? this.state.bands
                               : [
-                                  {
-                                    imagefilepath:
-                                      this.state.bands.imagefilepath,
-                                  },
-                                ]
+                                {
+                                  imagefilepath:
+                                    this.state.bands.imagefilepath,
+                                },
+                              ]
                           }
                           renderItem={this.renderCarouselBrand}
                           sliderWidth={SLIDER_WIDTH - 40}

@@ -61,7 +61,7 @@ export default class Api extends Component {
     });
   }
 
-  callPostApi(option) {
+  async callPostApi(option) {
     let method = option.method;
     let endpoint = url + option.api;
     let headers = option.headers;
@@ -79,115 +79,76 @@ export default class Api extends Component {
         headers: {},
       };
     }
-
-    return this.dataProvider.getData('token').then(token => {
-      options.headers.Authorization = 'bearer ' + token;
-
-      return new Promise((resolve, reject) => {
-        // CHECK DEVICE HAS NETWORK AVAILABLE OR NOT
-        NetInfo.fetch().then(state => {
-          // DEVICE NETWORK ENABLED
-          if (state.isConnected) {
-            fetch(endpoint, options)
-              .then(response => response.json())
-              .then(json => {
-                // resolve(json);
-
-                // ACCESS TOKEN EXPIRED
-                if (
-                  json !== null &&
-                  typeof json.status_code !== 'undefined' &&
-                  json.status_code === 401
-                ) {
-                  // REFRESH TOKEN SET TO TRUE
-                  if (
-                    typeof option.refreshOn401 !== 'undefined' &&
-                    option.refreshOn401 === true
-                  ) {
-                    let refreshTokenHeaders = headers;
-                    refreshTokenHeaders.Authorization = 'bearer ' + token;
-
-                    let refreshTokenEndpoint = url + 'v_1/refresh-token';
-
-                    let refreshTokenOptions = {
-                      method: 'GET',
-                      headers: refreshTokenHeaders,
-                    };
-
-                    return new Promise(res => {
-                      fetch(refreshTokenEndpoint, refreshTokenOptions)
-                        .then(refreshResponse => refreshResponse.json())
-                        .then(refreshJson => {
-                          // TOKEN REFRESHED
-                          if (
-                            refreshJson !== null &&
-                            typeof refreshJson.status_code !== 'undefined' &&
-                            refreshJson.status_code === 200
-                          ) {
-                            this.dataProvider
-                              .saveData(
-                                'token',
-                                refreshJson.response.data.access_token,
-                              )
-                              .then(() => {
-                                option.refreshOn401 = false;
-                                // return this.callPostApi(option);
-                                this.callPostApi(option).then(
-                                  postApiResponse => {
-                                    res(postApiResponse);
-                                  },
-                                );
-                              });
-                          }
-                          // REFRESH TOKEN EXPIRED
-                          else if (
-                            refreshJson !== null &&
-                            typeof refreshJson.status_code !== 'undefined' &&
-                            refreshJson.status_code === 401
-                          ) {
-                            // HERE REMOVE USER AND ACCESS TOKEN FROM LOCAL STORAGE
-
-                            // RETURN RESPONSE
-                            res(json);
-                          }
-                          // TOKEN REFRESH SOME ERROR
-                          else {
-                            // RETURN RESPONSE
-                            res(json);
-                          }
-                        })
-                        .catch(error => {
-                          console.log(error);
-                        });
-                    });
-                  }
-                  // REFRESH TOKEN SET TO FALSE
-                  else {
-                    // RETURN RESPONSE
-                    return json;
-                  }
-                }
-                // ACCESS TOKEN NOT EXPIRED
-                else {
-                  // RETURN RESPONSE
-                  return json;
-                }
-              })
-              .then(fetchResponse => {
-                resolve(fetchResponse);
-              })
-              .catch(error => {
-                console.error(error);
-              });
-          }
-          // DEVICE NETWORK DISABLED
-          else {
-            reject(new Error('Whoops!'));
-            this.showNoNetworkMessage();
-          }
-        });
-      });
-    });
+console.log('object');
+    // try {
+    //   const token = await this.dataProvider.getData('token');
+    //   options.headers.Authorization = 'bearer ' + token;
+      
+    //   // CHECK DEVICE HAS NETWORK AVAILABLE OR NOT
+    //   const state = await NetInfo.fetch();
+    
+    //   if (state.isConnected) {
+    //     const response = await fetch(endpoint, options);
+    //     const json = await response.json();
+    
+    //     // ACCESS TOKEN EXPIRED
+    //     if (json !== null && typeof json.status_code !== 'undefined' && json.status_code === 401) {
+    //       // REFRESH TOKEN SET TO TRUE
+    //       if (typeof option.refreshOn401 !== 'undefined' && option.refreshOn401 === true) {
+    //         let refreshTokenHeaders = headers;
+    //         refreshTokenHeaders.Authorization = 'bearer ' + token;
+    //         let refreshTokenEndpoint = url + 'v_1/refresh-token';
+    //         let refreshTokenOptions = {
+    //           method: 'GET',
+    //           headers: refreshTokenHeaders,
+    //         };
+    //         try {
+    //           const refreshResponse = await fetch(refreshTokenEndpoint, refreshTokenOptions);
+    //           const refreshJson = await refreshResponse.json();
+    
+    //           // TOKEN REFRESHED
+    //           if (refreshJson !== null && typeof refreshJson.status_code !== 'undefined' && refreshJson.status_code === 200) {
+    //             await this.dataProvider.saveData('token', refreshJson.response.data.access_token);
+    //             option.refreshOn401 = false;
+    //             const postApiResponse = await this.callPostApi(option);
+    //             return postApiResponse;
+    //           }
+    //           // REFRESH TOKEN EXPIRED
+    //           else if (refreshJson !== null && typeof refreshJson.status_code !== 'undefined' && refreshJson.status_code === 401) {
+    //             // HERE REMOVE USER AND ACCESS TOKEN FROM LOCAL STORAGE
+    //             // RETURN RESPONSE
+    //             return json;
+    //           }
+    //           // TOKEN REFRESH SOME ERROR
+    //           else {
+    //             // RETURN RESPONSE
+    //             return json;
+    //           }
+    //         } catch (error) {
+    //           console.log(error);
+    //         }
+    //       }
+    //       // REFRESH TOKEN SET TO FALSE
+    //       else {
+    //         // RETURN RESPONSE
+    //         return json;
+    //       }
+    //     }
+    //     // ACCESS TOKEN NOT EXPIRED
+    //     else {
+    //       // RETURN RESPONSE
+    //       return json;
+    //     }
+    //   }
+    //   // DEVICE NETWORK DISABLED
+    //   else {
+    //     throw new Error('Whoops!');
+    //     this.showNoNetworkMessage();
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    
   }
 
   showNoNetworkMessage() {

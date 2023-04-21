@@ -8,7 +8,6 @@ import {
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
-import { PermissionsAndroid } from 'react-native';
 import Logo from '../components/Logo';
 import Api from '../provider/Api';
 import Dataprovider from '../provider/Dataprovider';
@@ -21,21 +20,21 @@ import FormIconInput from '../components/FormIconInput';
 import FormButton from '../components/FormButton';
 
 import {primaryPurpleHexColor} from '../constants/themeColors';
-import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 import {loggedInUserDetails} from '../redux/actions/loggedInUserDetails';
 import {DrawerNotificationBadgeCount} from '../redux/actions/DrawerNotificationBadgeCount';
 import {connect} from 'react-redux';
 
-// import * as Permissions from 'expo-permissions';
+import * as Permissions from 'expo-permissions';
 //
-// import * as Location from 'expo-location';
+import * as Location from 'expo-location';
 // import { EventEmitter } from 'fbemitter';
+import * as TaskManager from 'expo-task-manager';
 
 import {locationTrackingProps} from '../constants/defaultValues';
 
 const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
-// const taskEventName = locationTrackingProps.TASK_EVENT_NAME;
+const taskEventName = locationTrackingProps.TASK_EVENT_NAME;
 // const eventEmitter = new EventEmitter();
 
 // import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
@@ -97,39 +96,10 @@ class Login extends Component<any, any> {
 
   startTracking = async () => {
     try {
-      check(PERMISSIONS.IOS.LOCATION_ALWAYS)
-        .then(result => {
-          switch (result) {
-            case RESULTS.UNAVAILABLE:
-              console.log(
-                'This feature is not available (on this device / in this context)',
-              );
-              break;
-            case RESULTS.DENIED:
-              console.log(
-                'The permission has not been requested / is denied but requestable',
-              );
-              break;
-            case RESULTS.LIMITED:
-              console.log(
-                'The permission is limited: some actions are possible',
-              );
-              break;
-            case RESULTS.GRANTED:
-              this.showLocationPermissionDeniedModal();
-              console.log('The permission is granted');
-              return;
-            case RESULTS.BLOCKED:
-              console.log(
-                'The permission is denied and not requestable anymore',
-              );
-              break;
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-
+        const {status, permissions} = await Permissions.askAsync(
+        Permissions.LOCATION,
+      );
+      if (status === 'granted') {
       let checkGPSEnabled = {
         alreadyEnabled: true,
         enabled: true,
@@ -163,38 +133,44 @@ class Login extends Component<any, any> {
           deferredUpdatesDistance,
         } = this.state.locationTrackingOptions || {};
 
-        // await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
-        //   accuracy: Location.Accuracy.BestForNavigation,
-        //   timeInterval: timeInterval || 5000,
-        //   distanceInterval: distanceInterval || 10,
-        //   deferredUpdatesInterval: deferredUpdatesInterval || 5000,
-        //   deferredUpdatesDistance: deferredUpdatesDistance || 10,
-        //   showsBackgroundLocationIndicator: true,
-        //   foregroundService: {
-        //     notificationTitle: 'Location Tracker',
-        //     notificationBody:
-        //       'Your location is used to track your daily activities for the places you visit.',
-        //   },
-        // });
+        await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
+          accuracy: Location.Accuracy.BestForNavigation,
+          timeInterval: timeInterval || 5000,
+          distanceInterval: distanceInterval || 10,
+          deferredUpdatesInterval: deferredUpdatesInterval || 5000,
+          deferredUpdatesDistance: deferredUpdatesDistance || 10,
+          showsBackgroundLocationIndicator: true,
+          foregroundService: {
+            notificationTitle: 'Location Tracker',
+            notificationBody:
+              'Your location is used to track your daily activities for the places you visit.',
+          },
+        });
 
-        // const isRegistered = await TaskManager.isTaskRegisteredAsync(
-        //   LOCATION_TASK_NAME,
-        // );
+        const isRegistered = await TaskManager.isTaskRegisteredAsync(
+          LOCATION_TASK_NAME,
+        );
 
-        // if (isRegistered) {
-        //   this.props.navigation.navigate('SalesDashboard');
-        // } else {
-        //   this.makeUserLogout(
-        //     'Some error occurred!',
-        //     'Something went wrong with location tracking feature. Make sure all the settings are correct and try again.',
-        //   );
-        // }
+        if (isRegistered) {
+          
+          this.props.navigation.navigate('SalesUserRoutes', { screen: 'SalesDashboard' });
+        } else {
+          this.makeUserLogout(
+            'Some error occurred!',
+            'Something went wrong with location tracking feature. Make sure all the settings are correct and try again.',
+          );
+        }
       } else {
         this.makeUserLogout(
           'Please enable Location Services',
           'You currently have all Location Services for this device or application disabled. Please enable them in Settings.',
         );
       }
+    }
+    // Location permission denied
+    else {
+      this.showLocationPermissionDeniedModal();
+    }
     } catch (error) {
       console.error('Error starting location tracking:', error);
     }
@@ -452,7 +428,7 @@ class Login extends Component<any, any> {
                           errorMessage,
                         );
                       }
-                    } catch (error) {
+                    } catch (error:any) {
                       console.error('Error during checkin:', error);
                       api.showErrorMessage(
                         'Error during checkin',
@@ -543,8 +519,8 @@ class Login extends Component<any, any> {
     );
   };
 
-  validate(values) {
-    let errors = {};
+  validate(values:any) {
+    let errors:any = {};
 
     let emailValid = values.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
     if (!values.email) {

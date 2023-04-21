@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import {NavigationContainer, useTheme} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
@@ -157,6 +157,7 @@ import SupervisorOngoingJobs from './pages/supervisors/ongoingjobs/SupervisorOng
 import SupervisorViewOngoingJob from './pages/supervisors/ongoingjobs/SupervisorViewOngoingJob';
 import SupervisorOngoingJobProgress from './pages/supervisors/ongoingjobs/SupervisorOngoingJobProgress';
 import CustomerDashboard from './pages/customers/CustomerDashboard';
+
 import CustomerCollectionCalls from './pages/customers/collectionCalls/CustomerCollectionCalls';
 import CustomerCollectionCallForm from './pages/customers/collectionCalls/CustomerCollectionCallForm';
 import CustomerOrders from './pages/customers/orders/CustomerOrders';
@@ -1803,7 +1804,6 @@ function ReceptionComplaintsStack() {
   );
 }
 export const ReceptionViewOrderDetailsTabStack = () => {
-  const {colors} = useTheme();
 
   return (
     <Tab.Navigator
@@ -7054,108 +7054,51 @@ export function RootNavigator(
   } else {
     initialRouteName = 'SignedOut';
   }
+  // initialRouteName = 'SignedOut';
 
-  // BELOW FOR TESTING
-  initialRouteName = 'AdminQCUserRoutes';
-  switch (initialRouteName) {
-    case 'SignedIn':
-      //  SignedIn
-      return (
-        <NavigationContainer>
-          <SignedInDrawer initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'AdminQCUserRoutes':
-      //  AdminQCUserRoutesFMC
-      return (
-        <NavigationContainer>
-          <AdminQCUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'AdminQCHeadUserRoutes':
-      //  AdminQCHeadUserRoutes
-      return (
-        <NavigationContainer>
-          <AdminQCHeadUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'PackagingUserRoutes':
-      //  PackagingUserRoutes
-      return (
-        <NavigationContainer>
-          <PackagingUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'PackagingHeadUserRoutes':
-      //  PackagingHeadUserRoutes
-      return (
-        <NavigationContainer>
-          <PackagingHeadUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'ProductionUserRoutes':
-      //  ProductionUserRoutes
-      return (
-        <NavigationContainer>
-          <ProductionUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'ProductionHeadUserRoutes':
-      //  ProductionHeadUserRoutes
-      return (
-        <NavigationContainer>
-          <ProductionHeadUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'ReceptionUserRoutes':
-      //  ReceptionUserRoutes
-      return (
-        <NavigationContainer>
-          <ReceptionUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'SalesUserRoutes':
-      //  SalesUserRoutes
-      return (
-        <NavigationContainer>
-          <SalesUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'SalesHeadUserRoutes':
-      //  SalesHeadUserRoutes
-      return (
-        <NavigationContainer>
-          <SalesHeadUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'SupervisorUserRoutes':
-      //  SupervisorUserRoutes
-      return (
-        <NavigationContainer>
-          <SupervisorUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'CustomerUserRoutes':
-      //  CustomerUserRoutes
-      return (
-        <NavigationContainer>
-          <CustomerUserRoutes initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    case 'SignedOut':
-      //  SignedOut,
-      return (
-        <NavigationContainer>
-          <SignedOut initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-    default:
-      return (
-        <NavigationContainer>
-          <SignedOut initialRouteName={initialRouteName} />
-        </NavigationContainer>
-      );
-  }
+  return (
+    <NavigationContainer>
+    <Stack.Navigator initialRouteName={initialRouteName}>
+      <Stack.Screen name="SignedIn" component={SignedInDrawer} />
+      <Stack.Screen name="AdminQCUserRoutes" component={AdminQCUserRoutes} />
+      <Stack.Screen
+        name="AdminQCHeadUserRoutes"
+        component={AdminQCHeadUserRoutes}
+      />
+      <Stack.Screen
+        name="PackagingUserRoutes"
+        component={PackagingUserRoutes}
+      />
+      <Stack.Screen
+        name="PackagingHeadUserRoutes"
+        component={PackagingHeadUserRoutes}
+      />
+      <Stack.Screen
+        name="ProductionUserRoutes"
+        component={ProductionUserRoutes}
+      />
+      <Stack.Screen
+        name="ProductionHeadUserRoutes"
+        component={ProductionHeadUserRoutes}
+      />
+      <Stack.Screen
+        name="ReceptionUserRoutes"
+        component={ReceptionUserRoutes}
+      />
+      <Stack.Screen name="SalesUserRoutes" component={SalesUserRoutes} />
+      <Stack.Screen
+        name="SalesHeadUserRoutes"
+        component={SalesHeadUserRoutes}
+      />
+      <Stack.Screen
+        name="SupervisorUserRoutes"
+        component={SupervisorUserRoutes}
+      />
+      <Stack.Screen name="CustomerUserRoutes" component={CustomerUserRoutes} />
+      <Stack.Screen name="SignedOut" component={SignedOut} />
+    </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 const drawerIconSize = 20;
