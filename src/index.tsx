@@ -168,7 +168,7 @@ export default function App() {
               refreshOn401: true,
             };
 
-            api.callPostApi(options).then(responseData => {
+            api.callPostApi(options).then((responseData:any) => {
               setIsUpdatingCoordinatesOnServer(false);
               if (responseData.status_code === 200) {
                 // api.showSuccessMessage(responseData.response.message, null);
@@ -287,12 +287,13 @@ export default function App() {
           // Sales User
           if (loggedInUser.appusertype === 5) {
             if (!loggedInUser.isdepartmenthead) {
-              (async () => {
-                await Geolocation.stopObserving(LOCATION_TASK_NAME);
-                if (Platform.OS === 'android') {
-                  // LocationServicesDialogBox.stopListener();
-                }
-              })();
+                Geolocation.stopObserving(LOCATION_TASK_NAME)
+                .then(()=>{
+                  if (Platform.OS === 'android') {
+                    LocationServicesDialogBox.stopListener();
+                  }
+                })
+                .catch(console.log)
             }
           }
         }
