@@ -119,7 +119,6 @@ export default class CustomerDashboard extends Component {
         loading: false,
         refreshing: false,
       });
-      console.log(!!data)
       if (data && data?.status_code === 200) {
         let responseData = data?.response?.data;
 
@@ -399,12 +398,12 @@ export default class CustomerDashboard extends Component {
           highlightColor={skeletonPlaceholderProps.highlightColor}>
           <ScrollView
             contentContainerStyle={{ flexGrow: 1 }}
-            refreshControl={
-              <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={this.onRefreshPageData}
-              />
-            }
+            // refreshControl={
+            //   <RefreshControl
+            //     refreshing={this.state.refreshing}
+            //     onRefresh={()=>this.onRefreshPageData()}
+            //   />
+            // }
           >
             {!this.state.loading ? (
               <View>
@@ -534,12 +533,7 @@ export default class CustomerDashboard extends Component {
                     )}
                   </View>
                 </View>
-
-
-
-
-                {/* BELOW FOR PROPS  */}
-                {/* <View
+                <View
                   style={[dashBoardStyle.carouselWithoutCard, {marginTop: 0}]}>
                   <Carousel
                     data={this.state.showBoxName}
@@ -550,9 +544,8 @@ export default class CustomerDashboard extends Component {
                     inactiveSlideScale={1}
                     inactiveSlideOpacity={1}
                   />
-                </View> */}
-                {/* BELOW FOR PROPS  */}
-                {/* <View
+                </View>
+                <View
                   style={[
                     dashBoardStyle.attendanceCard,
                     {backgroundColor: primarywhiteHexColor},
@@ -589,7 +582,7 @@ export default class CustomerDashboard extends Component {
                       />
                     </View>
                   </View>
-                </View> */}
+                </View>
                 <View
                   style={[
                     dashBoardStyle.attendanceCard,

@@ -28,7 +28,7 @@ import Geolocation from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
 import {locationTrackingProps} from './constants/defaultValues';
 const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
-// import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
+import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
 
 import {DeviceEventEmitter} from 'react-native';
 import moment from 'moment';
@@ -89,6 +89,7 @@ export default function App() {
   };
 
   React.useEffect(() => {
+    console.log('objec12t');
     StatusBar.setBarStyle('dark-content');
     // if (Platform.OS === "android") {
     //   StatusBar.setBackgroundColor("rgba(0,0,0,0)");
@@ -265,7 +266,7 @@ export default function App() {
     }
 
     prepareResources();
-  });
+  },[]);
 
   const makeUserLogout = (loggedInUser: any) => {
     setIsLoggingOut(true);
