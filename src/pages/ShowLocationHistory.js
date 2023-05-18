@@ -55,9 +55,9 @@ export default class ShowLocationHistory extends Component {
     };
 
     this.api.callApi(options).then(responseData => {
-      if (responseData.status_code === 200) {
+      if (responseData?.status_code === 200) {
         alert('Location history fetched successfully.');
-        let resposeCoordinates = responseData.response.data.coordinates;
+        let resposeCoordinates = responseData?.response.data.coordinates;
         let coordinates = [];
         let region = {};
         resposeCoordinates.forEach((coordinate, index) => {

@@ -106,8 +106,8 @@ export default class ReceptionViewCompletedOrder extends Component {
         refreshing: false,
       });
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         this.setState({
           order: responseData.order,
@@ -118,12 +118,12 @@ export default class ReceptionViewCompletedOrder extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -166,8 +166,8 @@ export default class ReceptionViewCompletedOrder extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({transparentLoader: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         const url = responseData.redirectUrl;
         return Linking.canOpenURL(url).then(supported => {
@@ -184,12 +184,12 @@ export default class ReceptionViewCompletedOrder extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   };
@@ -214,18 +214,18 @@ export default class ReceptionViewCompletedOrder extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({transparentLoader: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
-        this.api.showSuccessMessage(data.response.message, null);
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
+        this.api.showSuccessMessage(data?.response.message, null);
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   };

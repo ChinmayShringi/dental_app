@@ -118,8 +118,8 @@ class SalesExpenseForm extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({loading: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         let expensedOn =
           responseData.expense.expensedon !== null && this.state.expenseId !== 0
@@ -136,12 +136,12 @@ class SalesExpenseForm extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -428,8 +428,8 @@ class SalesExpenseForm extends Component {
     this.api.callPostApi(options).then(responseData => {
       this.setState({loading: false});
 
-      if (responseData.status_code === 200) {
-        this.api.showSuccessMessage(responseData.response.message, null);
+      if (responseData?.status_code === 200) {
+        this.api.showSuccessMessage(responseData?.response.message, null);
         setTimeout(() => {
           if (this.state.expenseId > 0) {
             this.props.navigation.goBack(null);
@@ -440,12 +440,12 @@ class SalesExpenseForm extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof responseData.status_code !== 'undefined' &&
-          responseData.status_code === 422
+          typeof responseData?.status_code !== 'undefined' &&
+          responseData?.status_code === 422
         ) {
-          errormessage = responseData.response.data.message;
+          errormessage = responseData?.response.data.message;
         }
-        this.api.showErrorMessage(responseData.response.message, errormessage);
+        this.api.showErrorMessage(responseData?.response.message, errormessage);
       }
     });
   };

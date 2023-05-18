@@ -229,8 +229,8 @@ class Login extends Component<any, any> {
         };
 
         api.callApi(options).then(responseData => {
-          if (responseData.status_code === 200) {
-            let data = responseData.response.data;
+          if (responseData?.status_code === 200) {
+            let data = responseData?.response.data;
             let loggedInUser = data.user;
             let locationTrackingOptions = data.locationTrackingOptions;
             let access_token = data.access_token;
@@ -301,7 +301,7 @@ class Login extends Component<any, any> {
                   else if (loggedInUser.appusertype === 5) {
                     // Head of the Department
                     if (loggedInUser.isdepartmenthead) {
-                      this.props.navigation.navigate('SalesHeadDashboard');
+                      this.props.navigation.navigate('SalesHeadUserRoutes');
                     }
                     // Common Sales Person
                     else {
@@ -373,7 +373,7 @@ class Login extends Component<any, any> {
 
                       const {data} = await api.callPostApi(options);
 
-                      if (data.status_code === 200) {
+                      if (data?.status_code === 200) {
                         let screenName = 'Home';
 
                         switch (loggedInUser.appusertype) {
@@ -419,12 +419,12 @@ class Login extends Component<any, any> {
                         }
                       } else {
                         const errorMessage =
-                          data.status_code === 422
-                            ? data.response.data.message
+                          data?.status_code === 422
+                            ? data?.response.data.message
                             : null;
 
                         api.showErrorMessage(
-                          data.response.message,
+                          data?.response.message,
                           errorMessage,
                         );
                       }
@@ -445,12 +445,12 @@ class Login extends Component<any, any> {
             this.setState({loading: false});
             let errormessage = null;
             if (
-              typeof responseData.status_code !== 'undefined' &&
-              responseData.status_code === 422
+              typeof responseData?.status_code !== 'undefined' &&
+              responseData?.status_code === 422
             ) {
-              errormessage = responseData.response.data.message;
+              errormessage = responseData?.response.data.message;
             }
-            api.showErrorMessage(responseData.response.message, errormessage);
+            api.showErrorMessage(responseData?.response.message, errormessage);
           }
         });
       });

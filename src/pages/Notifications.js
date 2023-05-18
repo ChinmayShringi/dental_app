@@ -82,8 +82,8 @@ class Notifications extends Component {
     };
 
     this.api.callPostApi(options).then(data => {
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         this.props.onNotificationUpdateCount(responseData.notificationcount);
         if (this.state.isDataRefreshing || this.state.textSearchLoading) {
@@ -98,12 +98,12 @@ class Notifications extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
 
       this.setState({
@@ -220,8 +220,8 @@ class Notifications extends Component {
 
     this.api.callPostApi(options).then(data => {
       this.setState({transparentLoader: false});
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
         this.props.onNotificationUpdateCount(0);
         this.setState({
           data: [],
@@ -229,12 +229,12 @@ class Notifications extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   };
@@ -258,14 +258,14 @@ class Notifications extends Component {
 
       this.api.callPostApi(options).then(data => {
         this.setState({transparentLoader: false});
-        if (data.status_code === 200) {
+        if (data?.status_code === 200) {
           let existingUnreadNotifications = this.props.notificationCount;
           if (existingUnreadNotifications > 0) {
             existingUnreadNotifications =
               parseInt(this.props.notificationCount) - 1;
           }
           this.props.onNotificationUpdateCount(existingUnreadNotifications);
-          let responseData = data.response.data;
+          let responseData = data?.response.data;
           this.setState({
             data: responseData.notifications,
           });
@@ -273,12 +273,12 @@ class Notifications extends Component {
         } else {
           let errormessage = null;
           if (
-            typeof data.status_code !== 'undefined' &&
-            data.status_code === 422
+            typeof data?.status_code !== 'undefined' &&
+            data?.status_code === 422
           ) {
-            errormessage = data.response.data.message;
+            errormessage = data?.response.data.message;
           }
-          this.api.showErrorMessage(data.response.message, errormessage);
+          this.api.showErrorMessage(data?.response.message, errormessage);
         }
       });
     } else {

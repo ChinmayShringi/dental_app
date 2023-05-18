@@ -61,7 +61,7 @@ export default class LocationTracker extends Component {
       };
 
       this.api.callApi(options).then(responseData => {
-        if (responseData.status_code === 200) {
+        if (responseData?.status_code === 200) {
           console.log('updated');
         } else {
           console.log('failed');
@@ -159,7 +159,7 @@ export default class LocationTracker extends Component {
     };
 
     this.api.callApi(options).then(responseData => {
-      if (responseData.status_code === 200) {
+      if (responseData?.status_code === 200) {
         alert('Location history deleted successfully.');
       } else {
         alert('Failed to delete location history.');

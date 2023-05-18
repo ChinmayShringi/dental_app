@@ -148,8 +148,8 @@ export default class ProductionUnAssignedJobDetails extends Component {
         refreshing: false,
       });
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         this.setState({
           productionProcessId:
@@ -161,12 +161,12 @@ export default class ProductionUnAssignedJobDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -199,8 +199,8 @@ export default class ProductionUnAssignedJobDetails extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({transparentLoader: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
         this.setState({
           users: responseData.users,
           userId: null,
@@ -208,14 +208,14 @@ export default class ProductionUnAssignedJobDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
         this.api.showErrorMessageOnRef(
           this.modalFlashMessageRef,
-          data.response.message,
+          data?.response.message,
           errormessage,
         );
       }
@@ -267,16 +267,16 @@ export default class ProductionUnAssignedJobDetails extends Component {
     this.api.callPostApi(options).then(responseData => {
       this.setState({transparentLoader: false});
 
-      if (responseData.status_code === 200) {
+      if (responseData?.status_code === 200) {
         this.setState({
-          productionProcess: responseData.response.data.productionprocess,
+          productionProcess: responseData?.response.data.productionprocess,
           usertype: 1,
           users: [],
           userId: null,
         });
         this.api.showSuccessMessageOnRef(
           this.modalFlashMessageRef,
-          responseData.response.message,
+          responseData?.response.message,
           null,
         );
         setTimeout(() => {
@@ -290,14 +290,14 @@ export default class ProductionUnAssignedJobDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof responseData.status_code !== 'undefined' &&
-          responseData.status_code === 422
+          typeof responseData?.status_code !== 'undefined' &&
+          responseData?.status_code === 422
         ) {
-          errormessage = responseData.response.data.message;
+          errormessage = responseData?.response.data.message;
         }
         this.api.showErrorMessageOnRef(
           this.modalFlashMessageRef,
-          responseData.response.message,
+          responseData?.response.message,
           errormessage,
         );
       }

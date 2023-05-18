@@ -130,8 +130,8 @@ class SalesExpenseDetails extends Component {
         refreshing: false,
       });
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         this.setState({
           expense: responseData.expense,
@@ -140,12 +140,12 @@ class SalesExpenseDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -203,8 +203,8 @@ class SalesExpenseDetails extends Component {
             this.api.callPostApi(options).then(data => {
               this.setState({transparentLoader: false});
 
-              if (data.status_code === 200) {
-                let responseData = data.response.data;
+              if (data?.status_code === 200) {
+                let responseData = data?.response.data;
                 this.setState({
                   expense: responseData.expense,
                   expenseImages: responseData.expenseimages,
@@ -212,12 +212,12 @@ class SalesExpenseDetails extends Component {
               } else {
                 let errormessage = null;
                 if (
-                  typeof data.status_code !== 'undefined' &&
-                  data.status_code === 422
+                  typeof data?.status_code !== 'undefined' &&
+                  data?.status_code === 422
                 ) {
-                  errormessage = data.response.data.message;
+                  errormessage = data?.response.data.message;
                 }
-                this.api.showErrorMessage(data.response.message, errormessage);
+                this.api.showErrorMessage(data?.response.message, errormessage);
               }
             });
           },
@@ -254,15 +254,15 @@ class SalesExpenseDetails extends Component {
     this.api.callPostApi(options).then(responseData => {
       this.setState({transparentLoader: false});
 
-      if (responseData.status_code === 200) {
+      if (responseData?.status_code === 200) {
         this.setState({
-          expense: responseData.response.data.expense,
-          expenseImages: responseData.response.data.expenseimages,
+          expense: responseData?.response.data.expense,
+          expenseImages: responseData?.response.data.expenseimages,
         });
 
         this.api.showSuccessMessageOnRef(
           this.modalFlashMessageRef,
-          responseData.response.message,
+          responseData?.response.message,
           null,
         );
         setTimeout(() => {
@@ -271,14 +271,14 @@ class SalesExpenseDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof responseData.status_code !== 'undefined' &&
-          responseData.status_code === 422
+          typeof responseData?.status_code !== 'undefined' &&
+          responseData?.status_code === 422
         ) {
-          errormessage = responseData.response.data.message;
+          errormessage = responseData?.response.data.message;
         }
         this.api.showErrorMessageOnRef(
           this.modalFlashMessageRef,
-          responseData.response.message,
+          responseData?.response.message,
           errormessage,
         );
       }

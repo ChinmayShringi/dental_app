@@ -75,22 +75,22 @@ export default class CustomerChangePassword extends Component {
     this.api.callPostApi(options).then(responseData => {
       this.setState({loading: false});
 
-      if (responseData.status_code === 200) {
+      if (responseData?.status_code === 200) {
         resetForm({});
         setStatus({success: true});
-        this.api.showSuccessMessage(responseData.response.message, null);
+        this.api.showSuccessMessage(responseData?.response.message, null);
         setTimeout(() => {
           this.props.navigation.navigate('CustomerDashboard');
         }, 4500);
       } else {
         let errormessage = null;
         if (
-          typeof responseData.status_code !== 'undefined' &&
-          responseData.status_code === 422
+          typeof responseData?.status_code !== 'undefined' &&
+          responseData?.status_code === 422
         ) {
-          errormessage = responseData.response.data.message;
+          errormessage = responseData?.response.data.message;
         }
-        this.api.showErrorMessage(responseData.response.message, errormessage);
+        this.api.showErrorMessage(responseData?.response.message, errormessage);
       }
     });
   };

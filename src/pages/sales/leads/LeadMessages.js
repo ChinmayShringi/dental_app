@@ -86,8 +86,8 @@ export default class LeadMessages extends Component {
         isDataRefreshing: false,
       });
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
         this.setState({
           saleslead: responseData.saleslead,
           messages: responseData.messages,
@@ -95,12 +95,12 @@ export default class LeadMessages extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -181,22 +181,22 @@ export default class LeadMessages extends Component {
       this.api.callPostApi(options).then(responseData => {
         this.setState({transparentLoader: false});
 
-        if (responseData.status_code === 200) {
+        if (responseData?.status_code === 200) {
           this.setState({
             message: '',
-            messages: responseData.response.data.messages,
+            messages: responseData?.response.data.messages,
           });
-          // this.api.showSuccessMessage(responseData.response.message, null);
+          // this.api.showSuccessMessage(responseData?.response.message, null);
         } else {
           let errormessage = null;
           if (
-            typeof responseData.status_code !== 'undefined' &&
-            responseData.status_code === 422
+            typeof responseData?.status_code !== 'undefined' &&
+            responseData?.status_code === 422
           ) {
-            errormessage = responseData.response.data.message;
+            errormessage = responseData?.response.data.message;
           }
           this.api.showErrorMessage(
-            responseData.response.message,
+            responseData?.response.message,
             errormessage,
           );
         }
@@ -265,25 +265,25 @@ export default class LeadMessages extends Component {
             this.api.callPostApi(options).then(responseData => {
               this.setState({transparentLoader: false});
 
-              if (responseData.status_code === 200) {
+              if (responseData?.status_code === 200) {
                 this.setState({
                   message: '',
-                  messages: responseData.response.data.messages,
+                  messages: responseData?.response.data.messages,
                 });
                 this.api.showSuccessMessage(
-                  responseData.response.message,
+                  responseData?.response.message,
                   null,
                 );
               } else {
                 let errormessage = null;
                 if (
-                  typeof responseData.status_code !== 'undefined' &&
-                  responseData.status_code === 422
+                  typeof responseData?.status_code !== 'undefined' &&
+                  responseData?.status_code === 422
                 ) {
-                  errormessage = responseData.response.data.message;
+                  errormessage = responseData?.response.data.message;
                 }
                 this.api.showErrorMessage(
-                  responseData.response.message,
+                  responseData?.response.message,
                   errormessage,
                 );
               }

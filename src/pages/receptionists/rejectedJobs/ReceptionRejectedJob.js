@@ -122,8 +122,8 @@ export default class ReceptionRejectedJob extends Component {
         refreshing: false,
       });
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         this.setState({
           orderdetail: responseData.orderdetail,
@@ -133,12 +133,12 @@ export default class ReceptionRejectedJob extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -302,16 +302,16 @@ export default class ReceptionRejectedJob extends Component {
     this.api.callPostApi(options).then(responseData => {
       this.setState({modalLoader: false});
 
-      if (responseData.status_code === 200) {
+      if (responseData?.status_code === 200) {
         this.api.showSuccessMessageOnRef(
           this.modalFlashMessageRef,
-          responseData.response.message,
+          responseData?.response.message,
           null,
         );
         this.setState({
-          orderdetail: responseData.response.data.orderDetail,
-          selectedModalObject: responseData.response.data.orderDetail,
-          toothnumberarr: responseData.response.data.orderDetail.toothnumberarr,
+          orderdetail: responseData?.response.data.orderDetail,
+          selectedModalObject: responseData?.response.data.orderDetail,
+          toothnumberarr: responseData?.response.data.orderDetail.toothnumberarr,
         });
         setTimeout(() => {
           this.toggleFormModal();
@@ -319,14 +319,14 @@ export default class ReceptionRejectedJob extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof responseData.status_code !== 'undefined' &&
-          responseData.status_code === 422
+          typeof responseData?.status_code !== 'undefined' &&
+          responseData?.status_code === 422
         ) {
-          errormessage = responseData.response.data.message;
+          errormessage = responseData?.response.data.message;
         }
         this.api.showErrorMessageOnRef(
           this.modalFlashMessageRef,
-          responseData.response.message,
+          responseData?.response.message,
           errormessage,
         );
       }

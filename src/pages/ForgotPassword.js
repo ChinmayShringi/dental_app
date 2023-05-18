@@ -72,20 +72,20 @@ export default class ForgotPassword extends Component {
       this.api.callApi(options).then(responseData => {
         this.setState({loading: false});
 
-        if (responseData.status_code === 200) {
+        if (responseData?.status_code === 200) {
           this.setState({
             isShowSuccessModal: true,
           });
         } else {
           let errormessage = null;
           if (
-            typeof responseData.status_code !== 'undefined' &&
-            responseData.status_code === 422
+            typeof responseData?.status_code !== 'undefined' &&
+            responseData?.status_code === 422
           ) {
-            errormessage = responseData.response.data.message;
+            errormessage = responseData?.response.data.message;
           }
           this.api.showErrorMessage(
-            responseData.response.message,
+            responseData?.response.message,
             errormessage,
           );
         }

@@ -28,7 +28,6 @@ import Geolocation from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
 import {locationTrackingProps} from './constants/defaultValues';
 const LOCATION_TASK_NAME = locationTrackingProps.LOCATION_TASK_NAME;
-import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
 
 import {DeviceEventEmitter} from 'react-native';
 import moment from 'moment';
@@ -170,18 +169,18 @@ export default function App() {
 
             api.callPostApi(options).then((responseData:any) => {
               setIsUpdatingCoordinatesOnServer(false);
-              if (responseData.status_code === 200) {
-                // api.showSuccessMessage(responseData.response.message, null);
-                // console.log(responseData.response.message);
+              if (responseData?.status_code === 200) {
+                // api.showSuccessMessage(responseData?.response.message, null);
+                // console.log(responseData?.response.message);
                 dataProvider.deleteLocationCoordinates().then(() => {
                   console.log('Coordinates deleted from local storage');
                 });
               } else {
                 // let errormessage = null;
-                // if(typeof responseData.status_code !== 'undefined' && responseData.status_code === 422) {
-                //     errormessage = responseData.response.data.message;
+                // if(typeof responseData?.status_code !== 'undefined' && responseData?.status_code === 422) {
+                //     errormessage = responseData?.response.data.message;
                 // }
-                // api.showErrorMessage(responseData.response.message, errormessage);
+                // api.showErrorMessage(responseData?.response.message, errormessage);
               }
             });
           }
@@ -281,19 +280,19 @@ export default function App() {
         data: {},
         refreshOn401: true,
       })
-      .then(responseData => {
+      .then(() => {
         // USER
         if (loggedInUser.usertype === 3 || loggedInUser.usertype === '3') {
           // Sales User
           if (loggedInUser.appusertype === 5) {
             if (!loggedInUser.isdepartmenthead) {
-                Geolocation.stopObserving(LOCATION_TASK_NAME)
-                .then(()=>{
-                  if (Platform.OS === 'android') {
-                    LocationServicesDialogBox.stopListener();
-                  }
-                })
-                .catch(console.log)
+                // Geolocation.stopObserving(LOCATION_TASK_NAME)
+                // .then(()=>{
+                //   if (Platform.OS === 'android') {
+                //     LocationServicesDialogBox.stopListener();
+                //   }
+                // })
+                // .catch(console.log)
             }
           }
         }
@@ -404,7 +403,7 @@ export default function App() {
   //       api.callPostApi(options).then(responseData => {
   //         hideSplashScreen(false);
 
-  //         if (responseData.status_code === 200) {
+  //         if (responseData?.status_code === 200) {
   //           console.log('Device token updated on server');
   //         } else {
   //           dataProvider.deleteData('deviceToken').then(() => {
@@ -560,7 +559,7 @@ TaskManager.defineTask(LOCATION_TASK_NAME, ({data, error}:any) => {
 
               api.callPostApi(options).then((responseData:any) => {
                 if (responseData?.status_code === 200) {
-                  // api.showSuccessMessage(responseData.response.message, null);
+                  // api.showSuccessMessage(responseData?.response.message, null);
                   console.log(responseData?.response.message);
 
                   dataProvider.deleteLocationCoordinates().then(() => {
@@ -606,10 +605,10 @@ TaskManager.defineTask(LOCATION_TASK_NAME, ({data, error}:any) => {
                     typeof responseData?.status_code !== 'undefined' &&
                     responseData?.status_code === 422
                   ) {
-                    errormessage = responseData.response.data.message;
+                    errormessage = responseData?.response.data.message;
                   }
                   api.showErrorMessage(
-                    responseData.response.message,
+                    responseData?.response.message,
                     errormessage,
                   );
                 }

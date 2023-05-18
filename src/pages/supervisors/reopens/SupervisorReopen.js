@@ -121,8 +121,8 @@ export default class SupervisorReopen extends Component {
         refreshing: false,
       });
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
         this.setState({
           orderdetail: responseData.orderdetail,
           toothnumberarr: responseData.orderdetail.toothnumberarr,
@@ -131,12 +131,12 @@ export default class SupervisorReopen extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -177,13 +177,13 @@ export default class SupervisorReopen extends Component {
     this.api.callPostApi(options).then(responseData => {
       this.setState({transparentLoader: false});
 
-      if (responseData.status_code === 200) {
+      if (responseData?.status_code === 200) {
         this.setState({
-          orderdetail: responseData.response.data.orderdetail,
+          orderdetail: responseData?.response.data.orderdetail,
         });
         this.api.showSuccessMessageOnRef(
           this.modalFlashMessageRef,
-          responseData.response.message,
+          responseData?.response.message,
           null,
         );
         setTimeout(() => {
@@ -192,14 +192,14 @@ export default class SupervisorReopen extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof responseData.status_code !== 'undefined' &&
-          responseData.status_code === 422
+          typeof responseData?.status_code !== 'undefined' &&
+          responseData?.status_code === 422
         ) {
-          errormessage = responseData.response.data.message;
+          errormessage = responseData?.response.data.message;
         }
         this.api.showErrorMessageOnRef(
           this.modalFlashMessageRef,
-          responseData.response.message,
+          responseData?.response.message,
           errormessage,
         );
       }

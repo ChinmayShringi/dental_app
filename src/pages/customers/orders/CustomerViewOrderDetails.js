@@ -91,8 +91,8 @@ export default class CustomerViewOrderDetails extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({loading: false, isDataRefreshing: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         this.setState({
           order: responseData.order,
@@ -103,12 +103,12 @@ export default class CustomerViewOrderDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }

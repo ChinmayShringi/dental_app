@@ -103,8 +103,8 @@ class EditProfile extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({loading: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
         this.setState({
           user: responseData.user,
           countries: responseData.countries,
@@ -128,12 +128,12 @@ class EditProfile extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     })
     .catch((e)=>console.log)
@@ -167,20 +167,20 @@ class EditProfile extends Component {
           .then(data => {
             this.setState({loading: false});
 
-            if (data.status_code === 200) {
-              let responseData = data.response.data;
+            if (data?.status_code === 200) {
+              let responseData = data?.response.data;
               this.setState({
                 states: responseData.states,
               });
             } else {
               let errormessage = null;
               if (
-                typeof data.status_code !== 'undefined' &&
-                data.status_code === 422
+                typeof data?.status_code !== 'undefined' &&
+                data?.status_code === 422
               ) {
-                errormessage = data.response.data.message;
+                errormessage = data?.response.data.message;
               }
-              this.api.showErrorMessage(data.response.message, errormessage);
+              this.api.showErrorMessage(data?.response.message, errormessage);
             }
           });
       } else {
@@ -215,20 +215,20 @@ class EditProfile extends Component {
           .then(data => {
             this.setState({loading: false});
 
-            if (data.status_code === 200) {
-              let responseData = data.response.data;
+            if (data?.status_code === 200) {
+              let responseData = data?.response.data;
               this.setState({
                 cities: responseData.cities,
               });
             } else {
               let errormessage = null;
               if (
-                typeof data.status_code !== 'undefined' &&
-                data.status_code === 422
+                typeof data?.status_code !== 'undefined' &&
+                data?.status_code === 422
               ) {
-                errormessage = data.response.data.message;
+                errormessage = data?.response.data.message;
               }
-              this.api.showErrorMessage(data.response.message, errormessage);
+              this.api.showErrorMessage(data?.response.message, errormessage);
             }
           });
       } else {
@@ -480,13 +480,13 @@ class EditProfile extends Component {
       this.api.callPostApi(options).then(responseData => {
         this.setState({loading: false});
 
-        if (responseData.status_code === 200) {
+        if (responseData?.status_code === 200) {
           this.dataProvider
-            .saveData('user', responseData.response.data.transformeduser)
+            .saveData('user', responseData?.response.data.transformeduser)
             .then(() => {
-              this.api.showSuccessMessage(responseData.response.message, null);
+              this.api.showSuccessMessage(responseData?.response.message, null);
               this.props.onUserUpdate(
-                responseData.response.data.transformeduser,
+                responseData?.response.data.transformeduser,
               );
 
               setTimeout(() => {
@@ -534,13 +534,13 @@ class EditProfile extends Component {
         } else {
           let errormessage = null;
           if (
-            typeof responseData.status_code !== 'undefined' &&
-            responseData.status_code === 422
+            typeof responseData?.status_code !== 'undefined' &&
+            responseData?.status_code === 422
           ) {
-            errormessage = responseData.response.data.message;
+            errormessage = responseData?.response.data.message;
           }
           this.api.showErrorMessage(
-            responseData.response.message,
+            responseData?.response.message,
             errormessage,
           );
         }

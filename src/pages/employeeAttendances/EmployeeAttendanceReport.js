@@ -68,8 +68,8 @@ export default class EmployeeAttendanceReport extends Component {
           isDataRefreshing: false,
         });
 
-        if (data.status_code === 200) {
-          let responseData = data.response.data;
+        if (data?.status_code === 200) {
+          let responseData = data?.response.data;
           this.setState({
             totalPresent: responseData.totalpresent,
             totalOnLeave: responseData.totalonleave,
@@ -79,12 +79,12 @@ export default class EmployeeAttendanceReport extends Component {
         } else {
           let errormessage = null;
           if (
-            typeof data.status_code !== 'undefined' &&
-            data.status_code === 422
+            typeof data?.status_code !== 'undefined' &&
+            data?.status_code === 422
           ) {
-            errormessage = data.response.data.message;
+            errormessage = data?.response.data.message;
           }
-          this.api.showErrorMessage(data.response.message, errormessage);
+          this.api.showErrorMessage(data?.response.message, errormessage);
         }
       });
   }

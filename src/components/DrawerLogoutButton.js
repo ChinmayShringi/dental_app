@@ -79,7 +79,7 @@ class DrawerLogoutButton extends Component {
                 }
               }
 
-              if (responseData.status_code === 200) {
+              if (responseData?.status_code === 200) {
                 dataProvider.deleteData('user').then(() => {
                   this.props.onUserUpdate(null);
                   dataProvider.deleteData('token').then(() => {

@@ -188,8 +188,8 @@ export default class ReceptionOrderForm extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({loading: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
         let order = responseData.order;
         let isAskModificationCharges =
           typeof order.casetype !== 'undefined' &&
@@ -279,12 +279,12 @@ export default class ReceptionOrderForm extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -315,20 +315,20 @@ export default class ReceptionOrderForm extends Component {
         this.api.callPostApi(options).then(data => {
           this.setState({loading: false});
 
-          if (data.status_code === 200) {
-            let responseData = data.response.data;
+          if (data?.status_code === 200) {
+            let responseData = data?.response.data;
             this.setState({
               customerId: responseData.customer.customerid,
             });
           } else {
             let errormessage = null;
             if (
-              typeof data.status_code !== 'undefined' &&
-              data.status_code === 422
+              typeof data?.status_code !== 'undefined' &&
+              data?.status_code === 422
             ) {
-              errormessage = data.response.data.message;
+              errormessage = data?.response.data.message;
             }
-            this.api.showErrorMessage(data.response.message, errormessage);
+            this.api.showErrorMessage(data?.response.message, errormessage);
           }
         });
       } else {
@@ -1361,8 +1361,8 @@ export default class ReceptionOrderForm extends Component {
         this.api.callPostApi(options).then(data => {
           this.setState({loading: false});
 
-          if (data.status_code === 200) {
-            let responseData = data.response.data;
+          if (data?.status_code === 200) {
+            let responseData = data?.response.data;
             this.setState({
               selectedModalObject: update(this.state.selectedModalObject, {
                 categoryname: {$set: categoryname},
@@ -1376,14 +1376,14 @@ export default class ReceptionOrderForm extends Component {
           } else {
             let errormessage = null;
             if (
-              typeof data.status_code !== 'undefined' &&
-              data.status_code === 422
+              typeof data?.status_code !== 'undefined' &&
+              data?.status_code === 422
             ) {
-              errormessage = data.response.data.message;
+              errormessage = data?.response.data.message;
             }
             this.api.showErrorMessageOnRef(
               this.modalFlashMessageRef,
-              data.response.message,
+              data?.response.message,
               errormessage,
             );
           }
@@ -1437,8 +1437,8 @@ export default class ReceptionOrderForm extends Component {
           this.api.callPostApi(options).then(data => {
             this.setState({loading: false});
 
-            if (data.status_code === 200) {
-              let responseData = data.response.data;
+            if (data?.status_code === 200) {
+              let responseData = data?.response.data;
               this.setState({
                 selectedModalObject: update(this.state.selectedModalObject, {
                   productname: {$set: productname},
@@ -1452,14 +1452,14 @@ export default class ReceptionOrderForm extends Component {
             } else {
               let errormessage = null;
               if (
-                typeof data.status_code !== 'undefined' &&
-                data.status_code === 422
+                typeof data?.status_code !== 'undefined' &&
+                data?.status_code === 422
               ) {
-                errormessage = data.response.data.message;
+                errormessage = data?.response.data.message;
               }
               this.api.showErrorMessageOnRef(
                 this.modalFlashMessageRef,
-                data.response.message,
+                data?.response.message,
                 errormessage,
               );
             }
@@ -2102,8 +2102,8 @@ export default class ReceptionOrderForm extends Component {
           this.api.callPostApi(options).then(responseData => {
             this.setState({loading: false});
 
-            if (responseData.status_code === 200) {
-              this.api.showSuccessMessage(responseData.response.message, null);
+            if (responseData?.status_code === 200) {
+              this.api.showSuccessMessage(responseData?.response.message, null);
               setTimeout(() => {
                 if (this.state.orderId > 0) {
                   this.props.navigation.goBack(null);
@@ -2114,13 +2114,13 @@ export default class ReceptionOrderForm extends Component {
             } else {
               let errormessage = null;
               if (
-                typeof responseData.status_code !== 'undefined' &&
-                responseData.status_code === 422
+                typeof responseData?.status_code !== 'undefined' &&
+                responseData?.status_code === 422
               ) {
-                errormessage = responseData.response.data.message;
+                errormessage = responseData?.response.data.message;
               }
               this.api.showErrorMessage(
-                responseData.response.message,
+                responseData?.response.message,
                 errormessage,
               );
             }

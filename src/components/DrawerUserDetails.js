@@ -34,8 +34,8 @@ class DrawerUserDetails extends Component {
     };
 
     api.callPostApi(options).then(data => {
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
         this.props.onNotificationUpdateCount(
           parseInt(responseData.notificationcount),
         );

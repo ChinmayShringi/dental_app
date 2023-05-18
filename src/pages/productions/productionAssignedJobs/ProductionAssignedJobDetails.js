@@ -193,8 +193,8 @@ export default class ProductionAssignedJobDetails extends Component {
         refreshing: false,
       });
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
         let productionProcess = responseData.productionprocess;
 
         this.setState({
@@ -225,12 +225,12 @@ export default class ProductionAssignedJobDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -274,8 +274,8 @@ export default class ProductionAssignedJobDetails extends Component {
             this.api.callPostApi(options).then(data => {
               this.setState({transparentLoader: false});
 
-              if (data.status_code === 200) {
-                let responseData = data.response.data;
+              if (data?.status_code === 200) {
+                let responseData = data?.response.data;
                 this.setState({
                   productionProcess: responseData.productionprocess,
                   toothnumberarr:
@@ -289,12 +289,12 @@ export default class ProductionAssignedJobDetails extends Component {
               } else {
                 let errormessage = null;
                 if (
-                  typeof data.status_code !== 'undefined' &&
-                  data.status_code === 422
+                  typeof data?.status_code !== 'undefined' &&
+                  data?.status_code === 422
                 ) {
-                  errormessage = data.response.data.message;
+                  errormessage = data?.response.data.message;
                 }
-                this.api.showErrorMessage(data.response.message, errormessage);
+                this.api.showErrorMessage(data?.response.message, errormessage);
               }
             });
           },
@@ -334,8 +334,8 @@ export default class ProductionAssignedJobDetails extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({transparentLoader: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         this.setState({
           productionProcess: responseData.productionprocess,
@@ -349,7 +349,7 @@ export default class ProductionAssignedJobDetails extends Component {
         });
         this.api.showSuccessMessageOnRef(
           this.modalFlashMessageRef,
-          data.response.message,
+          data?.response.message,
           null,
         );
         setTimeout(() => {
@@ -358,14 +358,14 @@ export default class ProductionAssignedJobDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
         this.api.showErrorMessageOnRef(
           this.modalFlashMessageRef,
-          data.response.message,
+          data?.response.message,
           errormessage,
         );
       }
@@ -495,8 +495,8 @@ export default class ProductionAssignedJobDetails extends Component {
               this.api.callPostApi(options).then(data => {
                 this.setState({transparentLoader: false});
 
-                if (data.status_code === 200) {
-                  let responseData = data.response.data;
+                if (data?.status_code === 200) {
+                  let responseData = data?.response.data;
                   let productionProcess = responseData.productionprocess;
 
                   var startedAt = moment(productionProcess.started_at);
@@ -520,13 +520,13 @@ export default class ProductionAssignedJobDetails extends Component {
                 } else {
                   let errormessage = null;
                   if (
-                    typeof data.status_code !== 'undefined' &&
-                    data.status_code === 422
+                    typeof data?.status_code !== 'undefined' &&
+                    data?.status_code === 422
                   ) {
-                    errormessage = data.response.data.message;
+                    errormessage = data?.response.data.message;
                   }
                   this.api.showErrorMessage(
-                    data.response.message,
+                    data?.response.message,
                     errormessage,
                   );
                 }
@@ -689,8 +689,8 @@ export default class ProductionAssignedJobDetails extends Component {
         this.api.callPostApi(options).then(data => {
           this.setState({transparentLoader: false});
 
-          if (data.status_code === 200) {
-            let responseData = data.response.data;
+          if (data?.status_code === 200) {
+            let responseData = data?.response.data;
 
             this.setState({
               productionProcess: responseData.productionprocess,
@@ -701,7 +701,7 @@ export default class ProductionAssignedJobDetails extends Component {
             });
             this.api.showSuccessMessageOnRef(
               this.modalStopTaskFlashMessageRef,
-              data.response.message,
+              data?.response.message,
               null,
             );
             setTimeout(() => {
@@ -710,14 +710,14 @@ export default class ProductionAssignedJobDetails extends Component {
           } else {
             let errormessage = null;
             if (
-              typeof data.status_code !== 'undefined' &&
-              data.status_code === 422
+              typeof data?.status_code !== 'undefined' &&
+              data?.status_code === 422
             ) {
-              errormessage = data.response.data.message;
+              errormessage = data?.response.data.message;
             }
             this.api.showErrorMessageOnRef(
               this.modalStopTaskFlashMessageRef,
-              data.response.message,
+              data?.response.message,
               errormessage,
             );
           }

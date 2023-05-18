@@ -1,175 +1,174 @@
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  StyleSheet,
   Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {headerStyles} from './assets/style';
-import Home from './pages/Home';
-import Dashboard from './pages/sales/Dashboard';
-import Sales from './pages/sales/Sales';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Categories from './pages/CategoriesAndProducts/Categories';
-import Products from './pages/CategoriesAndProducts/Products';
-import ProductDetails from './pages/CategoriesAndProducts/ProductDetails';
-import HeaderSearchButton from './components/HeaderSearchButton';
+import { DrawerNavigatorItems } from 'react-navigation-drawer';
+import { headerStyles } from './assets/style';
+import DrawerLogoutButton from './components/DrawerLogoutButton';
+import DrawerNotificationBadge from './components/DrawerNotificationBadge';
+import DrawerUserDetails from './components/DrawerUserDetails';
 import HeaderSaveButton from './components/HeaderSaveButton';
+import HeaderSearchButton from './components/HeaderSearchButton';
 import {
   circleBgColor,
   fontColor,
   primaryBlueHexColor,
   primaryHexColor,
 } from './constants/themeColors';
+import Categories from './pages/CategoriesAndProducts/Categories';
+import ProductDetails from './pages/CategoriesAndProducts/ProductDetails';
+import Products from './pages/CategoriesAndProducts/Products';
 import EditProfile from './pages/EditProfile';
-import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
-import Signup from './pages/Signup';
+import Home from './pages/Home';
 import LocationTracker from './pages/LocationTracker';
+import Login from './pages/Login';
 import ShowLocationHistory from './pages/ShowLocationHistory';
-import {DrawerNavigatorItems} from 'react-navigation-drawer';
-import DrawerUserDetails from './components/DrawerUserDetails';
-import DrawerLogoutButton from './components/DrawerLogoutButton';
-import DrawerNotificationBadge from './components/DrawerNotificationBadge';
+import Signup from './pages/Signup';
+import Dashboard from './pages/sales/Dashboard';
+import Sales from './pages/sales/Sales';
 
 /*==========================================================================================
 ==================================== ADMIN QC PAGES START =====================================
 ============================================================================================*/
 /* Admin QC Head Pages Start */
 
-import AdminQCHeadDashboard from './pages/adminQCs/departmentHead/AdminQCHeadDashboard';
 
 /* Admin QC Head Pages End */
 
 import AdminQCDashboard from './pages/adminQCs/AdminQCDashboard';
 
-import AdminQCOrders from './pages/adminQCs/orders/AdminQCOrders';
-import AdminQCOrder from './pages/adminQCs/orders/AdminQCOrder';
-import AdminQCJobs from './pages/adminQCs/orders/AdminQCJobs';
 import AdminQCJob from './pages/adminQCs/orders/AdminQCJob';
+import AdminQCJobs from './pages/adminQCs/orders/AdminQCJobs';
+import AdminQCOrder from './pages/adminQCs/orders/AdminQCOrder';
+import AdminQCOrders from './pages/adminQCs/orders/AdminQCOrders';
 
-import AdminQCSalesPersons from './pages/adminQCs/salesPersons/AdminQCSalesPersons';
 import AdminQCSalesPerson from './pages/adminQCs/salesPersons/AdminQCSalesPerson';
+import AdminQCSalesPersons from './pages/adminQCs/salesPersons/AdminQCSalesPersons';
 
-import AdminQCLeads from './pages/adminQCs/leads/AdminQCLeads';
-import AdminQCLead from './pages/adminQCs/leads/AdminQCLead';
-import AdminQCLeadInteractions from './pages/adminQCs/leads/AdminQCLeadInteractions';
-import ProductionScanQrCodeForAssignedJob from './pages/productions/productionAssignedJobs/ProductionScanQrCodeForAssignedJob';
-import ProductionAssignedJobs from './pages/productions/productionAssignedJobs/ProductionAssignedJobs';
-import ProductionAssignedJobDetails from './pages/productions/productionAssignedJobs/ProductionAssignedJobDetails';
-import ProductionHeadOrderView from './pages/productions/departmentHead/ProductionHeadOrderView';
-import SalesHeadSalesPersonTrackingHistory from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersonTrackingHistory';
-import EmployeeLeaveApplicationDetails from './pages/employeeAttendances/EmployeeLeaveApplicationDetails';
-import EmployeeAttendanceReport from './pages/employeeAttendances/EmployeeAttendanceReport';
-import EmployeeLeaveApplications from './pages/employeeAttendances/EmployeeLeaveApplications';
-import LeaveApplicationForm from './pages/attendances/LeaveApplicationForm';
-import LeaveApplicationDetails from './pages/attendances/LeaveApplicationDetails';
-import MonthlyDayOffs from './pages/attendances/MonthlyDayOffs';
-import LeaveApplications from './pages/attendances/LeaveApplications';
+import BrandProductDetails from './pages/BrandsAndProducts/BrandProductDetails';
+import BrandProducts from './pages/BrandsAndProducts/BrandProducts';
+import Brands from './pages/BrandsAndProducts/Brands';
 import MyProfile from './pages/MyProfile';
 import Notifications from './pages/Notifications';
-import PackagingHeadDashboard from './pages/packagings/departmentHead/PackagingHeadDashboard';
-import ProductionScanQrCodeForUnAssignedJob from './pages/productions/departmentHead/productionUnAssignedJobs/ProductionScanQrCodeForUnAssignedJob';
-import productionUnAssignedJobs from './pages/productions/departmentHead/productionUnAssignedJobs/ProductionUnAssignedJobs';
-import ProductionUnAssignedJobDetails from './pages/productions/departmentHead/productionUnAssignedJobs/ProductionUnAssignedJobDetails';
-import productionOngoingJobs from './pages/productions/departmentHead/productionOngoingJobs/ProductionOngoingJobs';
-import ProductionOngoingJobDetails from './pages/productions/departmentHead/productionOngoingJobs/ProductionOngoingJobDetails';
-import ProductionScanQrCodeForOngoingJob from './pages/productions/departmentHead/productionOngoingJobs/ProductionScanQrCodeForOngoingJob';
-import ProductionEmployees from './pages/productions/departmentHead/productionEmployees/ProductionEmployees';
-import ProductionEmployeeAssignedJob from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeAssignedJob';
-import ProductionEmployeeDetails from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeDetails';
-import ProductionEmployeeAssignedJobs from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeAssignedJobs';
-import ProductionDashboard from './pages/productions/ProductionDashboard';
-import ReceptionDashboard from './pages/receptionists/ReceptionDashboard';
 import QrCodeScannerDemo from './pages/QrCodeScannerDemo';
-import Brands from './pages/BrandsAndProducts/Brands';
-import BrandProducts from './pages/BrandsAndProducts/BrandProducts';
-import BrandProductDetails from './pages/BrandsAndProducts/BrandProductDetails';
-import ReceptionCustomers from './pages/receptionists/customers/ReceptionCustomers';
-import ReceptionCustomerDetails from './pages/receptionists/customers/ReceptionCustomerDetails';
-import ReceptionCustomerForm from './pages/receptionists/customers/ReceptionCustomerForm';
-import ReceptionCollectionCalls from './pages/receptionists/collectionCalls/ReceptionCollectionCalls';
+import AdminQCLead from './pages/adminQCs/leads/AdminQCLead';
+import AdminQCLeadInteractions from './pages/adminQCs/leads/AdminQCLeadInteractions';
+import AdminQCLeads from './pages/adminQCs/leads/AdminQCLeads';
+import LeaveApplicationDetails from './pages/attendances/LeaveApplicationDetails';
+import LeaveApplicationForm from './pages/attendances/LeaveApplicationForm';
+import LeaveApplications from './pages/attendances/LeaveApplications';
+import MonthlyDayOffs from './pages/attendances/MonthlyDayOffs';
+import CustomerDashboard from './pages/customers/CustomerDashboard';
+import EmployeeAttendanceReport from './pages/employeeAttendances/EmployeeAttendanceReport';
+import EmployeeLeaveApplicationDetails from './pages/employeeAttendances/EmployeeLeaveApplicationDetails';
+import EmployeeLeaveApplications from './pages/employeeAttendances/EmployeeLeaveApplications';
+import PackagingHeadDashboard from './pages/packagings/departmentHead/PackagingHeadDashboard';
+import ProductionDashboard from './pages/productions/ProductionDashboard';
+import ProductionHeadOrderView from './pages/productions/departmentHead/ProductionHeadOrderView';
+import ProductionEmployeeAssignedJob from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeAssignedJob';
+import ProductionEmployeeAssignedJobs from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeAssignedJobs';
+import ProductionEmployeeDetails from './pages/productions/departmentHead/productionEmployees/ProductionEmployeeDetails';
+import ProductionEmployees from './pages/productions/departmentHead/productionEmployees/ProductionEmployees';
+import ProductionOngoingJobDetails from './pages/productions/departmentHead/productionOngoingJobs/ProductionOngoingJobDetails';
+import productionOngoingJobs from './pages/productions/departmentHead/productionOngoingJobs/ProductionOngoingJobs';
+import ProductionScanQrCodeForOngoingJob from './pages/productions/departmentHead/productionOngoingJobs/ProductionScanQrCodeForOngoingJob';
+import ProductionScanQrCodeForUnAssignedJob from './pages/productions/departmentHead/productionUnAssignedJobs/ProductionScanQrCodeForUnAssignedJob';
+import ProductionUnAssignedJobDetails from './pages/productions/departmentHead/productionUnAssignedJobs/ProductionUnAssignedJobDetails';
+import productionUnAssignedJobs from './pages/productions/departmentHead/productionUnAssignedJobs/ProductionUnAssignedJobs';
+import ProductionAssignedJobDetails from './pages/productions/productionAssignedJobs/ProductionAssignedJobDetails';
+import ProductionAssignedJobs from './pages/productions/productionAssignedJobs/ProductionAssignedJobs';
+import ProductionScanQrCodeForAssignedJob from './pages/productions/productionAssignedJobs/ProductionScanQrCodeForAssignedJob';
+import ReceptionDashboard from './pages/receptionists/ReceptionDashboard';
 import ReceptionCollectionCallDetails from './pages/receptionists/collectionCalls/ReceptionCollectionCallDetails';
 import ReceptionCollectionCallForm from './pages/receptionists/collectionCalls/ReceptionCollectionCallForm';
-import ReceptionDeliveryCalls from './pages/receptionists/deliveryCalls/ReceptionDeliveryCalls';
-import ReceptionDeliveryCallDetails from './pages/receptionists/deliveryCalls/ReceptionDeliveryCallDetails';
-import ReceptionDeliveryCallForm from './pages/receptionists/deliveryCalls/ReceptionDeliveryCallForm';
-import ReceptionComplaints from './pages/receptionists/complaints/ReceptionComplaints';
+import ReceptionCollectionCalls from './pages/receptionists/collectionCalls/ReceptionCollectionCalls';
 import ReceptionComplaintDetails from './pages/receptionists/complaints/ReceptionComplaintDetails';
 import ReceptionComplaintForm from './pages/receptionists/complaints/ReceptionComplaintForm';
-import ReceptionOrders from './pages/receptionists/orders/ReceptionOrders';
-import ReceptionOrderForm from './pages/receptionists/orders/ReceptionOrderForm';
-import ReceptionViewJob from './pages/receptionists/orders/ReceptionViewJob';
-import ReceptionViewOrder from './pages/receptionists/orders/ReceptionViewOrder';
-import ReceptionViewOrderDetails from './pages/receptionists/orders/ReceptionViewOrderDetails';
+import ReceptionComplaints from './pages/receptionists/complaints/ReceptionComplaints';
+import ReceptionCompletedJob from './pages/receptionists/completedJobs/ReceptionCompletedJob';
+import ReceptionCompletedJobs from './pages/receptionists/completedJobs/ReceptionCompletedJobs';
 import ReceptionCompletedOrders from './pages/receptionists/completedOrders/ReceptionCompletedOrders';
 import ReceptionViewCompletedJob from './pages/receptionists/completedOrders/ReceptionViewCompletedJob';
 import ReceptionViewCompletedOrder from './pages/receptionists/completedOrders/ReceptionViewCompletedOrder';
 import ReceptionViewCompletedOrderDetails from './pages/receptionists/completedOrders/ReceptionViewCompletedOrderDetails';
-import ReceptionCompletedJobs from './pages/receptionists/completedJobs/ReceptionCompletedJobs';
-import ReceptionCompletedJob from './pages/receptionists/completedJobs/ReceptionCompletedJob';
-import ReceptionRejectedJobs from './pages/receptionists/rejectedJobs/ReceptionRejectedJobs';
+import ReceptionCustomerDetails from './pages/receptionists/customers/ReceptionCustomerDetails';
+import ReceptionCustomerForm from './pages/receptionists/customers/ReceptionCustomerForm';
+import ReceptionCustomers from './pages/receptionists/customers/ReceptionCustomers';
+import ReceptionDeliveryCallDetails from './pages/receptionists/deliveryCalls/ReceptionDeliveryCallDetails';
+import ReceptionDeliveryCallForm from './pages/receptionists/deliveryCalls/ReceptionDeliveryCallForm';
+import ReceptionDeliveryCalls from './pages/receptionists/deliveryCalls/ReceptionDeliveryCalls';
+import ReceptionOrderForm from './pages/receptionists/orders/ReceptionOrderForm';
+import ReceptionOrders from './pages/receptionists/orders/ReceptionOrders';
+import ReceptionViewJob from './pages/receptionists/orders/ReceptionViewJob';
+import ReceptionViewOrder from './pages/receptionists/orders/ReceptionViewOrder';
+import ReceptionViewOrderDetails from './pages/receptionists/orders/ReceptionViewOrderDetails';
 import ReceptionRejectedJob from './pages/receptionists/rejectedJobs/ReceptionRejectedJob';
+import ReceptionRejectedJobs from './pages/receptionists/rejectedJobs/ReceptionRejectedJobs';
 import SalesDashboard from './pages/sales/SalesDashboard';
-import SalesCustomers from './pages/sales/customers/SalesCustomers';
-import SalesCustomerDetails from './pages/sales/customers/SalesCustomerDetails';
-import SalesCustomerForm from './pages/sales/customers/SalesCustomerForm';
-import CollectionCalls from './pages/sales/calllogs/CollectionCalls';
 import CollectionCallDetails from './pages/sales/calllogs/CollectionCallDetails';
 import CollectionCallForm from './pages/sales/calllogs/CollectionCallForm';
-import DeliveryCalls from './pages/sales/calllogs/DeliveryCalls';
-import DeliveryCallDetails from './pages/sales/calllogs/DeliveryCallDetails';
-import DeliveryCallForm from './pages/sales/calllogs/DeliveryCallForm';
-import Complaints from './pages/sales/calllogs/Complaints';
+import CollectionCalls from './pages/sales/calllogs/CollectionCalls';
 import ComplaintDetails from './pages/sales/calllogs/ComplaintDetails';
 import ComplaintForm from './pages/sales/calllogs/ComplaintForm';
-import Leads from './pages/sales/leads/Leads';
-import LeadForm from './pages/sales/leads/LeadForm';
-import LeadDetails from './pages/sales/leads/LeadDetails';
-import LeadInteractions from './pages/sales/leads/LeadInteractions';
-import LeadMessages from './pages/sales/leads/LeadMessages';
-import SalesExpenses from './pages/sales/expenses/SalesExpenses';
+import Complaints from './pages/sales/calllogs/Complaints';
+import DeliveryCallDetails from './pages/sales/calllogs/DeliveryCallDetails';
+import DeliveryCallForm from './pages/sales/calllogs/DeliveryCallForm';
+import DeliveryCalls from './pages/sales/calllogs/DeliveryCalls';
+import SalesCustomerDetails from './pages/sales/customers/SalesCustomerDetails';
+import SalesCustomerForm from './pages/sales/customers/SalesCustomerForm';
+import SalesCustomers from './pages/sales/customers/SalesCustomers';
+import SalesHeadDashboard from './pages/sales/departmentHead/SalesHeadDashboard';
+import SalesHeadSalesPersonDetails from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersonDetails';
+import SalesHeadSalesPersonForm from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersonForm';
+import SalesHeadSalesPersonTrackingHistory from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersonTrackingHistory';
+import SalesHeadSalesPersons from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersons';
 import SalesExpenseDetails from './pages/sales/expenses/SalesExpenseDetails';
 import SalesExpenseForm from './pages/sales/expenses/SalesExpenseForm';
-import SalesHeadDashboard from './pages/sales/departmentHead/SalesHeadDashboard';
-import SalesHeadSalesPersons from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersons';
-import SalesHeadSalesPersonForm from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersonForm';
-import SalesHeadSalesPersonDetails from './pages/sales/departmentHead/salesPersons/SalesHeadSalesPersonDetails';
+import SalesExpenses from './pages/sales/expenses/SalesExpenses';
+import LeadDetails from './pages/sales/leads/LeadDetails';
+import LeadForm from './pages/sales/leads/LeadForm';
+import LeadInteractions from './pages/sales/leads/LeadInteractions';
+import LeadMessages from './pages/sales/leads/LeadMessages';
+import Leads from './pages/sales/leads/Leads';
 import SupervisorDashboard from './pages/supervisors/SupervisorDashboard';
-import SupervisorScanQrCodeOrSearchUsingJobId from './pages/supervisors/jobs/SupervisorScanQrCodeOrSearchUsingJobId';
-import SupervisorJobs from './pages/supervisors/jobs/SupervisorJobs';
-import SupervisorViewJob from './pages/supervisors/jobs/SupervisorViewJob';
 import SupervisorCustomerDetails from './pages/supervisors/customers/SupervisorCustomerDetails';
-import SupervisorViewOrder from './pages/supervisors/orders/SupervisorViewOrder';
-import SupervisorViewOrderDetails from './pages/supervisors/orders/SupervisorViewOrderDetails';
-import SupervisorReworks from './pages/supervisors/reworks/SupervisorReworks';
-import SupervisorRework from './pages/supervisors/reworks/SupervisorRework';
-import SupervisorReopens from './pages/supervisors/reopens/SupervisorReopens';
-import SupervisorReopen from './pages/supervisors/reopens/SupervisorReopen';
+import SupervisorJobs from './pages/supervisors/jobs/SupervisorJobs';
+import SupervisorScanQrCodeOrSearchUsingJobId from './pages/supervisors/jobs/SupervisorScanQrCodeOrSearchUsingJobId';
+import SupervisorViewJob from './pages/supervisors/jobs/SupervisorViewJob';
+import SupervisorOngoingJobProgress from './pages/supervisors/ongoingjobs/SupervisorOngoingJobProgress';
 import SupervisorOngoingJobs from './pages/supervisors/ongoingjobs/SupervisorOngoingJobs';
 import SupervisorViewOngoingJob from './pages/supervisors/ongoingjobs/SupervisorViewOngoingJob';
-import SupervisorOngoingJobProgress from './pages/supervisors/ongoingjobs/SupervisorOngoingJobProgress';
-import CustomerDashboard from './pages/customers/CustomerDashboard';
+import SupervisorViewOrder from './pages/supervisors/orders/SupervisorViewOrder';
+import SupervisorViewOrderDetails from './pages/supervisors/orders/SupervisorViewOrderDetails';
+import SupervisorReopen from './pages/supervisors/reopens/SupervisorReopen';
+import SupervisorReopens from './pages/supervisors/reopens/SupervisorReopens';
+import SupervisorRework from './pages/supervisors/reworks/SupervisorRework';
+import SupervisorReworks from './pages/supervisors/reworks/SupervisorReworks';
 
-import CustomerCollectionCalls from './pages/customers/collectionCalls/CustomerCollectionCalls';
 import CustomerCollectionCallForm from './pages/customers/collectionCalls/CustomerCollectionCallForm';
+import CustomerCollectionCalls from './pages/customers/collectionCalls/CustomerCollectionCalls';
+import CustomerComplaintForm from './pages/customers/complaints/CustomerComplaintForm';
+import CustomerComplaints from './pages/customers/complaints/CustomerComplaints';
+import CustomerOrderUploadImages from './pages/customers/orders/CustomerOrderUploadImages';
 import CustomerOrders from './pages/customers/orders/CustomerOrders';
 import CustomerViewJob from './pages/customers/orders/CustomerViewJob';
 import CustomerViewOrder from './pages/customers/orders/CustomerViewOrder';
-import CustomerOrderUploadImages from './pages/customers/orders/CustomerOrderUploadImages';
 import CustomerViewOrderDetails from './pages/customers/orders/CustomerViewOrderDetails';
-import CustomerComplaints from './pages/customers/complaints/CustomerComplaints';
-import CustomerComplaintForm from './pages/customers/complaints/CustomerComplaintForm';
+import CustomerChangePassword from './pages/customers/profile/CustomerChangePassword';
 import CustomerMyAccounts from './pages/customers/profile/CustomerMyAccounts';
 import CustomerViewProfile from './pages/customers/profile/CustomerViewProfile';
-import CustomerChangePassword from './pages/customers/profile/CustomerChangePassword';
 import PackagingDashboard from './pages/packagings/PackagingDashboard';
 /*==========================================================================================
 ==================================== ADMIN QC PAGES END =======================================
@@ -3174,21 +3173,7 @@ function SupervisorOngoingJobsStack() {
 function CustomerDashboardStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="CustomerDashboard"
-        component={CustomerDashboard}
-        options={({navigation}) => ({
-          headerTitle: () => (
-            <NavigationDrawerStructure
-              navigation={navigation}
-              title="Dashboard"
-              isShowDrawerToggleButton={true}
-              isShowLogoInsteadOfTitle={true}
-            />
-          ),
-          headerStyle: headerStyle,
-        })}
-      />
+     
     </Stack.Navigator>
   );
 }
@@ -5757,7 +5742,7 @@ function SalesUserRoutes({initialRouteName}: any) {
 function SalesHeadUserRoutes({initialRouteName}: any) {
   return (
     <Drawer.Navigator
-      initialRouteName={initialRouteName}
+      initialRouteName={'Dashboard'}
       // drawerContent={props => <CustomDrawerContentComponent {...props} />}
       // drawerContentOptions={{
       //   activeTintColor: activeDrawerIconColor,
@@ -6875,6 +6860,7 @@ export function RootNavigator(
   isDepartmentHead = false,
 ) {
   let initialRouteName = '';
+  SalesHeadDashboard
   if (signedIn && userType !== null && appUserType !== null) {
     // Customer
     if (userType === 4 || userType === '4') {
@@ -6956,8 +6942,8 @@ export function RootNavigator(
   } else {
     initialRouteName = 'SignedOut';
   }
-  // initialRouteName = 'SignedOut';
-
+  console.log(initialRouteName,"initialRouteNameinitialRouteNameinitialRouteNameinitialRouteName");
+  // initialRouteName = 'AdminQCHeadUserRoutes';
   return (
     <NavigationContainer>
     <Stack.Navigator initialRouteName={initialRouteName}>

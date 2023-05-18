@@ -312,8 +312,8 @@ export default class CustomerOrderUploadImages extends Component {
       this.api.callPostApi(options).then(responseData => {
         this.setState({loading: false});
 
-        if (responseData.status_code === 200) {
-          this.api.showSuccessMessage(responseData.response.message, null);
+        if (responseData?.status_code === 200) {
+          this.api.showSuccessMessage(responseData?.response.message, null);
           setTimeout(() => {
             this.setState({
               activeCarouselIndex: 0,
@@ -326,13 +326,13 @@ export default class CustomerOrderUploadImages extends Component {
         } else {
           let errormessage = null;
           if (
-            typeof responseData.status_code !== 'undefined' &&
-            responseData.status_code === 422
+            typeof responseData?.status_code !== 'undefined' &&
+            responseData?.status_code === 422
           ) {
-            errormessage = responseData.response.data.message;
+            errormessage = responseData?.response.data.message;
           }
           this.api.showErrorMessage(
-            responseData.response.message,
+            responseData?.response.message,
             errormessage,
           );
         }

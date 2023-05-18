@@ -118,8 +118,8 @@ export default class ReceptionViewOrderDetails extends Component {
     this.api.callPostApi(options).then(data => {
       this.setState({loading: false, isDataRefreshing: false});
 
-      if (data.status_code === 200) {
-        let responseData = data.response.data;
+      if (data?.status_code === 200) {
+        let responseData = data?.response.data;
 
         this.setState({
           order: responseData.order,
@@ -130,12 +130,12 @@ export default class ReceptionViewOrderDetails extends Component {
       } else {
         let errormessage = null;
         if (
-          typeof data.status_code !== 'undefined' &&
-          data.status_code === 422
+          typeof data?.status_code !== 'undefined' &&
+          data?.status_code === 422
         ) {
-          errormessage = data.response.data.message;
+          errormessage = data?.response.data.message;
         }
-        this.api.showErrorMessage(data.response.message, errormessage);
+        this.api.showErrorMessage(data?.response.message, errormessage);
       }
     });
   }
@@ -574,20 +574,20 @@ export default class ReceptionViewOrderDetails extends Component {
         this.api.callPostApi(options).then(responseData => {
           this.setState({modalLoader: false});
 
-          if (responseData.status_code === 200) {
+          if (responseData?.status_code === 200) {
           } else {
             this.setState({isqrcodegenerated: false});
 
             let errormessage = null;
             if (
-              typeof responseData.status_code !== 'undefined' &&
-              responseData.status_code === 422
+              typeof responseData?.status_code !== 'undefined' &&
+              responseData?.status_code === 422
             ) {
-              errormessage = responseData.response.data.message;
+              errormessage = responseData?.response.data.message;
             }
             this.api.showErrorMessageOnRef(
               this.modalFlashMessageRef,
-              responseData.response.message,
+              responseData?.response.message,
               errormessage,
             );
           }
