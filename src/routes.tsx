@@ -1,7 +1,7 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {
   Dimensions,
@@ -13,8 +13,8 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { DrawerNavigatorItems } from 'react-navigation-drawer';
-import { headerStyles } from './assets/style';
+import {DrawerNavigatorItems} from 'react-navigation-drawer';
+import {headerStyles} from './assets/style';
 import DrawerLogoutButton from './components/DrawerLogoutButton';
 import DrawerNotificationBadge from './components/DrawerNotificationBadge';
 import DrawerUserDetails from './components/DrawerUserDetails';
@@ -43,7 +43,6 @@ import Sales from './pages/sales/Sales';
 ==================================== ADMIN QC PAGES START =====================================
 ============================================================================================*/
 /* Admin QC Head Pages Start */
-
 
 /* Admin QC Head Pages End */
 
@@ -1809,7 +1808,6 @@ function ReceptionComplaintsStack() {
   );
 }
 export const ReceptionViewOrderDetailsTabStack = () => {
-
   return (
     <Tab.Navigator
       initialRouteName="ReceptionViewOrder"
@@ -3171,11 +3169,7 @@ function SupervisorOngoingJobsStack() {
 }
 
 function CustomerDashboardStack() {
-  return (
-    <Stack.Navigator>
-     
-    </Stack.Navigator>
-  );
+  return <Stack.Navigator></Stack.Navigator>;
 }
 
 function CustomerCollectionCallsStack() {
@@ -5755,6 +5749,7 @@ function SalesHeadUserRoutes({initialRouteName}: any) {
         component={SalesHeadDashboardStack}
         options={{
           title: 'Dashboard',
+          headerShown: false,
           // drawerIcon:({tintColor}: any)=> <Icon style={[{color: tintColor}]} name="tachometer" size={20}/>
           drawerIcon: ({focused, tintColor}: any) => (
             <Icon
@@ -6860,7 +6855,7 @@ export function RootNavigator(
   isDepartmentHead = false,
 ) {
   let initialRouteName = '';
-  SalesHeadDashboard
+
   if (signedIn && userType !== null && appUserType !== null) {
     // Customer
     if (userType === 4 || userType === '4') {
@@ -6942,49 +6937,55 @@ export function RootNavigator(
   } else {
     initialRouteName = 'SignedOut';
   }
-  console.log(initialRouteName,"initialRouteNameinitialRouteNameinitialRouteNameinitialRouteName");
+  console.log(
+    initialRouteName,
+    'initialRouteNameinitialRouteNameinitialRouteNameinitialRouteName',
+  );
   // initialRouteName = 'AdminQCHeadUserRoutes';
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName={initialRouteName}>
-      <Stack.Screen name="SignedIn" component={SignedInDrawer} />
-      <Stack.Screen name="AdminQCUserRoutes" component={AdminQCUserRoutes} />
-      <Stack.Screen
-        name="AdminQCHeadUserRoutes"
-        component={AdminQCHeadUserRoutes}
-      />
-      <Stack.Screen
-        name="PackagingUserRoutes"
-        component={PackagingUserRoutes}
-      />
-      <Stack.Screen
-        name="PackagingHeadUserRoutes"
-        component={PackagingHeadUserRoutes}
-      />
-      <Stack.Screen
-        name="ProductionUserRoutes"
-        component={ProductionUserRoutes}
-      />
-      <Stack.Screen
-        name="ProductionHeadUserRoutes"
-        component={ProductionHeadUserRoutes}
-      />
-      <Stack.Screen
-        name="ReceptionUserRoutes"
-        component={ReceptionUserRoutes}
-      />
-      <Stack.Screen name="SalesUserRoutes" component={SalesUserRoutes} />
-      <Stack.Screen
-        name="SalesHeadUserRoutes"
-        component={SalesHeadUserRoutes}
-      />
-      <Stack.Screen
-        name="SupervisorUserRoutes"
-        component={SupervisorUserRoutes}
-      />
-      <Stack.Screen name="CustomerUserRoutes" component={CustomerUserRoutes} />
-      <Stack.Screen name="SignedOut" component={SignedOut} />
-    </Stack.Navigator>
+      <Stack.Navigator initialRouteName={initialRouteName}>
+        <Stack.Screen name="SignedIn" component={SignedInDrawer} />
+        <Stack.Screen name="AdminQCUserRoutes" component={AdminQCUserRoutes} />
+        <Stack.Screen
+          name="AdminQCHeadUserRoutes"
+          component={AdminQCHeadUserRoutes}
+        />
+        <Stack.Screen
+          name="PackagingUserRoutes"
+          component={PackagingUserRoutes}
+        />
+        <Stack.Screen
+          name="PackagingHeadUserRoutes"
+          component={PackagingHeadUserRoutes}
+        />
+        <Stack.Screen
+          name="ProductionUserRoutes"
+          component={ProductionUserRoutes}
+        />
+        <Stack.Screen
+          name="ProductionHeadUserRoutes"
+          component={ProductionHeadUserRoutes}
+        />
+        <Stack.Screen
+          name="ReceptionUserRoutes"
+          component={ReceptionUserRoutes}
+        />
+        <Stack.Screen name="SalesUserRoutes" component={SalesUserRoutes} />
+        <Stack.Screen
+          name="SalesHeadUserRoutes"
+          component={SalesHeadUserRoutes}
+        />
+        <Stack.Screen
+          name="SupervisorUserRoutes"
+          component={SupervisorUserRoutes}
+        />
+        <Stack.Screen
+          name="CustomerUserRoutes"
+          component={CustomerUserRoutes}
+        />
+        <Stack.Screen name="SignedOut" component={SignedOut} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

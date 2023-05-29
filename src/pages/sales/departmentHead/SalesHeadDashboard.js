@@ -40,7 +40,8 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {Body, Card, CardItem, Left, Right} from 'native-base';
+import {Body, Card, CardItem, Left, Right, Box, Flex} from 'native-base';
+// import {HStack, NativeBaseConfigProvider, withTheme} from 'native-base';
 
 import {skeletonPlaceholderProps} from '../../../constants/defaultValues';
 
@@ -59,7 +60,7 @@ const SLIDER_WIDTH = viewportWidth;
 
 const BRAND_ITEM_WIDTH = SLIDE_WIDTH + ITEM_HORIZONTAL_MARGIN * 2 - 80;
 
-export default class CustomerDashboard extends Component {
+class CustomerDashboard extends Component {
   api = new Api();
   dataProvider = new Dataprovider();
 
@@ -802,7 +803,7 @@ export default class CustomerDashboard extends Component {
                     </View>
                   </View>
                 </View>
-                <View>
+                {/* <View>
                   <View
                     style={[
                       dashBoardStyle.carouselHeader,
@@ -854,8 +855,62 @@ export default class CustomerDashboard extends Component {
                       </View>
                     )}
                   </View>
-                </View>
-                <View
+                </View> */}
+                {/* <View>
+                  <View
+                    style={[
+                      dashBoardStyle.carouselHeader,
+                      {marginTop: 0, marginBottom: 0},
+                    ]}>
+                    <Flex justifyContent="flex-start">
+                      <Text
+                        style={dashBoardStyle.carouselWithoutCardDataHeading}>
+                        CUSTOMERS
+                      </Text>
+                    </Flex>
+                    <Flex justifyContent="flex-end">
+                      <Text
+                        style={dashBoardStyle.carouselWithoutCardData}
+                        onPress={() => {
+                          this.props.navigation.navigate('SalesCustomers', {
+                            pageHeading: 'Customers',
+                          });
+                        }}>
+                        View All
+                      </Text>
+                    </Flex>
+                  </View>
+                  <View
+                    style={[dashBoardStyle.carouselBody, {marginBottom: 4}]}>
+                    {this.state.customers.length === 0 ? (
+                      <Text
+                        style={[
+                          common.mutedTextInItalic,
+                          {textAlign: 'center'},
+                        ]}>
+                        No customers added!
+                      </Text>
+                    ) : (
+                      <View>
+                        <Carousel
+                          sliderWidth={carouselWidth}
+                          sliderHeight={carouselWidth}
+                          itemWidth={carouselWidth - 70}
+                          data={
+                            this.state.customers.length > 0
+                              ? this.state.customers
+                              : []
+                          }
+                          renderItem={this.renderCustomers}
+                          hasParallaxImages={true}
+                          inactiveSlideOpacity={1}
+                        />
+                      </View>
+                    )}
+                  </View>
+                </View> */}
+
+                {/* <View
                   style={[
                     dashBoardStyle.attendanceCard,
                     {backgroundColor: primarywarningHexColor},
@@ -914,8 +969,8 @@ export default class CustomerDashboard extends Component {
                       </View>
                     )}
                   </View>
-                </View>
-                <View
+                </View> */}
+                {/* <View
                   style={[
                     dashBoardStyle.attendanceCard,
                     {backgroundColor: successHexColor},
@@ -974,8 +1029,8 @@ export default class CustomerDashboard extends Component {
                       </View>
                     )}
                   </View>
-                </View>
-                <View
+                </View> */}
+                {/* <View
                   style={[
                     dashBoardStyle.attendanceCard,
                     {backgroundColor: primaryOrangeHexColor},
@@ -1034,7 +1089,73 @@ export default class CustomerDashboard extends Component {
                       </View>
                     )}
                   </View>
-                </View>
+                </View> */}
+                {/* <View
+                  style={[
+                    dashBoardStyle.attendanceCard,
+                    {backgroundColor: primaryOrangeHexColor},
+                  ]}>
+                  <View style={dashBoardStyle.carouselHeader}>
+                    <Box
+                      flexDirection="row"
+                      alignItems="center"
+                      justifyContent="flex-start">
+                      <Text
+                        style={[
+                          dashBoardStyle.carouselHeading,
+                          {color: primarywhiteHexColor},
+                        ]}>
+                        COMPLANITS
+                      </Text>
+                    </Box>
+                    <Box
+                      flexDirection="row"
+                      alignItems="center"
+                      justifyContent="flex-end">
+                      <Text
+                        style={[
+                          dashBoardStyle.carouselHeadingLink,
+                          {color: primarywhiteHexColor},
+                        ]}
+                        onPress={() => {
+                          this.props.navigation.navigate('Complaints', {
+                            pageHeading: 'Complaints',
+                          });
+                        }}>
+                        View All
+                      </Text>
+                    </Box>
+                  </View>
+                  <View
+                    style={[dashBoardStyle.carouselBody, {paddingBottom: 5}]}>
+                    {this.state.complaints.length === 0 ? (
+                      <Text
+                        style={[
+                          common.mutedTextInItalic,
+                          {textAlign: 'center'},
+                        ]}>
+                        No complaints added!
+                      </Text>
+                    ) : (
+                      <View>
+                        <Carousel
+                          sliderWidth={carouselWidth - 40}
+                          sliderHeight={carouselWidth}
+                          // firstItem={2}
+                          itemWidth={carouselWidth - 100}
+                          data={
+                            this.state.complaints.length > 0
+                              ? this.state.complaints
+                              : []
+                          }
+                          renderItem={this.renderComplaintLogDetails}
+                          hasParallaxImages={true}
+                          inactiveSlideOpacity={1}
+                        />
+                      </View>
+                    )}
+                  </View>
+                </View> */}
                 <View
                   style={[
                     dashBoardStyle.attendanceCard,
@@ -1098,6 +1219,7 @@ export default class CustomerDashboard extends Component {
     );
   }
 }
+export default CustomerDashboard;
 
 const styles = StyleSheet.create({
   showSquareBox: {
